@@ -324,9 +324,26 @@ input[type="text"],input[type="email"],input[type="file"],select{min-height:44px
       return out;
     }
     async function fetchWithTimeout(url, opts={}, ms=30000){
-      const ctrl = new AbortController(); const t = setTimeout(()=>ctrl.abort(), ms);
-      try{ return await fetch(url, { ...opts, signal: ctrl.signal, cache:"no-store" }); }
-      finally{ clearTimeout(t); }
+      const ctrl = new AbortController(); 
+      const t = setTimeout(()=>{
+        if (!ctrl.signal.aborted) {
+          ctrl.abort();
+        }
+      }, ms);
+      try{ 
+        const response = await fetch(url, { 
+          ...opts, 
+          signal: ctrl.signal, 
+          cache:"no-store",
+          headers: {
+            ...opts.headers,
+            'User-Agent': 'CurriculoForm/1.0'
+          }
+        });
+        return response;
+      } finally{ 
+        clearTimeout(t); 
+      }
     }
     function animateWake(ms){
       const bar = wakebar; bar.style.width = "0%";
@@ -351,8 +368,8 @@ input[type="text"],input[type="email"],input[type="file"],select{min-height:44px
     // ====== Carregar vagas do Supabase ======
     async function loadVagas() {
       try {
-        const response = await fetchWithTimeout(`${API_BASE}/api/vagas`, {}, 10000);
-        if (!response.ok) throw new Error('Falha ao carregar vagas');
+        const response = await fetchWithTimeout(`${API_BASE}/api/vagas`, {}, 30000); // 30 segundos
+        if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         
         const vagas = await response.json();
         const selectVaga = document.getElementById('vaga');
@@ -374,7 +391,15 @@ input[type="text"],input[type="email"],input[type="file"],select{min-height:44px
       } catch (error) {
         console.error('Erro ao carregar vagas:', error);
         const selectVaga = document.getElementById('vaga');
-        selectVaga.innerHTML = '<option value="" disabled selected>Erro ao carregar vagas. Recarregue a página.</option>';
+        
+        if (error.name === 'AbortError') {
+          selectVaga.innerHTML = '<option value="" disabled selected>Servidor ocupado. Tente recarregar a página.</option>';
+        } else {
+          selectVaga.innerHTML = '<option value="" disabled selected>Erro ao carregar vagas. Recarregue a página.</option>';
+        }
+        
+        // Forçar atualização do estado do formulário
+        updateSteps();
       }
     }
 
