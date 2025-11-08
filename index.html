@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formulário de Currículo Moderno</title>
+  <title>Formulário de Currículo Moderno — Etapas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -44,7 +44,7 @@
     .form-container{width:100%;max-width:700px;margin:2rem 0}
     form{background:var(--card-bg);padding:2.5rem;border-radius:16px;box-shadow:0 8px 25px var(--shadow);animation:fadeInUp .8s ease-out;transition:background-color var(--transition-speed),box-shadow var(--transition-speed)}
     h2{text-align:center;color:var(--accent);margin-bottom:.5rem;font-weight:600;font-size:1.8rem;transition:color var(--transition-speed)}
-    .form-description{text-align:center;color:var(--text);opacity:.8;margin-bottom:2.5rem;font-size:.95rem;transition:color var(--transition-speed)}
+    .form-description{text-align:center;color:var(--text);opacity:.8;margin-bottom:1.25rem;font-size:.95rem;transition:color var(--transition-speed)}
     fieldset{border:none;margin-bottom:2rem;padding:0}
     legend{font-size:1.1rem;font-weight:600;color:var(--legend-text);margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);width:100%;transition:color var(--transition-speed),border-color var(--transition-speed)}
     .form-group{margin-bottom:1.5rem}
@@ -67,8 +67,43 @@
     @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     @keyframes spin{to{transform:rotate(360deg)}}
-    @media (max-width:768px){
-      body{padding:1rem}.form-container{margin:1rem 0}form{padding:1.5rem}h2{font-size:1.5rem}.form-description{font-size:.9rem;margin-bottom:2rem}
+    @media (max-width:1200px){
+  .form-container{max-width:860px}
+}
+@media (max-width:992px){
+  .form-container{max-width:740px}
+  form{padding:2rem}
+}
+@media (max-width:768px){
+  body{padding:1rem}
+  .form-container{margin:1rem 0; max-width:100%}
+  form{padding:1.25rem}
+  h2{font-size:clamp(1.25rem, 2.8vw, 1.6rem)}
+  .form-description{font-size:.95rem;margin-bottom:1.25rem}
+  legend{font-size:1rem;margin-bottom:1rem}
+  .form-group{margin-bottom:1rem}
+  label{font-size:.92rem}
+  input[type="text"],input[type="email"],input[type="file"],select,button[type="submit"]{font-size:1rem;padding:.85rem 1rem}
+  input[type="file"]::file-selector-button{padding:.6rem .9rem}
+  .stepper{flex-wrap:wrap;gap:.5rem}
+  .step .label{font-size:.85rem}
+}
+@media (max-width:560px){
+  :root{ --transition-speed:.25s }
+  h2{font-size:clamp(1.1rem, 4.5vw, 1.35rem)}
+  .form-description{font-size:.9rem}
+  .stepper{gap:.25rem}
+  .step .dot{width:24px;height:24px;font-size:.85rem}
+  .step .label{display:none}
+  .stepbar{height:3px}
+  input[type="text"],input[type="email"],input[type="file"],select{font-size:1rem}
+  #submitButton.sticky-submit{position:sticky;bottom:1rem;z-index:10}
+}
+@media (max-width:390px){
+  form{padding:1rem}
+  .form-group{margin-bottom:.85rem}
+  input[type="text"],input[type="email"],input[type="file"],select{padding:.75rem .9rem}
+}.form-container{margin:1rem 0}form{padding:1.5rem}h2{font-size:1.5rem}.form-description{font-size:.9rem;margin-bottom:2rem}
       legend{font-size:1rem;margin-bottom:1rem}.form-group{margin-bottom:1rem}
       label{font-size:.85rem}
       input[type="text"],input[type="email"],input[type="file"],select,button[type="submit"]{font-size:.9rem;padding:.7rem .9rem}
@@ -76,7 +111,24 @@
     }
     /* barra de progresso discreta para wake */
     .wakebar{height:3px;width:0;background:linear-gradient(90deg,#28a745,#dc3545);border-radius:999px;transition:width .2s}
-  </style>
+
+    /* ====== Stepper minimalista (mantém o estilo) ====== */
+    .stepper{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:1rem 0 1.25rem;flex-wrap:wrap}
+    .step{flex:1;display:flex;align-items:center;gap:.75rem}
+    .step .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 15%, #fff);color:var(--accent);font-weight:700;border:1px solid color-mix(in srgb,var(--accent) 35%, transparent)}
+    .step .label{font-size:.9rem;color:var(--legend-text)}
+    .step.done .dot{background:var(--accent);color:#fff}
+    .step.active .dot{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%, transparent)}
+    .step.disabled .dot{opacity:.5}
+    .stepbar{position:relative;height:4px;background:color-mix(in srgb,var(--border) 60%, transparent);border-radius:999px;margin:.5rem 0 1rem}
+    .stepbar > .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--focus-ring));border-radius:999px;transition:width .3s ease}
+
+    /* fieldsets bloqueados visualmente */
+    fieldset[aria-disabled="true"]{opacity:.6;filter:grayscale(.1)}
+  /* Alvos de toque maiores */
+input[type="text"],input[type="email"],input[type="file"],select{min-height:44px}
+
+</style>
 </head>
 <body data-theme="light">
   <div class="form-container">
@@ -84,9 +136,18 @@
       <div class="wakebar" id="wakebar" aria-hidden="true"></div>
 
       <h2>Envie o seu Currículo</h2>
-      <p class="form-description">Preencha os campos abaixo para se candidatar às nossas vagas.</p>
+      <p class="form-description">Preencha em 3 etapas. Cada etapa é liberada automaticamente quando os campos obrigatórios da anterior forem preenchidos.</p>
 
-      <fieldset>
+      <!-- Stepper -->
+      <div class="stepper" aria-hidden="true">
+        <div class="step" id="step1Head"><span class="dot">1</span><span class="label">Pessoais</span></div>
+        <div class="step" id="step2Head"><span class="dot">2</span><span class="label">Endereço</span></div>
+        <div class="step" id="step3Head"><span class="dot">3</span><span class="label">Candidatura</span></div>
+      </div>
+      <div class="stepbar" aria-hidden="true"><div class="fill" id="stepFill"></div></div>
+
+      <!-- ETAPA 1 -->
+      <fieldset id="fs1">
         <legend>Informações Pessoais</legend>
         <div class="form-group">
           <label for="nome">Nome Completo:</label>
@@ -106,7 +167,8 @@
         </div>
       </fieldset>
 
-      <fieldset>
+      <!-- ETAPA 2 -->
+      <fieldset id="fs2" aria-disabled="true" disabled>
         <legend>Endereço</legend>
         <div class="form-group">
           <label for="cep">CEP:</label>
@@ -126,7 +188,8 @@
         </div>
       </fieldset>
 
-      <fieldset>
+      <!-- ETAPA 3 -->
+      <fieldset id="fs3" aria-disabled="true" disabled>
         <legend>Candidatura</legend>
         <div class="form-group">
           <label for="transporte">Possui Transporte Próprio?</label>
@@ -159,7 +222,7 @@
         </div>
       </fieldset>
 
-      <button type="submit" id="submitButton">
+      <button type="submit" id="submitButton" class="sticky-submit" disabled>
         <span class="button-text">Enviar Candidatura</span>
         <span class="spinner hidden"></span>
       </button>
@@ -178,6 +241,10 @@
 
     // ====== DOM ======
     const form = document.getElementById("formCurriculo");
+    const fs1 = document.getElementById('fs1');
+    const fs2 = document.getElementById('fs2');
+    const fs3 = document.getElementById('fs3');
+
     const nome = document.getElementById("nome");
     const cpf = document.getElementById("cpf");
     const telefone = document.getElementById("telefone");
@@ -189,12 +256,18 @@
     const transporte = document.getElementById("transporte");
     const vaga = document.getElementById("vaga");
     const arquivo = document.getElementById("arquivo");
+
     const btn = document.getElementById("submitButton");
     const btnText = btn.querySelector(".button-text");
     const spinner = btn.querySelector(".spinner");
     const okBox = document.getElementById("mensagemSucesso");
     const errBox = document.getElementById("mensagemErro");
     const wakebar = document.getElementById("wakebar");
+
+    const stepFill = document.getElementById('stepFill');
+    const step1Head = document.getElementById('step1Head');
+    const step2Head = document.getElementById('step2Head');
+    const step3Head = document.getElementById('step3Head');
 
     // ====== Máscaras ======
     IMask(cpf, { mask: "000.000.000-00" });
@@ -217,15 +290,16 @@
             bairro.value = d.bairro || "";
             rua.value = d.logradouro || "";
           }
+          updateSteps();
         }catch{}
       }, 500);
     });
 
+    // ====== Util ======
     function showMsg(el, msg){
       el.textContent = msg;
       el.classList.remove("hidden");
       el.style.display = "block";
-      // esconde a outra
       if(el === okBox){ errBox.classList.add("hidden"); errBox.style.display="none"; }
       else { okBox.classList.add("hidden"); okBox.style.display="none"; }
     }
@@ -234,7 +308,7 @@
     }
     function setLoading(v){
       if(v){ btnText.classList.add("hidden"); spinner.classList.remove("hidden"); btn.disabled = true; }
-      else { btnText.classList.remove("hidden"); spinner.classList.add("hidden"); btn.disabled = false; }
+      else { btnText.classList.remove("hidden"); spinner.classList.add("hidden"); }
     }
     function validateFile(){
       const f = arquivo.files?.[0];
@@ -266,11 +340,11 @@
       finally{ clearTimeout(t); }
     }
     function animateWake(ms){
-      wakebar.style.width = "0%";
+      const bar = wakebar; bar.style.width = "0%";
       const start = performance.now();
       const step = (now)=>{
         const p = Math.min(1, (now - start)/ms);
-        wakebar.style.width = (p*100).toFixed(1) + "%";
+        bar.style.width = (p*100).toFixed(1) + "%";
         if(p<1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
@@ -285,10 +359,68 @@
       return false;
     }
 
+    // ====== Validação por etapa ======
+    const reqStep1 = [nome, cpf, telefone, email];
+    const reqStep2 = [cep, cidade, bairro, rua];
+    const reqStep3 = [transporte, vaga];
+
+    function isFilled(input){
+      if(input.type === 'email') return /.+@.+\..+/.test(input.value.trim());
+      if(input.tagName === 'SELECT') return !!input.value;
+      return input.value.trim().length > 0;
+    }
+
+    function setFsDisabled(fieldset, disabled){
+      if(disabled){
+        fieldset.setAttribute('disabled','');
+        fieldset.setAttribute('aria-disabled','true');
+      }else{
+        fieldset.removeAttribute('disabled');
+        fieldset.setAttribute('aria-disabled','false');
+      }
+    }
+
+    function markStep(head, state){
+      head.classList.remove('disabled','active','done');
+      head.classList.add(state); // 'disabled' | 'active' | 'done'
+    }
+
+    function updateSteps(){
+      const s1ok = reqStep1.every(isFilled);
+      const s2ok = s1ok && reqStep2.every(isFilled);
+      const s3ok = s2ok && reqStep3.every(isFilled) && (!!arquivo.files?.length);
+
+      setFsDisabled(fs2, !s1ok);
+      setFsDisabled(fs3, !s2ok);
+
+      // stepper states
+      markStep(step1Head, s1ok ? 'done' : 'active');
+      markStep(step2Head, s1ok ? (s2ok ? 'done' : 'active') : 'disabled');
+      markStep(step3Head, s2ok ? (s3ok ? 'done' : 'active') : 'disabled');
+
+      // barra de progresso das etapas (0%, 50%, 100%)
+      const pct = s1ok ? (s2ok ? (s3ok ? 100 : 66) : 33) : 0;
+      stepFill.style.width = pct + '%';
+
+      // botão
+      btn.disabled = !s3ok;
+    }
+
+    [...reqStep1, ...reqStep2, ...reqStep3, arquivo].forEach(el => {
+      const evt = el.tagName === 'SELECT' || el.type === 'file' ? 'change' : 'input';
+      el.addEventListener(evt, updateSteps);
+    });
+
+    // inicial
+    updateSteps();
+
+    // ====== Submit ======
     form.addEventListener("submit", async (e)=>{
       e.preventDefault();
       hideMsgs();
-      if(!validateFile()) return;
+
+      // garante regras da etapa 3
+      if(!validateFile()){ updateSteps(); return; }
 
       setLoading(true);
 
@@ -322,6 +454,7 @@
       showMsg(okBox, data?.message || "Sua candidatura foi enviada com sucesso. Agradecemos seu interesse e entraremos em contato caso seu perfil seja selecionado.");
       form.reset();
       wakebar.style.width = "0%";
+      updateSteps();
     });
   </script>
 </body>
