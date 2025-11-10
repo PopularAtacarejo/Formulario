@@ -11,21 +11,25 @@
   <style>
     /* ======= VARIÁVEIS E ESTILOS GLOBAIS ======= */
     :root {
-      --bg-light: #f8f9fa; --text-light: #212529;
-      --accent-light: #28a745; --accent-light-hover: #218838;
-      --focus-ring-light: #dc3545; --error-light: #dc3545; --success-light: #28a745;
-      --border-light: #dee2e6; --shadow-light: rgba(0,0,0,.08);
-      --input-bg-light: #fff; --input-text-light: #495057;
-      --card-bg-light: #fff; --legend-text-light: #6c757d;
-      --step-bg-light: #f1f3f5;
+      --bg-light: #f8fafc; --text-light: #1e293b;
+      --accent-light: #059669; --accent-light-hover: #047857;
+      --secondary-light: #10b981; --secondary-light-hover: #059669;
+      --focus-ring-light: #dc2626; --error-light: #dc2626; --success-light: #059669;
+      --border-light: #e2e8f0; --shadow-light: rgba(0,0,0,.05);
+      --input-bg-light: #fff; --input-text-light: #475569;
+      --card-bg-light: #ffffff; --legend-text-light: #64748b;
+      --step-bg-light: #f8fafc;
+      --header-bg-light: linear-gradient(135deg, #059669 0%, #10b981 100%);
 
-      --bg-dark: #1a1a1a; --text-dark: #e9ecef;
-      --accent-dark: #34c759; --accent-dark-hover: #2ca34c;
-      --focus-ring-dark: #ff4d4d; --error-dark: #ff4d4d; --success-dark: #34c759;
-      --border-dark: #495057; --shadow-dark: rgba(255,255,255,.1);
-      --input-bg-dark: #2c2c2c; --input-text-dark: #ced4da; 
-      --card-bg-dark: #252525; --legend-text-dark: #adb5bd;
-      --step-bg-dark: #2d3748;
+      --bg-dark: #0f172a; --text-dark: #f1f5f9;
+      --accent-dark: #10b981; --accent-dark-hover: #059669;
+      --secondary-dark: #34d399; --secondary-dark-hover: #10b981;
+      --focus-ring-dark: #ef4444; --error-dark: #f87171; --success-dark: #34d399;
+      --border-dark: #334155; --shadow-dark: rgba(255,255,255,.05);
+      --input-bg-dark: #1e293b; --input-text-dark: #cbd5e1; 
+      --card-bg-dark: #1e293b; --legend-text-dark: #94a3b8;
+      --step-bg-dark: #1e293b;
+      --header-bg-dark: linear-gradient(135deg, #047857 0%, #059669 100%);
 
       --bg: var(--bg-light); --text: var(--text-light); --accent: var(--accent-light);
       --accent-hover: var(--accent-light-hover); --focus-ring: var(--focus-ring-light);
@@ -34,9 +38,11 @@
       --input-bg: var(--input-bg-light); --input-text: var(--input-text-light);
       --card-bg: var(--card-bg-light); --legend-text: var(--legend-text-light);
       --step-bg: var(--step-bg-light);
+      --header-bg: var(--header-bg-light);
       --transition-speed: .3s;
-      --border-radius: 12px;
-      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      --header-height: 180px;
     }
     
     [data-theme='dark'] {
@@ -47,7 +53,8 @@
       --input-bg: var(--input-bg-dark); --input-text: var(--input-text-dark);
       --card-bg: var(--card-bg-dark); --legend-text: var(--legend-text-dark);
       --step-bg: var(--step-bg-dark);
-      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      --header-bg: var(--header-bg-dark);
+      --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
     
     * { 
@@ -61,18 +68,67 @@
       background: var(--bg); 
       color: var(--text); 
       line-height: 1.6;
-      padding: 2rem;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
       transition: background-color var(--transition-speed), color var(--transition-speed);
+      padding: 0;
+    }
+    
+    .app-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .header {
+      background: var(--header-bg);
+      color: white;
+      padding: 2rem 2rem 1.5rem;
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    
+    .header-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
     }
     
     .form-container {
       width: 100%;
-      max-width: 700px;
-      margin: 2rem 0;
+      margin-top: -40px;
+      position: relative;
+      z-index: 2;
     }
     
     form {
@@ -82,16 +138,7 @@
       box-shadow: var(--card-shadow);
       animation: fadeInUp .8s ease-out;
       transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-    }
-    
-    h2 {
-      text-align: center;
-      color: var(--accent);
-      margin-bottom: .5rem;
-      font-weight: 700;
-      font-size: 1.8rem;
-      transition: color var(--transition-speed);
-      letter-spacing: -0.5px;
+      margin: 0 1.5rem 2rem;
     }
     
     .form-description {
@@ -117,6 +164,7 @@
       transition: all var(--transition-speed);
       position: relative;
       overflow: hidden;
+      border: 1px solid var(--border);
     }
     
     fieldset::before {
@@ -170,12 +218,25 @@
       transition: color var(--transition-speed);
     }
     
+    .input-with-icon {
+      position: relative;
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--legend-text);
+      z-index: 1;
+    }
+    
     input[type="text"],
     input[type="email"],
     input[type="file"],
     select {
       width: 100%;
-      padding: .8rem 1rem;
+      padding: .8rem 1rem .8rem 2.5rem;
       margin-top: .25rem;
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -196,12 +257,12 @@
     input:focus,
     select:focus {
       border-color: var(--focus-ring);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus-ring) 30%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus-ring) 20%, transparent);
       transform: translateY(-1px);
     }
     
     input[type="file"] {
-      padding: .5rem 1rem;
+      padding: .5rem 1rem .5rem 2.5rem;
     }
     
     input[type="file"]::file-selector-button {
@@ -228,7 +289,7 @@
       margin-top: 1.5rem;
       width: 100%;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
@@ -237,7 +298,7 @@
       justify-content: center;
       align-items: center;
       gap: .5rem;
-      box-shadow: 0 4px 10px color-mix(in srgb, var(--accent) 30%, transparent);
+      box-shadow: 0 4px 15px color-mix(in srgb, var(--accent) 40%, transparent);
       position: relative;
       overflow: hidden;
     }
@@ -245,16 +306,16 @@
     button[type="submit"]:hover:not(:disabled) {
       background: var(--accent-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px color-mix(in srgb, var(--accent) 40%, transparent);
+      box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 50%, transparent);
     }
     
     button[type="submit"]:active:not(:disabled) {
       transform: translateY(0);
-      box-shadow: 0 4px 10px color-mix(in srgb, var(--accent) 30%, transparent);
+      box-shadow: 0 4px 15px color-mix(in srgb, var(--accent) 40%, transparent);
     }
     
     button[type="submit"]:disabled {
-      background: #ccc;
+      background: #94a3b8;
       cursor: not-allowed;
       opacity: .7;
       box-shadow: none;
@@ -274,7 +335,7 @@
       display: none;
       margin-top: 1.5rem;
       padding: 1rem;
-      border-radius: 8px;
+      border-radius: 10px;
       text-align: center;
       font-weight: 500;
       animation: fadeIn .5s ease-out;
@@ -324,14 +385,15 @@
     .step {
       flex: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
       gap: .75rem;
       z-index: 1;
     }
     
     .step .dot {
-      width: 32px;
-      height: 32px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: grid;
       place-items: center;
@@ -341,6 +403,7 @@
       border: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
       transition: all var(--transition-speed);
       position: relative;
+      font-size: 1rem;
     }
     
     .step .label {
@@ -348,6 +411,7 @@
       color: var(--legend-text);
       font-weight: 500;
       transition: color var(--transition-speed);
+      text-align: center;
     }
     
     .step.done .dot {
@@ -357,7 +421,7 @@
     }
     
     .step.active .dot {
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 20%, transparent);
       background: var(--accent);
       color: #fff;
     }
@@ -375,9 +439,9 @@
     
     .stepbar {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      right: 16px;
+      top: 22px;
+      left: 10%;
+      right: 10%;
       height: 4px;
       background: color-mix(in srgb, var(--border) 60%, transparent);
       border-radius: 999px;
@@ -402,43 +466,79 @@
       margin-bottom: 1.5rem;
     }
     
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--legend-text);
+      font-size: 0.85rem;
+    }
+    
+    .theme-toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(30deg);
+    }
+    
     /* ====== RESPONSIVIDADE ====== */
     @media (max-width: 1200px) {
-      .form-container { max-width: 860px; }
+      .app-container { max-width: 860px; }
     }
     
     @media (max-width: 992px) {
-      .form-container { max-width: 740px; }
+      .app-container { max-width: 740px; }
       form { padding: 2rem; }
     }
     
     @media (max-width: 768px) {
-      body { padding: 1rem; }
-      .form-container { margin: 1rem 0; max-width: 100%; }
-      form { padding: 1.5rem; }
-      h2 { font-size: clamp(1.25rem, 2.8vw, 1.6rem); }
+      body { padding: 0; }
+      .app-container { margin: 0; }
+      .header { padding: 1.5rem 1.5rem 1rem; }
+      h1 { font-size: 1.5rem; }
+      .header-subtitle { font-size: 0.9rem; }
+      form { padding: 1.5rem; margin: 0 1rem 1.5rem; }
       .form-description { font-size: .95rem; margin-bottom: 1.25rem; }
       legend { font-size: 1rem; margin-bottom: 1rem; }
       .form-group { margin-bottom: 1rem; }
       label { font-size: .92rem; }
       input[type="text"], input[type="email"], input[type="file"], select, button[type="submit"] { 
         font-size: 1rem; 
-        padding: .85rem 1rem; 
+        padding: .85rem 1rem .85rem 2.5rem; 
       }
       input[type="file"]::file-selector-button { padding: .6rem .9rem; }
       .stepper { flex-wrap: wrap; gap: .5rem; }
       .step .label { font-size: .85rem; }
       fieldset { padding: 1.25rem; }
+      .step .dot { width: 36px; height: 36px; }
+      .stepbar { top: 18px; }
     }
     
     @media (max-width: 560px) {
       :root { --transition-speed: .25s; }
-      h2 { font-size: clamp(1.1rem, 4.5vw, 1.35rem); }
+      h1 { font-size: 1.3rem; }
+      .header-subtitle { font-size: 0.85rem; }
       .form-description { font-size: .9rem; }
       .stepper { gap: .25rem; }
-      .step .dot { width: 28px; height: 28px; font-size: .85rem; }
+      .step .dot { width: 32px; height: 32px; font-size: .85rem; }
       .step .label { display: none; }
-      .stepbar { height: 3px; }
+      .stepbar { height: 3px; top: 16px; }
       input[type="text"], input[type="email"], input[type="file"], select { font-size: 1rem; }
       #submitButton.sticky-submit { 
         position: sticky; 
@@ -447,126 +547,174 @@
         margin-top: 1rem;
       }
       fieldset { padding: 1rem; margin-bottom: 1.5rem; }
+      .theme-toggle { top: 1rem; right: 1rem; width: 36px; height: 36px; }
     }
     
     @media (max-width: 390px) {
-      form { padding: 1.25rem; }
+      form { padding: 1.25rem; margin: 0 0.5rem 1.5rem; }
       .form-group { margin-bottom: .85rem; }
-      input[type="text"], input[type="email"], input[type="file"], select { padding: .75rem .9rem; }
+      input[type="text"], input[type="email"], input[type="file"], select { padding: .75rem .9rem .75rem 2.2rem; }
       input[type="file"]::file-selector-button { padding: .5rem .8rem; }
       fieldset { padding: 1rem; margin-bottom: 1.25rem; }
     }
   </style>
 </head>
 <body data-theme="light">
-  <div class="form-container">
-    <form id="formCurriculo" novalidate>
-      <div class="wakebar" id="wakebar" aria-hidden="true"></div>
-
-      <h2>Envie o seu Currículo</h2>
-      <p class="form-description">Preencha em 3 etapas. Cada etapa é liberada automaticamente quando os campos obrigatórios da anterior forem preenchidos.</p>
-
-      <!-- Stepper melhorado -->
-      <div class="stepper" aria-hidden="true">
-        <div class="step" id="step1Head">
-          <span class="dot">1</span>
-          <span class="label">Pessoais</span>
-        </div>
-        <div class="step" id="step2Head">
-          <span class="dot">2</span>
-          <span class="label">Endereço</span>
-        </div>
-        <div class="step" id="step3Head">
-          <span class="dot">3</span>
-          <span class="label">Candidatura</span>
-        </div>
-        <div class="stepbar" aria-hidden="true">
-          <div class="fill" id="stepFill"></div>
-        </div>
+  <div class="app-container">
+    <button class="theme-toggle" id="themeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="header">
+      <div class="header-content">
+       <h1>Quer Fazer Parte da Equipe Popular Atacrejo</h1>
+<p class="header-subtitle">Envie suas informações e mostre por que você é a pessoa certa para esta vaga.</p>
       </div>
+    </div>
 
-      <!-- ETAPA 1 - Informações Pessoais -->
-      <fieldset id="fs1">
-        <legend>
-          <i class="fas fa-user legend-icon"></i>
-          Informações Pessoais
-        </legend>
-        <div class="form-group">
-          <label for="nome">Nome Completo:</label>
-          <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
-        </div>
-        <div class="form-group">
-          <label for="cpf">CPF:</label>
-          <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00">
-        </div>
-        <div class="form-group">
-          <label for="telefone">Telefone:</label>
-          <input type="text" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
-        </div>
-      </fieldset>
+    <div class="form-container">
+      <form id="formCurriculo" novalidate>
+        <div class="wakebar" id="wakebar" aria-hidden="true"></div>
 
-      <!-- ETAPA 2 - Endereço -->
-      <fieldset id="fs2" aria-disabled="true" disabled>
-        <legend>
-          <i class="fas fa-home legend-icon"></i>
-          Endereço
-        </legend>
-        <div class="form-group">
-          <label for="cep">CEP:</label>
-          <input type="text" id="cep" name="cep" required placeholder="00000-000">
+        <!-- Stepper melhorado -->
+        <div class="stepper" aria-hidden="true">
+          <div class="step" id="step1Head">
+            <span class="dot">1</span>
+            <span class="label">Pessoais</span>
+          </div>
+          <div class="step" id="step2Head">
+            <span class="dot">2</span>
+            <span class="label">Endereço</span>
+          </div>
+          <div class="step" id="step3Head">
+            <span class="dot">3</span>
+            <span class="label">Candidatura</span>
+          </div>
+          <div class="stepbar" aria-hidden="true">
+            <div class="fill" id="stepFill"></div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="cidade">Cidade:</label>
-          <input type="text" id="cidade" name="cidade" required placeholder="Sua cidade">
-        </div>
-        <div class="form-group">
-          <label for="bairro">Bairro:</label>
-          <input type="text" id="bairro" name="bairro" required placeholder="Seu bairro">
-        </div>
-        <div class="form-group">
-          <label for="rua">Rua:</label>
-          <input type="text" id="rua" name="rua" required placeholder="Nome da sua rua">
-        </div>
-      </fieldset>
 
-      <!-- ETAPA 3 - Candidatura -->
-      <fieldset id="fs3" aria-disabled="true" disabled>
-        <legend>
-          <i class="fas fa-briefcase legend-icon"></i>
-          Candidatura
-        </legend>
-        <div class="form-group">
-          <label for="transporte">Possui Transporte Próprio?</label>
-          <select id="transporte" name="transporte" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="vaga">Vaga Desejada:</label>
-          <select id="vaga" name="vaga" required>
-            <option value="" disabled selected>Carregando vagas...</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="arquivo">Anexar Currículo (PDF/DOC/DOCX):</label>
-          <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx" required>
-        </div>
-      </fieldset>
+        <!-- ETAPA 1 - Informações Pessoais -->
+        <fieldset id="fs1">
+          <legend>
+            <i class="fas fa-user legend-icon"></i>
+            Informações Pessoais
+          </legend>
+          <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cpf">CPF:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-id-card input-icon"></i>
+              <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-phone input-icon"></i>
+              <input type="text" id="telefone" name="telefone" required placeholder="(00) 00000-0000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+            </div>
+          </div>
+        </fieldset>
 
-      <button type="submit" id="submitButton" class="sticky-submit" disabled>
-        <span class="button-text">Enviar Candidatura</span>
-        <span class="spinner hidden"></span>
-      </button>
+        <!-- ETAPA 2 - Endereço -->
+        <fieldset id="fs2" aria-disabled="true" disabled>
+          <legend>
+            <i class="fas fa-home legend-icon"></i>
+            Endereço
+          </legend>
+          <div class="form-group">
+            <label for="cep">CEP:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-map-pin input-icon"></i>
+              <input type="text" id="cep" name="cep" required placeholder="00000-000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-city input-icon"></i>
+              <input type="text" id="cidade" name="cidade" required placeholder="Sua cidade">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bairro">Bairro:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-map input-icon"></i>
+              <input type="text" id="bairro" name="bairro" required placeholder="Seu bairro">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="rua">Rua:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-road input-icon"></i>
+              <input type="text" id="rua" name="rua" required placeholder="Nome da sua rua">
+            </div>
+          </div>
+        </fieldset>
 
-      <div class="message success hidden" id="mensagemSucesso"></div>
-      <div class="message error hidden" id="mensagemErro"></div>
-    </form>
+        <!-- ETAPA 3 - Candidatura -->
+        <fieldset id="fs3" aria-disabled="true" disabled>
+          <legend>
+            <i class="fas fa-briefcase legend-icon"></i>
+            Candidatura
+          </legend>
+          <div class="form-group">
+            <label for="transporte">Possui Transporte Próprio?</label>
+            <div class="input-with-icon">
+              <i class="fas fa-car input-icon"></i>
+              <select id="transporte" name="transporte" required>
+                <option value="" disabled selected>Selecione...</option>
+                <option>Sim</option>
+                <option>Não</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vaga">Vaga Desejada:</label>
+            <div class="input-with-icon">
+              <i class="fas fa-briefcase input-icon"></i>
+              <select id="vaga" name="vaga" required>
+                <option value="" disabled selected>Carregando vagas...</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="arquivo">Anexar Currículo (PDF/DOC/DOCX):</label>
+            <div class="input-with-icon">
+              <i class="fas fa-file-upload input-icon"></i>
+              <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" id="submitButton" class="sticky-submit" disabled>
+          <span class="button-text">Enviar Candidatura</span>
+          <span class="spinner hidden"></span>
+        </button>
+
+        <div class="message success hidden" id="mensagemSucesso"></div>
+        <div class="message error hidden" id="mensagemErro"></div>
+      </form>
+    </div>
+
+    <div class="footer">
+      <p>© 2023 Sistema de Candidatura. Todos os direitos reservados.</p>
+    </div>
   </div>
 
   <script src="https://unpkg.com/imask"></script>
@@ -581,6 +729,7 @@
     const fs1 = document.getElementById('fs1');
     const fs2 = document.getElementById('fs2');
     const fs3 = document.getElementById('fs3');
+    const themeToggle = document.getElementById('themeToggle');
 
     const nome = document.getElementById("nome");
     const cpf = document.getElementById("cpf");
@@ -605,6 +754,23 @@
     const step1Head = document.getElementById('step1Head');
     const step2Head = document.getElementById('step2Head');
     const step3Head = document.getElementById('step3Head');
+
+    // ====== Toggle de Tema ======
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', newTheme);
+      
+      // Atualizar ícone do botão
+      const icon = themeToggle.querySelector('i');
+      if (newTheme === 'dark') {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
 
     // ====== Máscaras ======
     IMask(cpf, { mask: "000.000.000-00" });
