@@ -3,132 +3,460 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formulário de Currículo Moderno — Etapas</title>
+  <title>Formulário de Currículo Popular Atacarejo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ======= mantém seu design (cores, animações, tipografia) ======= */
-    :root{
-      --bg-light:#f8f9fa; --text-light:#212529;
-      --accent-light:#28a745; --accent-light-hover:#218838;
-      --focus-ring-light:#dc3545; --error-light:#dc3545; --success-light:#28a745;
-      --border-light:#dee2e6; --shadow-light:rgba(0,0,0,.08);
-      --input-bg-light:#fff; --input-text-light:#495057;
-      --card-bg-light:#fff; --legend-text-light:#6c757d;
+    /* ======= VARIÁVEIS E ESTILOS GLOBAIS ======= */
+    :root {
+      --bg-light: #f8f9fa; --text-light: #212529;
+      --accent-light: #28a745; --accent-light-hover: #218838;
+      --focus-ring-light: #dc3545; --error-light: #dc3545; --success-light: #28a745;
+      --border-light: #dee2e6; --shadow-light: rgba(0,0,0,.08);
+      --input-bg-light: #fff; --input-text-light: #495057;
+      --card-bg-light: #fff; --legend-text-light: #6c757d;
+      --step-bg-light: #f1f3f5;
 
-      --bg-dark:#1a1a1a; --text-dark:#e9ecef;
-      --accent-dark:#34c759; --accent-dark-hover:#2ca34c;
-      --focus-ring-dark:#ff4d4d; --error-dark:#ff4d4d; --success-dark:#34c759;
-      --border-dark:#495057; --shadow-dark:rgba(255,255,255,.1);
-      --input-bg-dark:#2c2c2c; --input-text-dark:#ced4da; --card-bg-dark:#252525; --legend-text-dark:#adb5bd;
+      --bg-dark: #1a1a1a; --text-dark: #e9ecef;
+      --accent-dark: #34c759; --accent-dark-hover: #2ca34c;
+      --focus-ring-dark: #ff4d4d; --error-dark: #ff4d4d; --success-dark: #34c759;
+      --border-dark: #495057; --shadow-dark: rgba(255,255,255,.1);
+      --input-bg-dark: #2c2c2c; --input-text-dark: #ced4da; 
+      --card-bg-dark: #252525; --legend-text-dark: #adb5bd;
+      --step-bg-dark: #2d3748;
 
-      --bg:var(--bg-light); --text:var(--text-light); --accent:var(--accent-light);
-      --accent-hover:var(--accent-light-hover); --focus-ring:var(--focus-ring-light);
-      --error-color:var(--error-light); --success-color:var(--success-light);
-      --border:var(--border-light); --shadow:var(--shadow-light);
-      --input-bg:var(--input-bg-light); --input-text:var(--input-text-light);
-      --card-bg:var(--card-bg-light); --legend-text:var(--legend-text-light);
-      --transition-speed:.3s;
+      --bg: var(--bg-light); --text: var(--text-light); --accent: var(--accent-light);
+      --accent-hover: var(--accent-light-hover); --focus-ring: var(--focus-ring-light);
+      --error-color: var(--error-light); --success-color: var(--success-light);
+      --border: var(--border-light); --shadow: var(--shadow-light);
+      --input-bg: var(--input-bg-light); --input-text: var(--input-text-light);
+      --card-bg: var(--card-bg-light); --legend-text: var(--legend-text-light);
+      --step-bg: var(--step-bg-light);
+      --transition-speed: .3s;
+      --border-radius: 12px;
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
-    [data-theme='dark']{
-      --bg:var(--bg-dark); --text:var(--text-dark); --accent:var(--accent-dark);
-      --accent-hover:var(--accent-dark-hover); --focus-ring:var(--focus-ring-dark);
-      --error-color:var(--error-dark); --success-color:var(--success-dark);
-      --border:var(--border-dark); --shadow:var(--shadow-dark);
-      --input-bg:var(--input-bg-dark); --input-text:var(--input-text-dark);
-      --card-bg:var(--card-bg-dark); --legend-text:var(--legend-text-dark);
+    
+    [data-theme='dark'] {
+      --bg: var(--bg-dark); --text: var(--text-dark); --accent: var(--accent-dark);
+      --accent-hover: var(--accent-dark-hover); --focus-ring: var(--focus-ring-dark);
+      --error-color: var(--error-dark); --success-color: var(--success-dark);
+      --border: var(--border-dark); --shadow: var(--shadow-dark);
+      --input-bg: var(--input-bg-dark); --input-text: var(--input-text-dark);
+      --card-bg: var(--card-bg-dark); --legend-text: var(--legend-text-dark);
+      --step-bg: var(--step-bg-dark);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;transition:background-color var(--transition-speed),color var(--transition-speed)}
-    .form-container{width:100%;max-width:700px;margin:2rem 0}
-    form{background:var(--card-bg);padding:2.5rem;border-radius:16px;box-shadow:0 8px 25px var(--shadow);animation:fadeInUp .8s ease-out;transition:background-color var(--transition-speed),box-shadow var(--transition-speed)}
-    h2{text-align:center;color:var(--accent);margin-bottom:.5rem;font-weight:600;font-size:1.8rem;transition:color var(--transition-speed)}
-    .form-description{text-align:center;color:var(--text);opacity:.8;margin-bottom:1.25rem;font-size:.95rem;transition:color var(--transition-speed)}
-    fieldset{border:none;margin-bottom:2rem;padding:0}
-    legend{font-size:1.1rem;font-weight:600;color:var(--legend-text);margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);width:100%;transition:color var(--transition-speed),border-color var(--transition-speed)}
-    .form-group{margin-bottom:1.5rem}
-    label{display:block;margin-bottom:.5rem;font-weight:500;font-size:.9rem;color:var(--text);transition:color var(--transition-speed)}
-    input[type="text"],input[type="email"],input[type="file"],select{width:100%;padding:.8rem 1rem;margin-top:.25rem;border:1px solid var(--border);border-radius:8px;background:var(--input-bg);color:var(--input-text);font-size:.95rem;transition:border-color var(--transition-speed),box-shadow var(--transition-speed),background-color var(--transition-speed),color var(--transition-speed);outline:none}
-    input::placeholder,select::placeholder{color:var(--input-text);opacity:.7}
-    input:focus,select:focus{border-color:var(--focus-ring);box-shadow:0 0 0 3px color-mix(in srgb,var(--focus-ring) 30%,transparent)}
-    input[type="file"]{padding:.5rem 1rem}
-    input[type="file"]::file-selector-button{margin-right:1rem;border:none;background:var(--accent);padding:.6rem 1rem;border-radius:6px;color:#fff;cursor:pointer;transition:background-color var(--transition-speed);font-weight:500}
-    input[type="file"]::file-selector-button:hover{background:var(--accent-hover)}
-    button[type="submit"]{background:var(--accent);color:#fff;padding:.9rem 1.5rem;margin-top:1.5rem;width:100%;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:background-color var(--transition-speed),transform .1s,box-shadow var(--transition-speed);display:flex;justify-content:center;align-items:center;gap:.5rem;box-shadow:0 4px 10px color-mix(in srgb,var(--accent) 30%,transparent)}
-    button[type="submit"]:hover:not(:disabled){background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 6px 15px color-mix(in srgb,var(--accent) 40%,transparent)}
-    button[type="submit"]:active:not(:disabled){transform:translateY(0);box-shadow:0 4px 10px color-mix(in srgb,var(--accent) 30%,transparent)}
-    button[type="submit"]:disabled{background:#ccc;cursor:not-allowed;opacity:.7;box-shadow:none}
-    .spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite}
-    .message{display:none;margin-top:1.5rem;padding:1rem;border-radius:8px;text-align:center;font-weight:500;animation:fadeIn .5s ease-out}
-    .message.success{background:color-mix(in srgb,var(--success-color) 15%,transparent);color:var(--success-color);border:1px solid color-mix(in srgb,var(--success-color) 30%,transparent)}
-    .message.error{background:color-mix(in srgb,var(--error-color) 15%,transparent);color:var(--error-color);border:1px solid color-mix(in srgb,var(--error-color) 30%,transparent)}
-    .hidden{display:none!important}
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    @media (max-width:1200px){
-  .form-container{max-width:860px}
-}
-@media (max-width:992px){
-  .form-container{max-width:740px}
-  form{padding:2rem}
-}
-@media (max-width:768px){
-  body{padding:1rem}
-  .form-container{margin:1rem 0; max-width:100%}
-  form{padding:1.25rem}
-  h2{font-size:clamp(1.25rem, 2.8vw, 1.6rem)}
-  .form-description{font-size:.95rem;margin-bottom:1.25rem}
-  legend{font-size:1rem;margin-bottom:1rem}
-  .form-group{margin-bottom:1rem}
-  label{font-size:.92rem}
-  input[type="text"],input[type="email"],input[type="file"],select,button[type="submit"]{font-size:1rem;padding:.85rem 1rem}
-  input[type="file"]::file-selector-button{padding:.6rem .9rem}
-  .stepper{flex-wrap:wrap;gap:.5rem}
-  .step .label{font-size:.85rem}
-}
-@media (max-width:560px){
-  :root{ --transition-speed:.25s }
-  h2{font-size:clamp(1.1rem, 4.5vw, 1.35rem)}
-  .form-description{font-size:.9rem}
-  .stepper{gap:.25rem}
-  .step .dot{width:24px;height:24px;font-size:.85rem}
-  .step .label{display:none}
-  .stepbar{height:3px}
-  input[type="text"],input[type="email"],input[type="file"],select{font-size:1rem}
-  #submitButton.sticky-submit{position:sticky;bottom:1rem;z-index:10}
-}
-@media (max-width:390px){
-  form{padding:1rem}
-  .form-group{margin-bottom:.85rem}
-  input[type="text"],input[type="email"],input[type="file"],select{padding:.75rem .9rem}
-}.form-container{margin:1rem 0}form{padding:1.5rem}h2{font-size:1.5rem}.form-description{font-size:.9rem;margin-bottom:2rem}
-      legend{font-size:1rem;margin-bottom:1rem}.form-group{margin-bottom:1rem}
-      label{font-size:.85rem}
-      input[type="text"],input[type="email"],input[type="file"],select,button[type="submit"]{font-size:.9rem;padding:.7rem .9rem}
-      input[type="file"]::file-selector-button{padding:.5rem .8rem}
+    
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0;
     }
-    /* barra de progresso discreta para wake */
-    .wakebar{height:3px;width:0;background:var(--accent);border-radius:999px;transition:width .2s}
+    
+    body {
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+    
+    .form-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem 0;
+    }
+    
+    form {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      animation: fadeInUp .8s ease-out;
+      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    }
+    
+    h2 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: .5rem;
+      font-weight: 700;
+      font-size: 1.8rem;
+      transition: color var(--transition-speed);
+      letter-spacing: -0.5px;
+    }
+    
+    .form-description {
+      text-align: center;
+      color: var(--text);
+      opacity: .8;
+      margin-bottom: 1.5rem;
+      font-size: .95rem;
+      transition: color var(--transition-speed);
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    fieldset {
+      border: none;
+      margin-bottom: 2.5rem;
+      padding: 0;
+      border-radius: var(--border-radius);
+      background: var(--step-bg);
+      padding: 1.5rem;
+      transition: all var(--transition-speed);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    fieldset::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px 0 0 4px;
+    }
+    
+    fieldset[aria-disabled="true"] {
+      opacity: .6;
+      filter: grayscale(.1);
+    }
+    
+    legend {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--legend-text);
+      margin-bottom: 1.5rem;
+      padding-bottom: .75rem;
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+      transition: color var(--transition-speed), border-color var(--transition-speed);
+      display: flex;
+      align-items: center;
+    }
+    
+    .legend-icon {
+      margin-right: 10px;
+      font-size: 1.2rem;
+      color: var(--accent);
+      width: 24px;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: .5rem;
+      font-weight: 500;
+      font-size: .9rem;
+      color: var(--text);
+      transition: color var(--transition-speed);
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: .8rem 1rem;
+      margin-top: .25rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: .95rem;
+      transition: all var(--transition-speed);
+      outline: none;
+      min-height: 44px;
+    }
+    
+    input::placeholder,
+    select::placeholder {
+      color: var(--input-text);
+      opacity: .7;
+    }
+    
+    input:focus,
+    select:focus {
+      border-color: var(--focus-ring);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus-ring) 30%, transparent);
+      transform: translateY(-1px);
+    }
+    
+    input[type="file"] {
+      padding: .5rem 1rem;
+    }
+    
+    input[type="file"]::file-selector-button {
+      margin-right: 1rem;
+      border: none;
+      background: var(--accent);
+      padding: .6rem 1rem;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      font-weight: 500;
+    }
+    
+    input[type="file"]::file-selector-button:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+    
+    button[type="submit"] {
+      background: var(--accent);
+      color: #fff;
+      padding: .9rem 1.5rem;
+      margin-top: 1.5rem;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .5rem;
+      box-shadow: 0 4px 10px color-mix(in srgb, var(--accent) 30%, transparent);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    button[type="submit"]:hover:not(:disabled) {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+    
+    button[type="submit"]:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+    
+    button[type="submit"]:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      opacity: .7;
+      box-shadow: none;
+      transform: none;
+    }
+    
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    .message {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      animation: fadeIn .5s ease-out;
+    }
+    
+    .message.success {
+      background: color-mix(in srgb, var(--success-color) 15%, transparent);
+      color: var(--success-color);
+      border: 1px solid color-mix(in srgb, var(--success-color) 30%, transparent);
+    }
+    
+    .message.error {
+      background: color-mix(in srgb, var(--error-color) 15%, transparent);
+      color: var(--error-color);
+      border: 1px solid color-mix(in srgb, var(--error-color) 30%, transparent);
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
 
-    /* ====== Stepper minimalista (mantém o estilo) ====== */
-    .stepper{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:1rem 0 1.25rem;flex-wrap:wrap}
-    .step{flex:1;display:flex;align-items:center;gap:.75rem}
-    .step .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 15%, #fff);color:var(--accent);font-weight:700;border:1px solid color-mix(in srgb,var(--accent) 35%, transparent)}
-    .step .label{font-size:.9rem;color:var(--legend-text)}
-    .step.done .dot{background:var(--accent);color:#fff}
-    .step.active .dot{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%, transparent)}
-    .step.disabled .dot{opacity:.5}
-    .stepbar{position:relative;height:4px;background:color-mix(in srgb,var(--border) 60%, transparent);border-radius:999px;margin:.5rem 0 1rem}
-    .stepbar > .fill{height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .3s ease}
-
-    /* fieldsets bloqueados visualmente */
-    fieldset[aria-disabled="true"]{opacity:.6;filter:grayscale(.1)}
-  /* Alvos de toque maiores */
-input[type="text"],input[type="email"],input[type="file"],select{min-height:44px}
-
-</style>
+    /* ====== STEPPER MELHORADO ====== */
+    .stepper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin: 1.5rem 0 1.25rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    
+    .step {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      z-index: 1;
+    }
+    
+    .step .dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--accent) 15%, var(--card-bg));
+      color: var(--accent);
+      font-weight: 700;
+      border: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      transition: all var(--transition-speed);
+      position: relative;
+    }
+    
+    .step .label {
+      font-size: .9rem;
+      color: var(--legend-text);
+      font-weight: 500;
+      transition: color var(--transition-speed);
+    }
+    
+    .step.done .dot {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    
+    .step.active .dot {
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+      background: var(--accent);
+      color: #fff;
+    }
+    
+    .step.disabled .dot {
+      opacity: .5;
+      background: color-mix(in srgb, var(--border) 30%, var(--card-bg));
+      color: var(--border);
+      border-color: var(--border);
+    }
+    
+    .step.disabled .label {
+      color: var(--border);
+    }
+    
+    .stepbar {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      height: 4px;
+      background: color-mix(in srgb, var(--border) 60%, transparent);
+      border-radius: 999px;
+      z-index: 0;
+    }
+    
+    .stepbar > .fill {
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width .3s ease;
+    }
+    
+    /* Barra de progresso discreta */
+    .wakebar {
+      height: 3px;
+      width: 0;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width .2s;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* ====== RESPONSIVIDADE ====== */
+    @media (max-width: 1200px) {
+      .form-container { max-width: 860px; }
+    }
+    
+    @media (max-width: 992px) {
+      .form-container { max-width: 740px; }
+      form { padding: 2rem; }
+    }
+    
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .form-container { margin: 1rem 0; max-width: 100%; }
+      form { padding: 1.5rem; }
+      h2 { font-size: clamp(1.25rem, 2.8vw, 1.6rem); }
+      .form-description { font-size: .95rem; margin-bottom: 1.25rem; }
+      legend { font-size: 1rem; margin-bottom: 1rem; }
+      .form-group { margin-bottom: 1rem; }
+      label { font-size: .92rem; }
+      input[type="text"], input[type="email"], input[type="file"], select, button[type="submit"] { 
+        font-size: 1rem; 
+        padding: .85rem 1rem; 
+      }
+      input[type="file"]::file-selector-button { padding: .6rem .9rem; }
+      .stepper { flex-wrap: wrap; gap: .5rem; }
+      .step .label { font-size: .85rem; }
+      fieldset { padding: 1.25rem; }
+    }
+    
+    @media (max-width: 560px) {
+      :root { --transition-speed: .25s; }
+      h2 { font-size: clamp(1.1rem, 4.5vw, 1.35rem); }
+      .form-description { font-size: .9rem; }
+      .stepper { gap: .25rem; }
+      .step .dot { width: 28px; height: 28px; font-size: .85rem; }
+      .step .label { display: none; }
+      .stepbar { height: 3px; }
+      input[type="text"], input[type="email"], input[type="file"], select { font-size: 1rem; }
+      #submitButton.sticky-submit { 
+        position: sticky; 
+        bottom: 1rem; 
+        z-index: 10; 
+        margin-top: 1rem;
+      }
+      fieldset { padding: 1rem; margin-bottom: 1.5rem; }
+    }
+    
+    @media (max-width: 390px) {
+      form { padding: 1.25rem; }
+      .form-group { margin-bottom: .85rem; }
+      input[type="text"], input[type="email"], input[type="file"], select { padding: .75rem .9rem; }
+      input[type="file"]::file-selector-button { padding: .5rem .8rem; }
+      fieldset { padding: 1rem; margin-bottom: 1.25rem; }
+    }
+  </style>
 </head>
 <body data-theme="light">
   <div class="form-container">
@@ -138,17 +466,31 @@ input[type="text"],input[type="email"],input[type="file"],select{min-height:44px
       <h2>Envie o seu Currículo</h2>
       <p class="form-description">Preencha em 3 etapas. Cada etapa é liberada automaticamente quando os campos obrigatórios da anterior forem preenchidos.</p>
 
-      <!-- Stepper -->
+      <!-- Stepper melhorado -->
       <div class="stepper" aria-hidden="true">
-        <div class="step" id="step1Head"><span class="dot">1</span><span class="label">Pessoais</span></div>
-        <div class="step" id="step2Head"><span class="dot">2</span><span class="label">Endereço</span></div>
-        <div class="step" id="step3Head"><span class="dot">3</span><span class="label">Candidatura</span></div>
+        <div class="step" id="step1Head">
+          <span class="dot">1</span>
+          <span class="label">Pessoais</span>
+        </div>
+        <div class="step" id="step2Head">
+          <span class="dot">2</span>
+          <span class="label">Endereço</span>
+        </div>
+        <div class="step" id="step3Head">
+          <span class="dot">3</span>
+          <span class="label">Candidatura</span>
+        </div>
+        <div class="stepbar" aria-hidden="true">
+          <div class="fill" id="stepFill"></div>
+        </div>
       </div>
-      <div class="stepbar" aria-hidden="true"><div class="fill" id="stepFill"></div></div>
 
-      <!-- ETAPA 1 -->
+      <!-- ETAPA 1 - Informações Pessoais -->
       <fieldset id="fs1">
-        <legend>Informações Pessoais</legend>
+        <legend>
+          <i class="fas fa-user legend-icon"></i>
+          Informações Pessoais
+        </legend>
         <div class="form-group">
           <label for="nome">Nome Completo:</label>
           <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
@@ -167,9 +509,12 @@ input[type="text"],input[type="email"],input[type="file"],select{min-height:44px
         </div>
       </fieldset>
 
-      <!-- ETAPA 2 -->
+      <!-- ETAPA 2 - Endereço -->
       <fieldset id="fs2" aria-disabled="true" disabled>
-        <legend>Endereço</legend>
+        <legend>
+          <i class="fas fa-home legend-icon"></i>
+          Endereço
+        </legend>
         <div class="form-group">
           <label for="cep">CEP:</label>
           <input type="text" id="cep" name="cep" required placeholder="00000-000">
@@ -188,9 +533,12 @@ input[type="text"],input[type="email"],input[type="file"],select{min-height:44px
         </div>
       </fieldset>
 
-      <!-- ETAPA 3 -->
+      <!-- ETAPA 3 - Candidatura -->
       <fieldset id="fs3" aria-disabled="true" disabled>
-        <legend>Candidatura</legend>
+        <legend>
+          <i class="fas fa-briefcase legend-icon"></i>
+          Candidatura
+        </legend>
         <div class="form-group">
           <label for="transporte">Possui Transporte Próprio?</label>
           <select id="transporte" name="transporte" required>
