@@ -779,141 +779,6 @@
       opacity: 1;
     }
     
-    /* ======= BOTÃO PARA REVALIDAR CPF ======= */
-    .revalidate-btn {
-      position: absolute;
-      right: 45px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: var(--primary);
-      cursor: pointer;
-      font-size: 0.8rem;
-      padding: 4px 8px;
-      border-radius: var(--radius-xs);
-      transition: var(--transition);
-      display: none;
-    }
-    
-    .revalidate-btn:hover {
-      background-color: var(--primary-super-light);
-    }
-    
-    .cpf-invalid .revalidate-btn {
-      display: block;
-    }
-    
-    /* ======= BLOQUEIO DE FORMULÁRIO ======= */
-    .form-blocked-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: var(--transition);
-    }
-    
-    .blocked-message {
-      background: var(--bg-card);
-      padding: 40px 30px;
-      border-radius: var(--radius-xl);
-      text-align: center;
-      box-shadow: var(--shadow-dark);
-      border: 1px solid var(--border);
-      max-width: 450px;
-      width: 90%;
-      position: relative;
-      animation: modalScale 0.3s ease-out;
-    }
-
-    @keyframes modalScale {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    
-    .close-blocked-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: var(--bg);
-      border: none;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--text-secondary);
-      transition: var(--transition);
-    }
-
-    .close-blocked-btn:hover {
-      background: var(--danger);
-      color: white;
-      transform: rotate(90deg);
-    }
-
-    .btn-modal-action {
-      margin-top: 25px;
-      width: 100%;
-      padding: 14px;
-      border-radius: var(--radius-md);
-      border: none;
-      background: var(--gradient);
-      color: white;
-      font-weight: 600;
-      font-family: 'Poppins', sans-serif;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(5, 150, 105, 0.2);
-    }
-
-    .btn-modal-action:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
-      filter: brightness(1.1);
-    }
-
-    .btn-modal-action:active {
-      transform: translateY(0);
-    }
-
-    .btn-modal-action::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-    }
-
-    .btn-modal-action:hover::after {
-      left: 100%;
-    }
-    
-    .blocked-message h3 {
-      color: var(--danger);
-      margin-bottom: 15px;
-      font-family: 'Poppins', sans-serif;
-    }
-    
-    .blocked-message p {
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-    
     /* ======= RESPONSIVIDADE AVANÇADA ======= */
     @media (max-width: 1200px) {
       .app-container {
@@ -1053,11 +918,6 @@
         font-size: 0.7rem;
       }
       
-      .revalidate-btn {
-        right: 40px;
-        font-size: 0.7rem;
-      }
-      
       .submit-btn {
         padding: 18px 30px;
         font-size: 1.1rem;
@@ -1071,11 +931,6 @@
       .spinner {
         width: 20px;
         height: 20px;
-      }
-      
-      .blocked-message {
-        width: 90%;
-        padding: 20px;
       }
       
       .tooltip-text {
@@ -1166,11 +1021,6 @@
         height: 16px;
       }
       
-      .revalidate-btn {
-        right: 36px;
-        font-size: 0.65rem;
-      }
-      
       .help-text {
         font-size: 0.85rem;
       }
@@ -1199,11 +1049,6 @@
       
       .footer-logo {
         font-size: 1.3rem;
-      }
-      
-      .blocked-message {
-        padding: 15px;
-        font-size: 0.9rem;
       }
       
       .tooltip-text {
@@ -1240,10 +1085,6 @@
       
       .cpf-validation-indicator {
         right: 14px;
-      }
-      
-      .revalidate-btn {
-        right: 34px;
       }
       
       .submit-btn {
@@ -1303,19 +1144,12 @@
       background-color: rgba(239, 68, 68, 0.1) !important;
     }
     
-    [data-theme='dark'] .form-blocked::after {
-      background-color: rgba(15, 23, 42, 0.85);
-    }
-    
     /* ======= IMPRESSÃO ======= */
     @media print {
       .theme-toggle,
       .submit-btn,
       .tooltip,
-      input[type="file"]::file-selector-button,
-      .blocked-message,
-      .revalidate-btn,
-      .cpf-validation-indicator {
+      input[type="file"]::file-selector-button {
         display: none !important;
       }
       
@@ -1354,7 +1188,7 @@
     </header>
     
     <!-- Form Container -->
-    <div class="form-container" id="formContainer">
+    <div class="form-container">
       <form id="formCurriculo" novalidate>
         <!-- Stepper -->
         <div class="stepper" role="tablist" aria-label="Progresso do formulário">
@@ -1396,11 +1230,8 @@
               <label for="cpf" class="required">CPF</label>
               <div class="input-wrapper">
                 <i class="fas fa-id-card input-icon"></i>
-                <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" aria-describedby="cpf-help" data-valid="false">
+                <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" aria-describedby="cpf-help">
                 <span class="cpf-validation-indicator" id="cpfValidationIndicator"></span>
-                <button type="button" class="revalidate-btn" id="revalidateCpfBtn" title="Tentar validar novamente">
-                  <i class="fas fa-redo"></i>
-                </button>
               </div>
               <span class="help-text" id="cpf-help">Digite apenas números, a formatação é automática</span>
             </div>
@@ -1533,27 +1364,6 @@
         <div class="message success hidden" id="mensagemSucesso" role="alert"></div>
         <div class="message error hidden" id="mensagemErro" role="alert"></div>
       </form>
-      
-      <!-- Overlay de bloqueio quando CPF é inválido -->
-      <div class="form-blocked-overlay hidden" id="formBlockedOverlay">
-        <div class="blocked-message">
-          <button type="button" class="close-blocked-btn" onclick="showFormBlockedOverlay(false)" title="Fechar aviso">
-            <i class="fas fa-times"></i>
-          </button>
-          <div style="font-size: 3rem; color: var(--danger); margin-bottom: 20px;">
-            <i class="fas fa-exclamation-circle"></i>
-          </div>
-          <h3>Validação de Documento</h3>
-          <p>Identificamos uma inconsistência no CPF informado. O documento não foi localizado na base de dados da Receita Federal ou não atende aos critérios de validação matemática.</p>
-          <p>A regularidade do CPF é um requisito indispensável para a continuidade do seu processo de candidatura.</p>
-          <div style="margin-top: 25px; padding: 18px; background: var(--bg); border-radius: var(--radius-md); font-size: 0.9rem; color: var(--text-secondary); border-left: 4px solid var(--primary); text-align: left;">
-            <i class="fas fa-info-circle" style="color: var(--primary); margin-right: 8px;"></i> <strong>Instruções:</strong> Verifique os dígitos informados e utilize o botão de revalidação <i class="fas fa-redo"></i> localizado junto ao campo do CPF para processar os dados novamente.
-          </div>
-          <button type="button" class="btn-modal-action" onclick="showFormBlockedOverlay(false)">
-            Compreendido, irei revisar
-          </button>
-        </div>
-      </div>
     </div>
     
     <!-- Footer -->
@@ -1589,8 +1399,6 @@
     // ====== ELEMENTOS DOM ======
     const form = document.getElementById("formCurriculo");
     const themeToggle = document.getElementById("themeToggle");
-    const formContainer = document.getElementById("formContainer");
-    const formBlockedOverlay = document.getElementById("formBlockedOverlay");
     
     // Campos do formulário
     const nome = document.getElementById("nome");
@@ -1611,7 +1419,6 @@
     const spinner = submitBtn.querySelector(".spinner");
     const successMsg = document.getElementById("mensagemSucesso");
     const errorMsg = document.getElementById("mensagemErro");
-    const revalidateCpfBtn = document.getElementById("revalidateCpfBtn");
     
     // Steps
     const step1Head = document.getElementById("step1Head");
@@ -1621,14 +1428,6 @@
     const fs1 = document.getElementById("fs1");
     const fs2 = document.getElementById("fs2");
     const fs3 = document.getElementById("fs3");
-
-    // ====== ESTADO DA VALIDAÇÃO DO CPF ======
-    let cpfValidationState = {
-      isValid: false,
-      isChecking: false,
-      lastValidation: null,
-      cpfValue: ''
-    };
 
     // ====== TEMA ======
     themeToggle.addEventListener("click", () => {
@@ -1670,74 +1469,9 @@
       lazy: false
     });
 
-    // ====== VALIDAÇÃO DE CPF NA RECEITA FEDERAL (OBRIGATÓRIA) ======
+    // ====== VALIDAÇÃO DE CPF NA RECEITA FEDERAL ======
     const cpfValidationIndicator = document.getElementById('cpfValidationIndicator');
     let cpfValidationTimeout = null;
-
-    function showFormBlockedOverlay(show) {
-      if (show) {
-        formBlockedOverlay.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Impede o scroll ao fundo
-      } else {
-        formBlockedOverlay.classList.add('hidden');
-        document.body.style.overflow = ''; // Restaura o scroll
-      }
-    }
-
-    function updateCPFValidationUI(isValid, isChecking = false, errorMessage = '') {
-      const cpfHelp = document.getElementById('cpf-help');
-      
-      if (isChecking) {
-        cpfValidationIndicator.className = 'cpf-validation-indicator loading';
-        cpf.classList.remove('input-valid', 'input-invalid');
-        cpfHelp.textContent = 'Validando CPF na Receita Federal...';
-        cpfHelp.className = 'help-text';
-        cpfValidationState.isChecking = true;
-        return;
-      }
-      
-      if (isValid) {
-        cpfValidationIndicator.className = 'cpf-validation-indicator valid';
-        cpfValidationIndicator.innerHTML = '✓';
-        cpf.classList.add('input-valid');
-        cpf.classList.remove('input-invalid');
-        cpfHelp.textContent = 'CPF válido na base da Receita Federal';
-        cpfHelp.className = 'help-text success';
-        cpf.setAttribute('data-valid', 'true');
-        cpfValidationState.isValid = true;
-        cpfValidationState.isChecking = false;
-        showFormBlockedOverlay(false);
-      } else {
-        cpfValidationIndicator.className = 'cpf-validation-indicator invalid';
-        cpfValidationIndicator.innerHTML = '✗';
-        cpf.classList.add('input-invalid');
-        cpf.classList.remove('input-valid');
-        cpfHelp.textContent = errorMessage || 'CPF não encontrado na base da Receita Federal';
-        cpfHelp.className = 'help-text error';
-        cpf.setAttribute('data-valid', 'false');
-        cpfValidationState.isValid = false;
-        cpfValidationState.isChecking = false;
-        showFormBlockedOverlay(true);
-      }
-      
-      // Atualizar o botão de revalidação
-      if (!isValid && !isChecking) {
-        revalidateCpfBtn.style.display = 'block';
-      } else {
-        revalidateCpfBtn.style.display = 'none';
-      }
-      
-      updateSteps();
-    }
-
-    function isValidCPFLocal(cpf) {
-      if (typeof cpf !== 'string') return false;
-      cpf = cpf.replace(/[^\d]+/g, '');
-      if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
-      cpf = cpf.split('').map(el => +el);
-      const rest = (count) => (cpf.slice(0, count-12).reduce((soma, el, index) => (soma + el * (count-index)), 0) * 10) % 11 % 10;
-      return rest(10) === cpf[9] && rest(11) === cpf[10];
-    }
 
     async function validateCPF(cpfValue) {
       // Limpar o timeout anterior
@@ -1745,24 +1479,23 @@
         clearTimeout(cpfValidationTimeout);
       }
 
+      // Resetar indicador
+      cpfValidationIndicator.className = 'cpf-validation-indicator';
+      cpf.classList.remove('input-valid', 'input-invalid');
+
       // Remover caracteres não numéricos
       const cpfDigits = cpfValue.replace(/\D/g, '');
 
       // Verificar se tem 11 dígitos
       if (cpfDigits.length !== 11) {
-        updateCPFValidationUI(false, false, 'CPF deve ter 11 dígitos');
+        cpf.classList.add('input-invalid');
         return false;
       }
 
-      // Verificar se é o mesmo CPF já validado
-      if (cpfValidationState.cpfValue === cpfDigits && cpfValidationState.isValid) {
-        updateCPFValidationUI(true);
-        return true;
-      }
-
       // Mostrar indicador de carregamento
-      updateCPFValidationUI(false, true);
+      cpfValidationIndicator.classList.add('loading');
 
+      // Adicionar um atraso para evitar muitas requisições
       return new Promise((resolve) => {
         cpfValidationTimeout = setTimeout(async () => {
           try {
@@ -1774,92 +1507,85 @@
               cache: 'no-store'
             });
 
-            const data = await response.json();
+            if (response.ok) {
+              const data = await response.json();
 
-            // A API retorna 200 e true se o CPF for válido e NÃO estiver cadastrado no SCPA
-            // A API retorna 400 e uma mensagem específica se o CPF for válido mas JÁ estiver cadastrado
-            // A API retorna 400 e "não encontrado" se o CPF for inválido ou inexistente
-            
-            const alreadyRegistered = data && data[0] && data[0].error === "cpf-possui-cadastro-scpa";
-            const notFound = data && data[0] && data[0].error === "cpf-nao-encotrado-receita-federal";
-
-            if (response.ok && data === true) {
-              // CPF válido e novo no sistema
-              updateCPFValidationUI(true);
-              cpfValidationState.cpfValue = cpfDigits;
-              cpfValidationState.lastValidation = new Date();
-              resolve(true);
-            } else if (alreadyRegistered) {
-              // CPF válido mas já cadastrado (ainda é um CPF válido para o formulário)
-              updateCPFValidationUI(true);
-              cpfValidationState.cpfValue = cpfDigits;
-              cpfValidationState.lastValidation = new Date();
-              resolve(true);
+              if (data === true) {
+                // CPF válido
+                cpfValidationIndicator.classList.remove('loading');
+                cpfValidationIndicator.classList.add('valid');
+                cpfValidationIndicator.innerHTML = '✓';
+                cpf.classList.add('input-valid');
+                cpf.classList.remove('input-invalid');
+                
+                // Mostrar mensagem de sucesso
+                const cpfHelp = document.getElementById('cpf-help');
+                cpfHelp.textContent = 'CPF válido na base da Receita Federal';
+                cpfHelp.className = 'help-text success';
+                
+                resolve(true);
+              } else {
+                // CPF inválido
+                cpfValidationIndicator.classList.remove('loading');
+                cpfValidationIndicator.classList.add('invalid');
+                cpfValidationIndicator.innerHTML = '✗';
+                cpf.classList.add('input-invalid');
+                cpf.classList.remove('input-valid');
+                
+                // Mostrar mensagem de erro específica
+                const cpfHelp = document.getElementById('cpf-help');
+                const errorMessage = data[0]?.message || "CPF informado não foi encontrado na base de dados da Receita Federal.";
+                cpfHelp.textContent = errorMessage;
+                cpfHelp.className = 'help-text error';
+                
+                // Mostrar também na mensagem de erro principal
+                showError(`❌ ${errorMessage}`);
+                
+                resolve(false);
+              }
             } else {
-              // CPF realmente inválido ou outro erro
-              const errorMessage = (data && data[0] && data[0].message) || "CPF informado não foi encontrado na base de dados da Receita Federal.";
-              updateCPFValidationUI(false, false, errorMessage);
-              cpfValidationState.cpfValue = cpfDigits;
-              resolve(false);
+              throw new Error('Erro na resposta da API');
             }
           } catch (error) {
             console.error('Erro ao validar CPF:', error);
-            // Fallback para validação local se a API falhar
-            if (isValidCPFLocal(cpfDigits)) {
-              updateCPFValidationUI(true);
-              cpfValidationState.cpfValue = cpfDigits;
-              cpfValidationState.lastValidation = new Date();
-              resolve(true);
-            } else {
-              updateCPFValidationUI(false, false, 'CPF inválido. Verifique os dados informados.');
-              resolve(false);
-            }
+            cpfValidationIndicator.classList.remove('loading');
+            cpfValidationIndicator.className = 'cpf-validation-indicator';
+            cpf.classList.remove('input-valid', 'input-invalid');
+            
+            // Em caso de erro na rede, não bloqueamos o usuário, mas avisamos que a validação não foi concluída
+            const cpfHelp = document.getElementById('cpf-help');
+            cpfHelp.textContent = 'Não foi possível validar o CPF. Você pode continuar, mas a validade será verificada posteriormente.';
+            cpfHelp.className = 'help-text';
+            
+            showTemporaryMessage("⚠️ Não foi possível validar o CPF no momento. Você pode continuar, mas a validade será verificada posteriormente.", "error");
+            resolve(true); // Permitir continuar mesmo com erro de rede
           }
-        }, 800);
+        }, 800); // Atraso de 800ms após o usuário parar de digitar
       });
     }
 
     // Adicionar evento de blur no campo CPF
     cpf.addEventListener('blur', async () => {
-      if (cpf.value.trim() !== '' && cpf.value.length === 14) {
+      if (cpf.value.trim() !== '') {
         await validateCPF(cpf.value);
+        updateSteps(); // Atualizar o estado dos steps após a validação
       }
     });
 
-    // Validar ao digitar quando o CPF estiver completo
+    // Também validar ao digitar, mas com um debounce para não sobrecarregar a API
     cpf.addEventListener('input', () => {
-      // Resetar a validação anterior
+      // Limpar a validação anterior
       cpfValidationIndicator.className = 'cpf-validation-indicator';
       cpf.classList.remove('input-valid', 'input-invalid');
-      cpf.setAttribute('data-valid', 'false');
-      
-      // Resetar estado
-      cpfValidationState.isValid = false;
-      cpfValidationState.cpfValue = '';
       
       // Resetar mensagem de ajuda
       const cpfHelp = document.getElementById('cpf-help');
       cpfHelp.textContent = 'Digite apenas números, a formatação é automática';
       cpfHelp.className = 'help-text';
       
-      // Esconder o botão de revalidação
-      revalidateCpfBtn.style.display = 'none';
-      
-      // Remover overlay de bloqueio
-      showFormBlockedOverlay(false);
-      
       // Se o CPF estiver completo (com a máscara, tem 14 caracteres), validar
       if (cpf.value.length === 14) {
         validateCPF(cpf.value);
-      }
-      
-      updateSteps();
-    });
-
-    // Botão para revalidar CPF
-    revalidateCpfBtn.addEventListener('click', async () => {
-      if (cpf.value.length === 14) {
-        await validateCPF(cpf.value);
       }
     });
 
@@ -2139,16 +1865,20 @@
     const step3Fields = [transporte, vaga, arquivo];
 
     function isFieldValid(field) {
-      // Caso especial para CPF: deve ter sido validado com sucesso na Receita Federal
+      // Caso especial para CPF: deve ter a classe input-valid OU não estar validado ainda (para permitir progresso inicial)
       if (field.id === 'cpf') {
         // Se o campo está vazio, não é válido
         if (field.value.trim().length === 0) return false;
         
-        // Se não tem 14 caracteres (formato completo), não é válido
-        if (field.value.length !== 14) return false;
+        // Se tem a classe input-invalid, não é válido
+        if (field.classList.contains('input-invalid')) return false;
         
-        // Deve ter o atributo data-valid como true (validado na API)
-        return field.getAttribute('data-valid') === 'true';
+        // Se está no meio da validação (loading), não é válido ainda
+        if (cpfValidationIndicator.classList.contains('loading')) return false;
+        
+        // Para permitir o fluxo, consideramos válido se tiver 14 caracteres (CPF completo formatado)
+        // mesmo sem validação da API, pois a validação pode falhar por rede
+        return field.value.length === 14;
       }
       
       if (field.type === 'email') {
@@ -2268,13 +1998,6 @@
       event.preventDefault();
       hideMessages();
 
-      // Verificar se o CPF está válido antes de enviar
-      if (cpf.getAttribute('data-valid') !== 'true') {
-        showError("❌ É necessário informar um CPF válido para prosseguir.");
-        cpf.focus();
-        return;
-      }
-
       // Validar arquivo
       if (!validateFile()) {
         updateSteps();
@@ -2333,17 +2056,9 @@
       
       // Resetar validação de CPF
       cpfValidationIndicator.className = 'cpf-validation-indicator';
-      cpf.setAttribute('data-valid', 'false');
       const cpfHelp = document.getElementById('cpf-help');
       cpfHelp.textContent = 'Digite apenas números, a formatação é automática';
       cpfHelp.className = 'help-text';
-      
-      // Resetar estado da validação
-      cpfValidationState.isValid = false;
-      cpfValidationState.cpfValue = '';
-      
-      // Esconder overlay de bloqueio
-      showFormBlockedOverlay(false);
       
       // Resetar classes de validação
       document.querySelectorAll('.input-valid, .input-invalid').forEach(el => {
