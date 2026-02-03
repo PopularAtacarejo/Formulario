@@ -627,6 +627,122 @@
       background-clip: text;
     }
     
+    /* ======= EXPERIÊNCIA PROFISSIONAL ======= */
+    .experiencia-item {
+      animation: slideIn 0.3s ease-out;
+      transition: var(--transition);
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .experiencia-item:hover {
+      border-color: var(--primary) !important;
+      box-shadow: 0 5px 15px rgba(5, 150, 105, 0.1);
+    }
+    
+    .experiencia-item .remover-experiencia {
+      transition: var(--transition);
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--danger);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .experiencia-item .remover-experiencia:hover {
+      transform: scale(1.1);
+      background: var(--danger) !important;
+    }
+    
+    /* Contador de experiências */
+    .experiencia-counter {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+      font-size: 0.8rem;
+      margin-left: 10px;
+    }
+
+    /* ======= DATAS ESTILIZADAS (Como na imagem) ======= */
+    .date-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .date-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .date-input-wrapper .input-icon {
+      left: 15px;
+      z-index: 2;
+    }
+    
+    .date-input {
+      width: 100%;
+      padding: 16px 20px 16px 45px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+      outline: none;
+    }
+    
+    .date-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+    
+    .date-input::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    
+    .date-format-hint {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .date-format-hint i {
+      font-size: 0.7rem;
+    }
+    
+    .optional-note {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 5px;
+      font-style: italic;
+      padding-left: 5px;
+      border-left: 2px solid var(--border);
+    }
+    
     /* ======= ANIMAÇÕES ======= */
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -938,6 +1054,18 @@
         left: 50%;
         transform: translateX(-50%);
       }
+      
+      .experiencia-item {
+        padding: 15px;
+      }
+      
+      .date-input {
+        padding: 14px 16px 14px 40px;
+      }
+      
+      .date-input-wrapper .input-icon {
+        left: 13px;
+      }
     }
     
     @media (max-width: 576px) {
@@ -1056,6 +1184,24 @@
         font-size: 0.85rem;
         padding: 12px;
       }
+      
+      .experiencia-item {
+        padding: 12px;
+      }
+      
+      .date-input {
+        padding: 12px 14px 12px 38px;
+        font-size: 0.95rem;
+      }
+      
+      .date-input-wrapper .input-icon {
+        left: 12px;
+        font-size: 0.95rem;
+      }
+      
+      .optional-note {
+        font-size: 0.8rem;
+      }
     }
     
     @media (max-width: 375px) {
@@ -1090,6 +1236,10 @@
       .submit-btn {
         padding: 14px 20px;
         font-size: 0.95rem;
+      }
+      
+      .date-input {
+        padding: 11px 12px 11px 35px;
       }
     }
     
@@ -1203,6 +1353,10 @@
           <div class="step" id="step3Head" role="tab" aria-selected="false">
             <div class="step-circle">3</div>
             <span class="step-label">Candidatura</span>
+          </div>
+          <div class="step" id="step4Head" role="tab" aria-selected="false">
+            <div class="step-circle">4</div>
+            <span class="step-label">Experiência</span>
           </div>
           <div class="step-line" aria-hidden="true"></div>
           <div class="step-line-fill" id="stepFill" aria-hidden="true"></div>
@@ -1351,6 +1505,110 @@
           </div>
         </fieldset>
         
+        <!-- ETAPA 4: Experiência Profissional -->
+        <fieldset id="fs4" aria-labelledby="step4Head" aria-disabled="true" disabled>
+          <legend>
+            <div class="legend-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <span>Experiência Profissional</span>
+          </legend>
+
+          <div class="form-group">
+            <label for="tem_experiencia" class="required">Possui experiência profissional?</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user-tie input-icon"></i>
+              <select id="tem_experiencia" name="tem_experiencia" required aria-describedby="tem_experiencia-help">
+                <option value="" disabled selected>Selecione uma opção...</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+              </select>
+            </div>
+            <span class="help-text" id="tem_experiencia-help">Informe se possui experiência profissional anterior</span>
+          </div>
+
+          <!-- Container para experiências (visível apenas se "Sim" for selecionado) -->
+          <div id="experiencias_container" class="hidden" style="margin-top: 30px;">
+            <div class="form-grid">
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <h4 style="margin-bottom: 20px; color: var(--text); display: flex; align-items: center; gap: 10px;">
+                  <i class="fas fa-building" style="color: var(--primary);"></i>
+                  <span>Adicionar Experiências Profissionais</span>
+                  <small style="font-size: 0.8rem; color: var(--text-secondary); margin-left: auto;">
+                    Máximo: 10 experiências
+                  </small>
+                </h4>
+                
+                <!-- Botão para adicionar nova experiência -->
+                <button type="button" id="adicionar_experiencia" class="submit-btn" style="background: var(--secondary); margin-bottom: 20px; padding: 12px 24px; font-size: 0.9rem;">
+                  <i class="fas fa-plus btn-icon"></i>
+                  <span class="btn-text">Adicionar Experiência</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Lista de experiências será inserida aqui -->
+            <div id="lista_experiencias"></div>
+
+            <!-- Template para nova experiência (hidden) -->
+            <div id="experiencia_template" class="hidden">
+              <div class="experiencia-item">
+                <button type="button" class="remover-experiencia">
+                  <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="required">Empresa</label>
+                    <div class="input-wrapper">
+                      <i class="fas fa-building input-icon"></i>
+                      <input type="text" class="empresa" name="experiencias[][empresa]" placeholder="Nome da empresa" required>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="required">Função/Cargo</label>
+                    <div class="input-wrapper">
+                      <i class="fas fa-user-tie input-icon"></i>
+                      <input type="text" class="funcao" name="experiencias[][funcao]" placeholder="Ex: Vendedor, Caixa, Estoquista" required>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group date-input-group">
+                    <label class="required">Data de Admissão</label>
+                    <div class="date-input-wrapper">
+                      <i class="fas fa-calendar-alt input-icon"></i>
+                      <input type="text" class="date-input data_admissao" name="experiencias[][data_admissao]" 
+                             placeholder="dd/mm/aaaa" required pattern="\d{2}/\d{2}/\d{4}">
+                    </div>
+                    <div class="date-format-hint">
+                      <i class="fas fa-info-circle"></i>
+                      <span>Formato: dd/mm/aaaa</span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group date-input-group">
+                    <label>Data de Demissão</label>
+                    <div class="date-input-wrapper">
+                      <i class="fas fa-calendar-alt input-icon"></i>
+                      <input type="text" class="date-input data_demissao" name="experiencias[][data_demissao]" 
+                             placeholder="dd/mm/aaaa" pattern="\d{2}/\d{2}/\d{4}">
+                    </div>
+                    <div class="date-format-hint">
+                      <i class="fas fa-info-circle"></i>
+                      <span>Formato: dd/mm/aaaa</span>
+                    </div>
+                    <div class="optional-note">
+                      <i class="fas fa-sticky-note"></i>
+                      Deixe em branco se ainda trabalha nesta empresa
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        
         <!-- Botão de Envio -->
         <div class="submit-section">
           <button type="submit" id="submitButton" class="submit-btn" disabled aria-label="Enviar candidatura">
@@ -1412,6 +1670,13 @@
     const transporte = document.getElementById("transporte");
     const vaga = document.getElementById("vaga");
     const arquivo = document.getElementById("arquivo");
+    const temExperiencia = document.getElementById("tem_experiencia");
+    
+    // Experiência profissional
+    const experienciasContainer = document.getElementById("experiencias_container");
+    const listaExperiencias = document.getElementById("lista_experiencias");
+    const experienciaTemplate = document.getElementById("experiencia_template");
+    const adicionarExperienciaBtn = document.getElementById("adicionar_experiencia");
     
     // Botões e mensagens
     const submitBtn = document.getElementById("submitButton");
@@ -1424,10 +1689,254 @@
     const step1Head = document.getElementById("step1Head");
     const step2Head = document.getElementById("step2Head");
     const step3Head = document.getElementById("step3Head");
+    const step4Head = document.getElementById("step4Head");
     const stepFill = document.getElementById("stepFill");
     const fs1 = document.getElementById("fs1");
     const fs2 = document.getElementById("fs2");
     const fs3 = document.getElementById("fs3");
+    const fs4 = document.getElementById("fs4");
+
+    // ====== GERENCIAMENTO DE EXPERIÊNCIAS ======
+    let experienciaCount = 0;
+    const maxExperiencias = 10;
+
+    function atualizarContadorExperiencias() {
+      const titulo = document.querySelector('#experiencias_container h4');
+      const counterSpan = titulo.querySelector('.experiencia-counter');
+      if (counterSpan) {
+        counterSpan.textContent = experienciaCount;
+      } else {
+        const newCounter = document.createElement('span');
+        newCounter.className = 'experiencia-counter';
+        newCounter.textContent = experienciaCount;
+        titulo.appendChild(newCounter);
+      }
+    }
+
+    // Função para formatar data para dd/mm/aaaa
+    function formatDateToDisplay(dateString) {
+      if (!dateString) return '';
+      
+      // Se já estiver no formato dd/mm/aaaa
+      if (dateString.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+        return dateString;
+      }
+      
+      // Se for formato ISO (yyyy-mm-dd)
+      if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+      }
+      
+      return dateString;
+    }
+
+    // Função para formatar data para ISO (yyyy-mm-dd) para envio
+    function formatDateToISO(dateString) {
+      if (!dateString) return '';
+      
+      // Se estiver no formato dd/mm/aaaa
+      if (dateString.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+        const [day, month, year] = dateString.split('/');
+        return `${year}-${month}-${day}`;
+      }
+      
+      // Se já for formato ISO
+      if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        return dateString;
+      }
+      
+      return dateString;
+    }
+
+    function adicionarExperiencia() {
+      if (experienciaCount >= maxExperiencias) {
+        showTemporaryMessage(`❌ Limite máximo de ${maxExperiencias} experiências atingido.`, "error");
+        return;
+      }
+
+      const template = experienciaTemplate.cloneNode(true);
+      template.classList.remove('hidden');
+      template.id = `experiencia_${experienciaCount}`;
+      
+      const experienciaItem = template.querySelector('.experiencia-item');
+      const inputs = experienciaItem.querySelectorAll('input, select');
+      
+      // Atualizar nomes dos campos com índice
+      inputs.forEach(input => {
+        const name = input.getAttribute('name');
+        if (name) {
+          input.setAttribute('name', name.replace('[]', `[${experienciaCount}]`));
+        }
+      });
+
+      // Adicionar máscara de data para os campos de data
+      const dataAdmissaoInput = experienciaItem.querySelector('.data_admissao');
+      const dataDemissaoInput = experienciaItem.querySelector('.data_demissao');
+      
+      // Máscara para data no formato dd/mm/aaaa
+      const dateMaskOptions = {
+        mask: '00/00/0000',
+        lazy: false,
+        placeholderChar: '_'
+      };
+      
+      const admissaoMask = IMask(dataAdmissaoInput, dateMaskOptions);
+      const demissaoMask = dataDemissaoInput ? IMask(dataDemissaoInput, dateMaskOptions) : null;
+
+      // Adicionar evento de remover
+      const removerBtn = experienciaItem.querySelector('.remover-experiencia');
+      removerBtn.addEventListener('click', function() {
+        experienciaItem.remove();
+        experienciaCount--;
+        atualizarContadorExperiencias();
+        updateSteps();
+      });
+
+      // Adicionar validação em tempo real
+      const validarCampos = () => {
+        const empresa = experienciaItem.querySelector('.empresa').value.trim();
+        const funcao = experienciaItem.querySelector('.funcao').value.trim();
+        const dataAdmissao = dataAdmissaoInput.value;
+        
+        // Validar formato da data
+        const dataAdmissaoValida = dataAdmissao.match(/^\d{2}\/\d{2}\/\d{4}$/);
+        const dataDemissaoValida = dataDemissaoInput && dataDemissaoInput.value ? 
+                                  dataDemissaoInput.value.match(/^\d{2}\/\d{2}\/\d{4}$/) : true;
+        
+        const camposValidos = empresa && funcao && dataAdmissaoValida;
+        
+        // Aplicar classes de validação
+        if (dataAdmissaoValida) {
+          dataAdmissaoInput.classList.add('input-valid');
+          dataAdmissaoInput.classList.remove('input-invalid');
+        } else if (dataAdmissao) {
+          dataAdmissaoInput.classList.add('input-invalid');
+          dataAdmissaoInput.classList.remove('input-valid');
+        } else {
+          dataAdmissaoInput.classList.remove('input-valid', 'input-invalid');
+        }
+        
+        if (dataDemissaoInput) {
+          if (dataDemissaoInput.value && dataDemissaoValida) {
+            dataDemissaoInput.classList.add('input-valid');
+            dataDemissaoInput.classList.remove('input-invalid');
+          } else if (dataDemissaoInput.value) {
+            dataDemissaoInput.classList.add('input-invalid');
+            dataDemissaoInput.classList.remove('input-valid');
+          } else {
+            dataDemissaoInput.classList.remove('input-valid', 'input-invalid');
+          }
+        }
+        
+        if (camposValidos) {
+          experienciaItem.style.borderColor = 'var(--success)';
+        } else {
+          experienciaItem.style.borderColor = 'var(--border)';
+        }
+        
+        updateSteps();
+      };
+
+      // Adicionar eventos de input
+      experienciaItem.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', validarCampos);
+        input.addEventListener('change', validarCampos);
+      });
+
+      // Validação de datas
+      dataAdmissaoInput.addEventListener('blur', function() {
+        validarCampos();
+        
+        // Validar se data de admissão não é futura
+        if (this.value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+          const [day, month, year] = this.value.split('/');
+          const admissaoDate = new Date(year, month - 1, day);
+          const hoje = new Date();
+          
+          if (admissaoDate > hoje) {
+            showTemporaryMessage("❌ A data de admissão não pode ser futura.", "error");
+            this.value = '';
+            validarCampos();
+          }
+          
+          // Validar se data de demissão é posterior à admissão
+          if (dataDemissaoInput && dataDemissaoInput.value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+            const [demDay, demMonth, demYear] = dataDemissaoInput.value.split('/');
+            const demissaoDate = new Date(demYear, demMonth - 1, demDay);
+            
+            if (demissaoDate < admissaoDate) {
+              showTemporaryMessage("❌ A data de demissão não pode ser anterior à data de admissão.", "error");
+              dataDemissaoInput.value = '';
+              validarCampos();
+            }
+          }
+        }
+      });
+
+      if (dataDemissaoInput) {
+        dataDemissaoInput.addEventListener('blur', function() {
+          validarCampos();
+          
+          if (this.value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+            const [day, month, year] = this.value.split('/');
+            const demissaoDate = new Date(year, month - 1, day);
+            const hoje = new Date();
+            
+            if (demissaoDate > hoje) {
+              showTemporaryMessage("❌ A data de demissão não pode ser futura.", "error");
+              this.value = '';
+              validarCampos();
+            }
+            
+            // Validar se data de demissão é posterior à admissão
+            if (dataAdmissaoInput.value.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+              const [admDay, admMonth, admYear] = dataAdmissaoInput.value.split('/');
+              const admissaoDate = new Date(admYear, admMonth - 1, admDay);
+              
+              if (demissaoDate < admissaoDate) {
+                showTemporaryMessage("❌ A data de demissão não pode ser anterior à data de admissão.", "error");
+                this.value = '';
+                validarCampos();
+              }
+            }
+          }
+        });
+      }
+
+      listaExperiencias.appendChild(experienciaItem);
+      experienciaCount++;
+      atualizarContadorExperiencias();
+      updateSteps();
+      
+      // Scroll para a nova experiência
+      setTimeout(() => {
+        experienciaItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+      
+      // Focar no primeiro campo da nova experiência
+      experienciaItem.querySelector('.empresa').focus();
+    }
+
+    // Evento para mostrar/ocultar container de experiências
+    temExperiencia.addEventListener('change', function() {
+      if (this.value === 'sim') {
+        experienciasContainer.classList.remove('hidden');
+        if (experienciaCount === 0) {
+          adicionarExperiencia();
+        }
+      } else {
+        experienciasContainer.classList.add('hidden');
+        // Limpar experiências existentes
+        listaExperiencias.innerHTML = '';
+        experienciaCount = 0;
+        atualizarContadorExperiencias();
+      }
+      updateSteps();
+    });
+
+    // Botão para adicionar experiência
+    adicionarExperienciaBtn.addEventListener('click', adicionarExperiencia);
 
     // ====== TEMA ======
     themeToggle.addEventListener("click", () => {
@@ -1840,6 +2349,27 @@
       formData.append("transporte", transporte.value);
       formData.append("vaga", vaga.value);
       formData.append("arquivo", arquivo.files[0]);
+      formData.append("tem_experiencia", temExperiencia.value);
+      
+      // Coletar dados das experiências
+      const experiencias = [];
+      document.querySelectorAll('.experiencia-item').forEach((item, index) => {
+        const experiencia = {
+          empresa: item.querySelector('.empresa').value.trim(),
+          funcao: item.querySelector('.funcao').value.trim(),
+          data_admissao: formatDateToISO(item.querySelector('.data_admissao').value),
+          data_demissao: item.querySelector('.data_demissao').value ? 
+                         formatDateToISO(item.querySelector('.data_demissao').value) : null
+        };
+        
+        // Validar se todos os campos obrigatórios estão preenchidos
+        if (experiencia.empresa && experiencia.funcao && experiencia.data_admissao) {
+          experiencias.push(experiencia);
+        }
+      });
+      
+      formData.append("experiencias", JSON.stringify(experiencias));
+      
       return formData;
     }
 
@@ -1863,6 +2393,7 @@
     const step1Fields = [nome, cpf, telefone, email];
     const step2Fields = [cep, cidade, bairro, rua];
     const step3Fields = [transporte, vaga, arquivo];
+    const step4Fields = [temExperiencia];
 
     function isFieldValid(field) {
       // Caso especial para CPF: deve ter a classe input-valid OU não estar validado ainda (para permitir progresso inicial)
@@ -1881,6 +2412,10 @@
         return field.value.length === 14;
       }
       
+      if (field.id === 'tem_experiencia') {
+        return !!field.value;
+      }
+      
       if (field.type === 'email') {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(field.value.trim());
@@ -1896,6 +2431,17 @@
       
       if (field.hasAttribute('readonly')) {
         return field.value.trim().length > 0;
+      }
+      
+      // Para campos de data, validar formato
+      if (field.classList && field.classList.contains('date-input')) {
+        if (!field.value) {
+          // Data de demissão pode ser vazia
+          return field.getAttribute('placeholder') === 'dd/mm/aaaa' && 
+                 field.previousElementSibling && 
+                 !field.previousElementSibling.querySelector('label').classList.contains('required');
+        }
+        return field.value.match(/^\d{2}\/\d{2}\/\d{4}$/);
       }
       
       return field.value.trim().length > 0;
@@ -1924,22 +2470,53 @@
       const step1Valid = step1Fields.every(isFieldValid);
       const step2Valid = step1Valid && step2Fields.every(isFieldValid);
       const step3Valid = step2Valid && step3Fields.every(isFieldValid);
+      
+      // Validar experiências se necessário
+      let step4Valid = false;
+      if (temExperiencia.value === 'nao') {
+        step4Valid = step3Valid;
+      } else if (temExperiencia.value === 'sim') {
+        step4Valid = step3Valid && experienciaCount > 0;
+        
+        // Verificar se todas as experiências têm campos obrigatórios preenchidos
+        if (step4Valid) {
+          const experienciasItems = document.querySelectorAll('.experiencia-item');
+          for (const item of experienciasItems) {
+            const empresa = item.querySelector('.empresa').value.trim();
+            const funcao = item.querySelector('.funcao').value.trim();
+            const dataAdmissao = item.querySelector('.data_admissao').value;
+            
+            if (!empresa || !funcao || !dataAdmissao.match(/^\d{2}\/\d{2}\/\d{4}$/)) {
+              step4Valid = false;
+              break;
+            }
+          }
+        }
+      }
 
       // Ativar/desativar fieldsets
       setFieldsetState(fs2, step1Valid);
       setFieldsetState(fs3, step2Valid);
+      setFieldsetState(fs4, step3Valid);
 
       // Atualizar visual dos steps
       updateStepVisual(step1Head, step1Valid ? 'done' : 'active');
       updateStepVisual(step2Head, step1Valid ? (step2Valid ? 'done' : 'active') : 'disabled');
       updateStepVisual(step3Head, step2Valid ? (step3Valid ? 'done' : 'active') : 'disabled');
+      updateStepVisual(step4Head, step3Valid ? (step4Valid ? 'done' : 'active') : 'disabled');
 
       // Atualizar barra de progresso
-      const progress = step1Valid ? (step2Valid ? (step3Valid ? 100 : 66) : 33) : 0;
+      const progress = step1Valid ? (
+        step2Valid ? (
+          step3Valid ? (
+            step4Valid ? 100 : 75
+          ) : 50
+        ) : 25
+      ) : 0;
       stepFill.style.width = `${progress}%`;
 
       // Ativar/desativar botão de envio
-      submitBtn.disabled = !step3Valid;
+      submitBtn.disabled = !step4Valid;
     }
 
     // Validação visual em tempo real
@@ -1974,6 +2551,10 @@
     [...step1Fields, ...step2Fields, transporte, arquivo].forEach(setupFieldValidation);
     vaga.addEventListener('change', () => {
       setupFieldValidation(vaga);
+      updateSteps();
+    });
+    temExperiencia.addEventListener('change', () => {
+      setupFieldValidation(temExperiencia);
       updateSteps();
     });
 
@@ -2064,6 +2645,11 @@
       document.querySelectorAll('.input-valid, .input-invalid').forEach(el => {
         el.classList.remove('input-valid', 'input-invalid');
       });
+      
+      // Resetar experiências
+      listaExperiencias.innerHTML = '';
+      experienciaCount = 0;
+      experienciasContainer.classList.add('hidden');
       
       // Atualizar steps
       updateSteps();
