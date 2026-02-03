@@ -2385,17 +2385,44 @@
       formData.append("tem_experiencia", selectedExperienceValue);
 
       if (selectedExperienceValue === "Sim" && experiencesList) {
+        const experiences = [];
         experiencesList.querySelectorAll(".experience-card").forEach((card) => {
           const companyInput = card.querySelector('input[name="experiencia_empresa[]"]');
           const roleInput = card.querySelector('input[name="experiencia_cargo[]"]');
           const admissaoInput = card.querySelector('input[name="experiencia_admissao[]"]');
           const demissaoInput = card.querySelector('input[name="experiencia_demissao[]"]');
 
-          if (companyInput) formData.append("experiencia_empresa[]", companyInput.value.trim());
-          if (roleInput) formData.append("experiencia_cargo[]", roleInput.value.trim());
-          if (admissaoInput) formData.append("experiencia_admissao[]", admissaoInput.value);
-          if (demissaoInput) formData.append("experiencia_demissao[]", demissaoInput.value);
+          // Verifica se todos os campos têm valores
+          if (companyInput && companyInput.value.trim() && 
+              roleInput && roleInput.value.trim() && 
+              admissaoInput && admissaoInput.value && 
+              demissaoInput && demissaoInput.value) {
+            experiences.push({
+              empresa: companyInput.value.trim(),
+              cargo: roleInput.value.trim(),
+              admissao: admissaoInput.value,
+              demissao: demissaoInput.value
+            });
+          }
         });
+        
+        // Se houver experiências válidas, envia como JSON
+        if (experiences.length > 0) {
+          formData.append("experiencias_json", JSON.stringify(experiences));
+        }
+        
+        // Também envia como strings separadas por vírgula para compatibilidade
+        if (experiences.length > 0) {
+          const empresas = experiences.map(exp => exp.empresa).join(",");
+          const cargos = experiences.map(exp => exp.cargo).join(",");
+          const admissoes = experiences.map(exp => exp.admissao).join(",");
+          const demissoes = experiences.map(exp => exp.demissao).join(",");
+          
+          if (empresas) formData.append("experiencia_empresa", empresas);
+          if (cargos) formData.append("experiencia_cargo", cargos);
+          if (admissoes) formData.append("experiencia_admissao", admissoes);
+          if (demissoes) formData.append("experiencia_demissao", demissoes);
+        }
       }
 
       return formData;
