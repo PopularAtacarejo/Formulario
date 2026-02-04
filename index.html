@@ -6,101 +6,55 @@
   <title>Popular Atacarejo - Trabalhe Conosco</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ======= VARIÁVEIS E ESTILOS GLOBAIS 2026 - TAWLIDN STYLE ======= */
+    /* ======= VARIÁVEIS CORPORATIVAS ======= */
     :root {
-      /* Paleta principal 2026 - Gradientes suaves e cores orgânicas */
-      --primary: #3a86ff;
-      --primary-dark: #2667cc;
-      --primary-light: #6ba4ff;
-      --primary-super-light: #e8f1ff;
-      --secondary: #ff6b6b;
-      --accent: #00c9a7;
-      --accent-dark: #00a58a;
-      --danger: #ff4757;
-      --success: #1dd1a1;
-      --warning: #ff9f43;
-      --info: #54a0ff;
+      /* Cores Principais - Verde e Preto */
+      --primary: #006433;        /* Verde Escuro Corporativo */
+      --primary-dark: #004d28;   /* Verde Mais Escuro para Hover */
+      --primary-light: #4CAF50;  /* Verde Acento */
+      --secondary: #1A1A1A;      /* Preto Suave */
+      --text-main: #111111;      /* Texto Quase Preto */
+      --text-muted: #666666;     /* Cinza Escuro */
       
-      /* Cores de fundo - Glassmorphism 2026 */
-      --bg-light: #f8fafd;
-      --bg-card-light: rgba(255, 255, 255, 0.92);
-      --bg-blur-light: rgba(255, 255, 255, 0.75);
+      /* Cores de Fundo */
+      --bg-body: #F4F6F8;        /* Cinza muito claro (Off-white) */
+      --bg-card: #FFFFFF;        /* Branco Puro */
+      --bg-input: #FFFFFF;
       
-      /* Cores de texto */
-      --text-light: #1a1a2e;
-      --text-secondary-light: #5a5a7a;
-      --text-muted-light: #8a8aa3;
+      /* Bordas e Sombras (Cores Neutras) */
+      --border-color: #D1D5DB;   /* Cinza Médio */
+      --border-focus: #006433;   /* Verde ao focar */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       
-      /* Bordas e sombras */
-      --border-light: rgba(58, 134, 255, 0.15);
-      --shadow-light: 0 20px 60px rgba(58, 134, 255, 0.08);
-      --shadow-card-light: 0 10px 40px rgba(0, 0, 0, 0.05);
+      /* Estados */
+      --success: #15803d;
+      --error: #b91c1c;
+      --warning: #b45309;
       
-      /* Gradientes modernos 2026 */
-      --gradient-primary: linear-gradient(135deg, #3a86ff 0%, #6b5bff 100%);
-      --gradient-primary-hover: linear-gradient(135deg, #2667cc 0%, #5447cc 100%);
-      --gradient-accent: linear-gradient(135deg, #00c9a7 0%, #00d4b4 100%);
-      --gradient-warning: linear-gradient(135deg, #ff9f43 0%, #ffbe76 100%);
-      --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+      /* Design System (Mais sóbrio) */
+      --radius-sm: 4px;
+      --radius-md: 8px;  /* Arredondamento corporativo padrão */
+      --radius-lg: 12px;
       
-      /* Tema escuro - Neomorfismo escuro */
-      --bg-dark: #0f1419;
-      --bg-card-dark: rgba(30, 35, 41, 0.92);
-      --bg-blur-dark: rgba(20, 25, 30, 0.85);
-      --text-dark: #f0f5ff;
-      --text-secondary-dark: #b0b7c5;
-      --text-muted-dark: #8a94a6;
-      --border-dark: rgba(58, 134, 255, 0.2);
-      --shadow-dark: 0 20px 60px rgba(0, 0, 0, 0.4);
-      --shadow-card-dark: 0 10px 40px rgba(0, 0, 0, 0.3);
-      
-      /* Variáveis ativas */
-      --bg: var(--bg-light);
-      --bg-card: var(--bg-card-light);
-      --bg-blur: var(--bg-blur-light);
-      --text: var(--text-light);
-      --text-secondary: var(--text-secondary-light);
-      --text-muted: var(--text-muted-light);
-      --border: var(--border-light);
-      --shadow: var(--shadow-light);
-      --shadow-card: var(--shadow-card-light);
-      --gradient: var(--gradient-primary);
-      --gradient-hover: var(--gradient-primary-hover);
-      
-      /* Design System 2026 */
-      --radius-3xl: 32px;
-      --radius-2xl: 24px;
-      --radius-xl: 20px;
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-      --radius-xs: 6px;
-      --radius-full: 50%;
-      
-      --transition-fast: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      --transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      --transition-slow: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      
-      --blur-amount: blur(20px);
-      --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+      --transition: all 0.2s ease-in-out;
     }
     
+    /* Tema Escuro (Opcional, mas ajustado para Verde/Preto) */
     [data-theme='dark'] {
-      --bg: var(--bg-dark);
-      --bg-card: var(--bg-card-dark);
-      --bg-blur: var(--bg-blur-dark);
-      --text: var(--text-dark);
-      --text-secondary: var(--text-secondary-dark);
-      --text-muted: var(--text-muted-dark);
-      --border: var(--border-dark);
-      --shadow: var(--shadow-dark);
-      --shadow-card: var(--shadow-card-dark);
+      --bg-body: #121212;
+      --bg-card: #1E1E1E;
+      --bg-input: #2C2C2C;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --border-color: #374151;
+      --secondary: #000000;
     }
-    
+
     * { 
       box-sizing: border-box; 
       margin: 0; 
@@ -112,481 +66,246 @@
       display: none !important;
     }
     
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-    
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      background: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
       min-height: 100vh;
-      padding: 0;
-      transition: var(--transition-slow);
-      position: relative;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(58, 134, 255, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 50% 50%, rgba(0, 201, 167, 0.03) 0%, transparent 30%);
+      display: flex;
+      flex-direction: column;
     }
     
     .app-container {
-      max-width: 1200px;
+      max-width: 1000px; /* Largura controlada para leitura */
       margin: 0 auto;
       padding: 40px 20px;
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      flex: 1;
     }
     
-    /* ======= HEADER 2026 ======= */
+    /* ======= HEADER CORPORATIVO ======= */
     .header {
       text-align: center;
-      margin-bottom: 60px;
-      position: relative;
-      padding: 0 10px;
-    }
-    
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px;
-      height: 200px;
-      background: var(--gradient);
-      border-radius: var(--radius-full);
-      filter: blur(80px);
-      opacity: 0.15;
-      z-index: -1;
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--border-color);
     }
     
     .header-logo {
-      width: 120px;
-      height: 120px;
-      background: var(--gradient);
-      border-radius: var(--radius-full);
+      width: 80px;
+      height: 80px;
+      background: var(--primary);
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 30px;
-      position: relative;
-      box-shadow: 
-        0 20px 60px rgba(58, 134, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      transition: var(--transition-bounce);
-      border: 4px solid rgba(255, 255, 255, 0.8);
-      z-index: 1;
-    }
-    
-    .header-logo::after {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      border-radius: var(--radius-full);
-      background: var(--gradient);
-      opacity: 0.2;
-      filter: blur(15px);
-      z-index: -1;
-    }
-    
-    .header-logo:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 
-        0 30px 80px rgba(58, 134, 255, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    }
-    
-    .header-logo i {
-      font-size: 3rem;
+      margin: 0 auto 20px;
       color: white;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      font-size: 2rem;
+      box-shadow: var(--shadow-md);
     }
     
     .header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 3.2rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      letter-spacing: -0.8px;
-      line-height: 1.1;
-      background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .header h1::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 25%;
-      width: 50%;
-      height: 4px;
-      background: var(--gradient);
-      border-radius: 2px;
-    }
-    
-    .header h1 .highlight {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+      font-size: 2.2rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
     }
     
     .header-subtitle {
-      font-size: 1.3rem;
-      color: var(--text-secondary);
-      max-width: 800px;
-      margin: 30px auto 20px;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
       font-weight: 400;
-      line-height: 1.6;
-      position: relative;
-      padding: 25px;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      border-radius: var(--radius-xl);
-      border: var(--glass-border);
-      box-shadow: var(--shadow-card);
     }
     
-    /* ======= BOTÃO TEMA 2026 ======= */
+    /* ======= BOTÃO TEMA (Discreto) ======= */
     .theme-toggle {
       position: fixed;
-      top: 25px;
-      right: 25px;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      border: var(--glass-border);
-      width: 56px;
-      height: 56px;
-      border-radius: var(--radius-full);
+      top: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text);
+      color: var(--text-main);
       cursor: pointer;
-      transition: var(--transition-bounce);
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
       z-index: 1000;
-      box-shadow: var(--shadow-card);
     }
     
     .theme-toggle:hover {
-      transform: rotate(180deg) scale(1.1);
+      border-color: var(--primary);
       color: var(--primary);
-      box-shadow: 
-        0 10px 30px rgba(58, 134, 255, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     
-    .theme-toggle i {
-      font-size: 1.3rem;
-      transition: var(--transition);
-    }
-    
-    /* ======= FORM CONTAINER 2026 - Glassmorphism ======= */
+    /* ======= FORM CONTAINER ======= */
     .form-container {
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      border-radius: var(--radius-2xl);
-      padding: 50px;
-      box-shadow: var(--shadow);
-      border: var(--glass-border);
-      position: relative;
-      overflow: hidden;
-      flex: 1;
-      margin-bottom: 50px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
     }
     
-    .form-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: var(--gradient);
-      border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-    }
-    
-    .form-container::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(58, 134, 255, 0.03) 0%, transparent 70%);
-      z-index: -1;
-    }
-    
-    /* ======= STEPPER 2026 - Design futurista ======= */
+    /* ======= STEPPER (Progresso) ======= */
     .stepper {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
       position: relative;
-      padding: 0 10px;
-      flex-wrap: wrap;
+    }
+    
+    /* Linha de fundo cinza */
+    .stepper::before {
+      content: '';
+      position: absolute;
+      top: 20px; /* Metade da altura do step-circle */
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #E5E7EB;
+      z-index: 0;
     }
     
     .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       position: relative;
-      z-index: 2;
+      z-index: 1;
+      text-align: center;
       flex: 1;
-      min-width: 100px;
-      margin-bottom: 10px;
     }
     
     .step-circle {
-      width: 70px;
-      height: 70px;
-      border-radius: var(--radius-full);
+      width: 40px;
+      height: 40px;
+      background: var(--bg-card);
+      border: 2px solid #D1D5DB;
+      color: var(--text-muted);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
+      margin: 0 auto 10px;
       font-weight: 700;
-      font-size: 1.5rem;
-      transition: var(--transition-bounce);
-      margin-bottom: 15px;
-      position: relative;
-      z-index: 2;
-      box-shadow: var(--shadow-card);
-    }
-    
-    .step-circle::before {
-      content: '';
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
-      border-radius: var(--radius-full);
-      background: var(--gradient);
-      opacity: 0;
+      font-size: 1rem;
       transition: var(--transition);
-      z-index: -1;
     }
     
     .step-label {
-      font-size: 1rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      color: var(--text-secondary);
-      transition: var(--transition);
-      text-align: center;
-      max-width: 120px;
-      word-wrap: break-word;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      padding: 8px 16px;
-      border-radius: var(--radius-lg);
-      border: var(--glass-border);
+      color: var(--text-muted);
+      text-transform: uppercase;
     }
     
+    /* Estados do Stepper */
     .step.active .step-circle {
-      background: var(--gradient);
-      border-color: transparent;
+      border-color: var(--primary);
+      background: var(--primary);
       color: white;
-      transform: scale(1.1);
-      box-shadow: 
-        0 15px 40px rgba(58, 134, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-    
-    .step.active .step-circle::before {
-      opacity: 0.3;
-      filter: blur(10px);
+      box-shadow: 0 0 0 4px rgba(0, 100, 51, 0.1);
     }
     
     .step.active .step-label {
       color: var(--primary);
-      font-weight: 700;
-      background: rgba(58, 134, 255, 0.1);
-      border-color: rgba(58, 134, 255, 0.2);
     }
     
     .step.done .step-circle {
-      background: var(--gradient-accent);
-      border-color: transparent;
-      color: white;
-      box-shadow: 
-        0 15px 40px rgba(0, 201, 167, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border-color: var(--primary);
+      background: var(--bg-card);
+      color: var(--primary);
     }
     
-    .step.done .step-circle::after {
-      content: '✓';
-      font-size: 1.6rem;
+    .step.done .step-label {
+      color: var(--primary);
     }
-    
-    .step-line {
-      position: absolute;
-      top: 35px;
-      left: 70px;
-      right: 70px;
-      height: 4px;
-      background: var(--border);
-      z-index: 1;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    
-    .step-line::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--gradient-glass);
-    }
-    
-    .step-line-fill {
-      position: absolute;
-      top: 35px;
-      left: 70px;
-      height: 4px;
-      background: var(--gradient);
-      z-index: 1;
-      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border-radius: 2px;
-      box-shadow: 0 0 20px rgba(58, 134, 255, 0.3);
-    }
-    
-    /* ======= FIELDSETS 2026 ======= */
+
+    /* ======= FIELDSETS ======= */
     fieldset {
       border: none;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
       padding: 0;
-      border-radius: var(--radius-2xl);
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      padding: 40px;
-      transition: var(--transition);
-      border: var(--glass-border);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    fieldset:not(:last-child) {
-      margin-bottom: 50px;
     }
     
     fieldset[aria-disabled="true"] {
-      opacity: 0.7;
+      opacity: 0.5;
       pointer-events: none;
-      filter: grayscale(0.5);
-    }
-    
-    fieldset::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(58, 134, 255, 0.05) 0%, transparent 70%);
-      z-index: -1;
+      filter: grayscale(1);
     }
     
     legend {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.7rem;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 40px;
+      color: var(--secondary);
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--primary);
+      width: 100%;
       display: flex;
       align-items: center;
-      gap: 20px;
-      padding-bottom: 20px;
-      border-bottom: 3px solid;
-      border-image: var(--gradient) 1;
-      width: 100%;
-      position: relative;
+      gap: 15px;
     }
     
     .legend-icon {
       color: white;
-      font-size: 1.5rem;
-      width: 60px;
-      height: 60px;
-      background: var(--gradient);
-      border-radius: var(--radius-lg);
+      background: var(--secondary);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 
-        0 10px 30px rgba(58, 134, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      font-size: 1.2rem;
     }
     
-    /* ======= GRID DE FORMULÁRIO RESPONSIVO ======= */
+    /* ======= FORM GRID ======= */
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 35px;
-      align-items: start;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
     }
     
     .form-group {
-      position: relative;
       display: flex;
       flex-direction: column;
     }
     
     .form-group label {
-      display: block;
-      margin-bottom: 12px;
+      font-size: 0.9rem;
       font-weight: 600;
-      font-size: 1.05rem;
-      color: var(--text);
-      transition: var(--transition);
-      line-height: 1.4;
-      position: relative;
+      color: var(--secondary);
+      margin-bottom: 8px;
     }
     
     .required::after {
       content: '*';
-      color: var(--danger);
+      color: var(--error);
       margin-left: 4px;
-      font-weight: bold;
     }
     
+    /* ======= INPUTS ======= */
     .input-wrapper {
       position: relative;
     }
     
     .input-icon {
       position: absolute;
-      left: 20px;
+      left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-secondary);
-      z-index: 1;
-      font-size: 1.2rem;
-      transition: var(--transition);
+      color: var(--text-muted);
+      font-size: 1rem;
+      pointer-events: none;
     }
     
     input[type="text"],
@@ -594,546 +313,270 @@
     input[type="date"],
     select {
       width: 100%;
-      padding: 20px 25px 20px 60px;
-      border: 2px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      color: var(--text);
-      font-size: 1.05rem;
-      font-family: 'Inter', sans-serif;
+      padding: 12px 16px 12px 40px; /* Espaço para o ícone */
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-size: 1rem;
+      font-family: inherit;
       transition: var(--transition);
       outline: none;
-      appearance: none;
-      -webkit-appearance: none;
-      box-shadow: var(--shadow-card);
     }
     
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="date"]:focus,
+    input:focus,
     select:focus {
       border-color: var(--primary);
-      box-shadow: 
-        0 0 0 4px rgba(58, 134, 255, 0.15),
-        0 10px 30px rgba(58, 134, 255, 0.1);
-      transform: translateY(-2px);
+      box-shadow: 0 0 0 3px rgba(0, 100, 51, 0.1);
     }
     
-    input[readonly],
-    select[readonly] {
-      background: rgba(58, 134, 255, 0.05);
-      color: var(--text-secondary);
+    input[readonly] {
+      background-color: #F3F4F6;
+      color: var(--text-muted);
       cursor: not-allowed;
       border-style: dashed;
-      border-color: var(--border);
     }
     
-    /* ======= EXPERIÊNCIAS - Design 2026 ======= */
+    /* SELECT PERSONALIZADO */
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23666666'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 40px;
+    }
+
+    /* ======= EXPERIÊNCIAS ======= */
     .experience-question {
       grid-column: 1 / -1;
       margin-bottom: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      padding: 25px;
-      border-radius: var(--radius-xl);
-      border: var(--glass-border);
+      padding: 20px;
+      background: #F9FAFB;
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius-sm);
     }
-
+    
     .radio-group {
       display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
-      align-items: center;
+      gap: 20px;
+      margin-top: 10px;
     }
 
     .radio-option {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      color: var(--text);
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      padding: 12px 24px;
-      border-radius: var(--radius-lg);
-      border: var(--glass-border);
+      gap: 8px;
+      font-weight: 500;
       cursor: pointer;
-      transition: var(--transition);
     }
-
-    .radio-option:hover {
-      border-color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    .radio-option input {
-      width: 20px;
-      height: 20px;
-      accent-color: var(--primary);
-    }
-
+    
     .experience-section {
       margin-bottom: 30px;
-      padding: 25px;
-      border-radius: var(--radius-xl);
-      border: 2px dashed var(--border);
-      background: rgba(58, 134, 255, 0.05);
-      backdrop-filter: var(--blur-amount);
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
     }
 
     .experience-actions {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 25px;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #E5E7EB;
     }
 
     .experience-add-btn,
     .remove-experience-btn {
       border: none;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-sm);
       font-weight: 600;
-      padding: 14px 28px;
+      padding: 10px 20px;
       cursor: pointer;
-      transition: var(--transition-bounce);
-      display: flex;
+      transition: var(--transition);
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1rem;
+      gap: 8px;
+      font-size: 0.9rem;
     }
 
     .experience-add-btn {
-      background: var(--gradient);
+      background: var(--secondary);
       color: white;
-      box-shadow: 
-        0 10px 30px rgba(58, 134, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
     .experience-add-btn:hover:not(:disabled) {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 
-        0 15px 40px rgba(58, 134, 255, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    }
-
-    .experience-add-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      background: var(--border);
+      background: var(--primary);
     }
 
     .remove-experience-btn {
-      background: var(--gradient-warning);
-      color: white;
-      padding: 10px 20px;
+      background: #FEF2F2;
+      color: var(--error);
+      border: 1px solid #FECACA;
     }
-
+    
     .remove-experience-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(255, 159, 67, 0.3);
-    }
-
-    .experience-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
+      background: #FEE2E2;
     }
 
     .experience-card {
-      border-radius: var(--radius-lg);
-      border: var(--glass-border);
-      padding: 25px;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      box-shadow: var(--shadow-card);
-      transition: var(--transition);
-    }
-    
-    .experience-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin-bottom: 15px;
     }
     
     .experience-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
-      gap: 10px;
+      margin-bottom: 15px;
     }
 
     .experience-number {
-      font-weight: 800;
-      color: var(--primary);
-      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
     }
-    
-    /* ======= HELP TEXT 2026 ======= */
+
+    /* ======= HELP TEXT ======= */
     .help-text {
       display: block;
-      margin-top: 10px;
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.4;
-      min-height: 20px;
-      padding-left: 5px;
-      border-left: 3px solid transparent;
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
     
-    .help-text.success {
-      color: var(--success);
-      border-left-color: var(--success);
-      padding-left: 10px;
-    }
-    
-    .help-text.error {
-      color: var(--danger);
-      border-left-color: var(--danger);
-      padding-left: 10px;
-    }
-    
-    /* ======= BOTÃO SUBMIT 2026 ======= */
+    .help-text.success { color: var(--success); font-weight: 500; }
+    .help-text.error { color: var(--error); font-weight: 500; }
+
+    /* ======= BOTÃO SUBMIT ======= */
     .submit-section {
-      margin-top: 60px;
-      padding-top: 40px;
-      border-top: 2px solid var(--border);
-      position: relative;
-    }
-    
-    .submit-section::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: 0;
-      width: 100px;
-      height: 2px;
-      background: var(--gradient);
-      border-radius: 1px;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #E5E7EB;
+      text-align: right;
     }
     
     .submit-btn {
-      background: var(--gradient);
+      background: var(--primary);
       color: white;
       border: none;
-      padding: 24px 50px;
-      border-radius: var(--radius-xl);
-      font-size: 1.3rem;
+      padding: 16px 40px;
+      border-radius: var(--radius-sm);
+      font-size: 1.1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: var(--transition-bounce);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      width: 100%;
-      font-family: 'Poppins', sans-serif;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
-      min-height: 70px;
-      box-shadow: 
-        0 20px 50px rgba(58, 134, 255, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    }
-    
-    .submit-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.8s;
-    }
-    
-    .submit-btn:hover:not(:disabled)::before {
-      left: 100%;
-    }
-    
-    .submit-btn:hover:not(:disabled) {
-      background: var(--gradient-hover);
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 
-        0 30px 70px rgba(58, 134, 255, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    }
-    
-    .submit-btn:active:not(:disabled) {
-      transform: translateY(-4px) scale(1);
-    }
-    
-    .submit-btn:disabled {
-      background: var(--text-secondary);
-      cursor: not-allowed;
-      opacity: 0.6;
-      transform: none !important;
-    }
-    
-    .btn-icon {
-      font-size: 1.4rem;
-    }
-    
-    .spinner {
-      width: 28px;
-      height: 28px;
-      border: 3px solid rgba(255,255,255,0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    /* ======= MENSAGENS 2026 ======= */
-    .message {
-      margin-top: 40px;
-      padding: 30px;
-      border-radius: var(--radius-xl);
-      font-weight: 600;
-      animation: slideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: none;
-      text-align: center;
-      border-left: 5px solid;
-      font-size: 1.2rem;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      border: var(--glass-border);
-      box-shadow: var(--shadow-card);
-    }
-    
-    .message.success {
-      color: var(--success);
-      border-left-color: var(--success);
-      background: rgba(29, 209, 161, 0.1);
-    }
-    
-    .message.error {
-      color: var(--danger);
-      border-left-color: var(--danger);
-      background: rgba(255, 71, 87, 0.1);
-    }
-    
-    /* ======= FOOTER 2026 ======= */
-    .footer {
-      text-align: center;
-      padding: 40px 0 30px;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: auto;
-      border-top: 1px solid var(--border);
-      position: relative;
-    }
-    
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--gradient);
-      opacity: 0.3;
-    }
-    
-    .footer-logo {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-    
-    .footer-logo span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* ======= ANIMAÇÕES 2026 ======= */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-30px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-    
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    
-    @keyframes glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(58, 134, 255, 0.3); }
-      50% { box-shadow: 0 0 40px rgba(58, 134, 255, 0.6); }
-    }
-    
-    /* ======= ESTILOS PARA CEP ======= */
-    .cep-loading {
-      animation: pulse 1.5s infinite;
-      border-color: var(--primary) !important;
-      position: relative;
-    }
-    
-    .cep-loading::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border-radius: var(--radius-lg);
-      background: var(--gradient);
-      opacity: 0.2;
-      z-index: -1;
-      animation: glow 2s infinite;
-    }
-    
-    .cep-success {
-      position: relative;
-      border-color: var(--success) !important;
-    }
-    
-    .cep-success::after {
-      content: '✓';
-      position: absolute;
-      right: 25px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--success);
-      font-size: 1.3rem;
-      font-weight: bold;
-      background: rgba(29, 209, 161, 0.1);
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--radius-full);
-    }
-    
-    /* ======= TOOLTIP 2026 ======= */
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      margin-left: 8px;
-    }
-    
-    .tooltip-icon {
-      color: var(--primary);
-      cursor: help;
-      font-size: 1.1rem;
-      background: rgba(58, 134, 255, 0.1);
-      width: 24px;
-      height: 24px;
-      border-radius: var(--radius-full);
+      transition: var(--transition);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: var(--transition);
+      gap: 12px;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 6px -1px rgba(0, 100, 51, 0.4);
     }
     
-    .tooltip-icon:hover {
-      background: rgba(58, 134, 255, 0.2);
-      transform: scale(1.1);
+    .submit-btn:hover:not(:disabled) {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px -1px rgba(0, 100, 51, 0.5);
     }
     
-    .tooltip-text {
-      visibility: hidden;
-      width: 280px;
-      background: var(--bg-blur);
-      backdrop-filter: var(--blur-amount);
-      color: var(--text);
+    .submit-btn:disabled {
+      background: #9CA3AF;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* ======= MENSAGENS ======= */
+    .message {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      display: none;
       text-align: left;
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      position: absolute;
-      z-index: 1000;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: var(--glass-border);
-      box-shadow: var(--shadow);
-      font-size: 0.95rem;
-      font-weight: normal;
-      line-height: 1.5;
+      border-left: 4px solid;
+      font-size: 1rem;
     }
     
-    .tooltip-text::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 8px;
-      border-style: solid;
-      border-color: var(--bg-blur) transparent transparent transparent;
-      backdrop-filter: var(--blur-amount);
+    .message.success {
+      background: #F0FDF4;
+      color: var(--success);
+      border-left-color: var(--success);
     }
     
-    .tooltip:hover .tooltip-text {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .message.error {
+      background: #FEF2F2;
+      color: var(--error);
+      border-left-color: var(--error);
+    }
+
+    /* ======= FOOTER ======= */
+    .footer {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: auto;
+      border-top: 1px solid var(--border-color);
     }
     
-    /* ======= VALIDAÇÃO VISUAL 2026 ======= */
+    .footer-logo {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--secondary);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    
+    .footer-logo span {
+      color: var(--primary);
+    }
+
+    /* ======= ESTILOS DE VALIDAÇÃO VISUAL ======= */
     .input-valid {
       border-color: var(--success) !important;
-      background-color: rgba(29, 209, 161, 0.05) !important;
-      position: relative;
+      background-color: #F0FDF4 !important;
     }
     
     .input-invalid {
-      border-color: var(--danger) !important;
-      animation: shake 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      background-color: rgba(255, 71, 87, 0.05) !important;
+      border-color: var(--error) !important;
+      background-color: #FEF2F2 !important;
     }
     
-    /* ======= INDICADOR DE VALIDAÇÃO DE CPF ======= */
     .cpf-validation-indicator {
       position: absolute;
-      right: 25px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      width: 24px;
-      height: 24px;
-      border-radius: var(--radius-full);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       opacity: 0;
       transition: var(--transition);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     
     .cpf-validation-indicator.valid {
@@ -1143,470 +586,71 @@
     }
     
     .cpf-validation-indicator.invalid {
-      background-color: var(--danger);
+      background-color: var(--error);
       color: white;
       opacity: 1;
     }
     
     .cpf-validation-indicator.loading {
-      background-color: transparent;
-      border: 3px solid var(--primary);
-      border-top-color: transparent;
-      animation: spin 1s linear infinite;
+      border: 2px solid var(--border-color);
+      border-top-color: var(--primary);
+      width: 20px;
+      height: 20px;
+      animation: spin 0.8s linear infinite;
       opacity: 1;
-      width: 24px;
-      height: 24px;
+      background: transparent;
     }
     
-    /* ======= FILE INPUT 2026 ======= */
+    /* FILE INPUT */
     input[type="file"] {
-      padding: 18px 25px 18px 60px;
-      cursor: pointer;
+      padding: 10px;
     }
     
     input[type="file"]::file-selector-button {
-      background: var(--gradient);
+      background: var(--secondary);
       color: white;
       border: none;
-      padding: 14px 28px;
-      border-radius: var(--radius-md);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
       font-weight: 600;
       cursor: pointer;
-      transition: var(--transition);
-      margin-right: 20px;
-      font-family: 'Inter', sans-serif;
-      box-shadow: 0 5px 15px rgba(58, 134, 255, 0.2);
+      margin-right: 15px;
+      font-size: 0.9rem;
     }
     
     input[type="file"]::file-selector-button:hover {
-      background: var(--gradient-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(58, 134, 255, 0.3);
+      background: #000;
+    }
+
+    /* ======= TOOLTIP ====== */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 5px;
+      color: var(--primary);
+      cursor: help;
     }
     
-    select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%235a5a7a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 25px center;
-      background-size: 20px;
-      padding-right: 60px;
-    }
-    
-    /* ======= RESPONSIVIDADE AVANÇADA 2026 ======= */
-    @media (max-width: 1200px) {
-      .app-container {
-        max-width: 100%;
-        padding: 30px 20px;
-      }
-    }
-    
-    @media (max-width: 992px) {
-      .header h1 {
-        font-size: 2.8rem;
-      }
-      
-      .header-subtitle {
-        font-size: 1.2rem;
-        max-width: 700px;
-        padding: 20px;
-      }
-      
-      .form-container {
-        padding: 40px;
-      }
-      
-      fieldset {
-        padding: 35px;
-      }
-      
-      .header-logo {
-        width: 100px;
-        height: 100px;
-      }
-      
-      .header-logo i {
-        font-size: 2.5rem;
-      }
+    /* ======= ANIMAÇÕES ======= */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
     
     @media (max-width: 768px) {
-      .app-container {
-        padding: 25px 15px;
-      }
+      .app-container { padding: 20px 15px; }
+      .header h1 { font-size: 1.8rem; }
+      .form-container { padding: 25px; }
       
-      .form-container {
-        padding: 30px;
-        border-radius: var(--radius-xl);
-      }
+      .stepper { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .stepper::before { display: none; }
       
-      .header {
-        margin-bottom: 40px;
-      }
+      .step { display: flex; align-items: center; width: 100%; gap: 15px; }
+      .step-circle { margin: 0; }
+      .step-label { text-align: left; }
       
-      .header h1 {
-        font-size: 2.4rem;
-      }
+      .form-grid { grid-template-columns: 1fr; }
       
-      .header-logo {
-        width: 90px;
-        height: 90px;
-      }
-      
-      .header-logo i {
-        font-size: 2.2rem;
-      }
-      
-      .header-subtitle {
-        font-size: 1.1rem;
-        padding: 18px;
-      }
-      
-      .theme-toggle {
-        top: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-      }
-      
-      .stepper {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 30px;
-        margin-bottom: 50px;
-      }
-      
-      .step {
-        flex-direction: row;
-        align-items: center;
-        width: 100%;
-        min-width: auto;
-        margin-bottom: 15px;
-      }
-      
-      .step-circle {
-        margin-bottom: 0;
-        margin-right: 20px;
-        width: 60px;
-        height: 60px;
-      }
-      
-      .step-label {
-        text-align: left;
-        max-width: none;
-        padding: 6px 12px;
-      }
-      
-      .step-line,
-      .step-line-fill {
-        display: none;
-      }
-      
-      fieldset {
-        padding: 30px;
-        margin-bottom: 40px;
-      }
-      
-      legend {
-        font-size: 1.5rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
-      
-      .legend-icon {
-        width: 55px;
-        height: 55px;
-      }
-      
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-      
-      input[type="text"],
-      input[type="email"],
-      input[type="file"],
-      select {
-        padding: 18px 22px 18px 55px;
-        font-size: 1rem;
-      }
-      
-      .input-icon {
-        left: 18px;
-      }
-      
-      .cpf-validation-indicator {
-        right: 22px;
-      }
-      
-      .submit-btn {
-        padding: 22px 35px;
-        font-size: 1.2rem;
-        min-height: 65px;
-      }
-      
-      .btn-icon {
-        font-size: 1.2rem;
-      }
-      
-      .spinner {
-        width: 24px;
-        height: 24px;
-      }
-      
-      .tooltip-text {
-        width: 250px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      
-      .experience-add-btn,
-      .remove-experience-btn {
-        padding: 12px 24px;
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .app-container {
-        padding: 20px 12px;
-      }
-      
-      .form-container {
-        padding: 25px;
-        border-radius: var(--radius-xl);
-      }
-      
-      .header h1 {
-        font-size: 2.1rem;
-      }
-      
-      .header-logo {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 25px;
-      }
-      
-      .header-logo i {
-        font-size: 2rem;
-      }
-      
-      .header-subtitle {
-        font-size: 1rem;
-        padding: 15px;
-      }
-      
-      .theme-toggle {
-        top: 15px;
-        right: 15px;
-        width: 46px;
-        height: 46px;
-        font-size: 0.9rem;
-      }
-      
-      fieldset {
-        padding: 25px;
-        margin-bottom: 35px;
-        border-radius: var(--radius-xl);
-      }
-      
-      legend {
-        font-size: 1.4rem;
-        margin-bottom: 30px;
-      }
-      
-      .legend-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.3rem;
-      }
-      
-      .form-grid {
-        gap: 25px;
-      }
-      
-      label {
-        font-size: 1rem;
-        margin-bottom: 10px;
-      }
-      
-      input[type="text"],
-      input[type="email"],
-      input[type="file"],
-      select {
-        padding: 16px 20px 16px 50px;
-        font-size: 1rem;
-      }
-      
-      .input-icon {
-        left: 16px;
-        font-size: 1.1rem;
-      }
-      
-      .cpf-validation-indicator {
-        right: 20px;
-      }
-      
-      .help-text {
-        font-size: 0.9rem;
-      }
-      
-      .submit-btn {
-        padding: 20px 30px;
-        font-size: 1.1rem;
-        min-height: 60px;
-        border-radius: var(--radius-lg);
-      }
-      
-      .spinner {
-        width: 22px;
-        height: 22px;
-      }
-      
-      .message {
-        padding: 25px;
-        font-size: 1.1rem;
-      }
-      
-      .footer {
-        padding: 30px 0 20px;
-        font-size: 0.9rem;
-      }
-      
-      .footer-logo {
-        font-size: 1.5rem;
-      }
-      
-      .tooltip-text {
-        width: 220px;
-        font-size: 0.9rem;
-        padding: 15px;
-      }
-      
-      .radio-option {
-        padding: 10px 20px;
-        gap: 8px;
-      }
-      
-      .experience-card {
-        padding: 20px;
-      }
-    }
-    
-    @media (max-width: 375px) {
-      .header h1 {
-        font-size: 1.9rem;
-      }
-      
-      .header-logo {
-        width: 70px;
-        height: 70px;
-      }
-      
-      .header-logo i {
-        font-size: 1.8rem;
-      }
-      
-      fieldset {
-        padding: 22px;
-      }
-      
-      input[type="text"],
-      input[type="email"],
-      input[type="file"],
-      select {
-        padding: 14px 18px 14px 45px;
-      }
-      
-      .cpf-validation-indicator {
-        right: 18px;
-      }
-      
-      .submit-btn {
-        padding: 18px 25px;
-        font-size: 1rem;
-      }
-      
-      .theme-toggle {
-        width: 42px;
-        height: 42px;
-      }
-    }
-    
-    /* ======= DARK MODE ENHANCEMENTS ======= */
-    [data-theme='dark'] .input-valid {
-      background-color: rgba(29, 209, 161, 0.1) !important;
-    }
-    
-    [data-theme='dark'] .input-invalid {
-      background-color: rgba(255, 71, 87, 0.1) !important;
-    }
-    
-    [data-theme='dark'] .radio-option {
-      background: rgba(255, 255, 255, 0.05);
-    }
-    
-    /* ======= IMPRESSÃO ======= */
-    @media print {
-      .theme-toggle,
-      .submit-btn,
-      .tooltip,
-      input[type="file"]::file-selector-button,
-      .experience-add-btn,
-      .remove-experience-btn {
-        display: none !important;
-      }
-      
-      .form-container {
-        box-shadow: none;
-        border: 1px solid #ddd;
-        padding: 20px;
-        background: white;
-      }
-      
-      body {
-        background: white;
-        color: black;
-      }
-      
-      fieldset {
-        break-inside: avoid;
-        border: 1px solid #ddd;
-        background: white;
-      }
-      
-      .header-subtitle,
-      .experience-section,
-      .radio-option {
-        background: white !important;
-        border: 1px solid #ddd !important;
-      }
-    }
-    
-    /* ======= EFEITOS ESPECIAIS ======= */
-    .floating-element {
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    .pulse-element {
-      animation: pulse 2s ease-in-out infinite;
-    }
-    
-    /* ======= SCROLLBAR PERSONALIZADA ======= */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: var(--gradient);
-      border-radius: var(--radius-full);
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--gradient-hover);
+      .submit-btn { width: 100%; }
     }
   </style>
 </head>
@@ -1619,11 +663,11 @@
     
     <!-- Header -->
     <header class="header">
-      <div class="header-logo floating-element" aria-hidden="true">
+      <div class="header-logo">
         <i class="fas fa-briefcase"></i>
       </div>
-      <h1>Trabalhe no <span class="highlight">Popular Atacarejo</span></h1>
-      <p class="header-subtitle">Preencha o formulário abaixo para se candidatar às nossas vagas. Faça parte de uma equipe inovadora que valoriza talentos e promove crescimento profissional contínuo!</p>
+      <h1>Popular Atacarejo</h1>
+      <p class="header-subtitle">Junte-se à nossa equipe. Preencha o formulário abaixo para se candidatar a uma vaga.</p>
     </header>
     
     <!-- Form Container -->
@@ -1632,7 +676,7 @@
         <!-- Stepper -->
         <div class="stepper" role="tablist" aria-label="Progresso do formulário">
           <div class="step" id="step1Head" role="tab" aria-selected="true">
-            <div class="step-circle floating-element">1</div>
+            <div class="step-circle">1</div>
             <span class="step-label">Dados Pessoais</span>
           </div>
           <div class="step" id="step2Head" role="tab" aria-selected="false">
@@ -1643,8 +687,6 @@
             <div class="step-circle">3</div>
             <span class="step-label">Candidatura</span>
           </div>
-          <div class="step-line" aria-hidden="true"></div>
-          <div class="step-line-fill" id="stepFill" aria-hidden="true"></div>
         </div>
         
         <!-- ETAPA 1: Dados Pessoais -->
@@ -1672,7 +714,7 @@
                 <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" aria-describedby="cpf-help">
                 <span class="cpf-validation-indicator" id="cpfValidationIndicator"></span>
               </div>
-              <span class="help-text" id="cpf-help">Digite apenas números, a formatação é automática</span>
+              <span class="help-text" id="cpf-help">Digite apenas números</span>
             </div>
             
             <div class="form-group">
@@ -1681,7 +723,7 @@
                 <i class="fas fa-phone input-icon"></i>
                 <input type="text" id="telefone" name="telefone" required placeholder="(00) 00000-0000" aria-describedby="telefone-help">
               </div>
-              <span class="help-text" id="telefone-help">Inclua DDD e celular com WhatsApp preferencialmente</span>
+              <span class="help-text" id="telefone-help">Celular com WhatsApp</span>
             </div>
             
             <div class="form-group">
@@ -1702,10 +744,6 @@
               <i class="fas fa-home"></i>
             </div>
             <span>Endereço</span>
-            <div class="tooltip">
-              <i class="fas fa-info-circle tooltip-icon"></i>
-              <span class="tooltip-text">Digite o CEP para preencher automaticamente os campos de endereço. Eles ficarão bloqueados para edição.</span>
-            </div>
           </legend>
           <div class="form-grid">
             <div class="form-group">
@@ -1714,7 +752,7 @@
                 <i class="fas fa-map-marker-alt input-icon"></i>
                 <input type="text" id="cep" name="cep" required placeholder="00000-000" aria-describedby="cep-help">
               </div>
-              <span class="help-text" id="cep-help">Digite o CEP para buscar automaticamente seu endereço</span>
+              <span class="help-text" id="cep-help">Digite o CEP para buscar automaticamente</span>
             </div>
             
             <div class="form-group">
@@ -1723,7 +761,7 @@
                 <i class="fas fa-city input-icon"></i>
                 <input type="text" id="cidade" name="cidade" required placeholder="Sua cidade" readonly aria-describedby="cidade-help">
               </div>
-              <span class="help-text" id="cidade-help">Preenchido automaticamente pelo CEP</span>
+              <span class="help-text" id="cidade-help">Preenchido automaticamente</span>
             </div>
             
             <div class="form-group">
@@ -1732,7 +770,7 @@
                 <i class="fas fa-map input-icon"></i>
                 <input type="text" id="bairro" name="bairro" required placeholder="Seu bairro" readonly aria-describedby="bairro-help">
               </div>
-              <span class="help-text" id="bairro-help">Preenchido automaticamente pelo CEP</span>
+              <span class="help-text" id="bairro-help">Preenchido automaticamente</span>
             </div>
             
             <div class="form-group">
@@ -1741,7 +779,7 @@
                 <i class="fas fa-road input-icon"></i>
                 <input type="text" id="rua" name="rua" required placeholder="Nome da sua rua" readonly aria-describedby="rua-help">
               </div>
-              <span class="help-text" id="rua-help">Preenchido automaticamente pelo CEP</span>
+              <span class="help-text" id="rua-help">Preenchido automaticamente</span>
             </div>
           </div>
         </fieldset>
@@ -1755,25 +793,23 @@
             <span>Candidatura</span>
           </legend>
           <div class="experience-question">
-            <label class="required">Tem experiência profissional?</label>
+            <label class="required" style="display:block; margin-bottom: 10px;">Tem experiência profissional?</label>
             <div class="radio-group">
               <label class="radio-option">
                 <input type="radio" name="tem_experiencia" value="Sim" required>
-                <i class="fas fa-check-circle"></i> Sim
+                Sim
               </label>
               <label class="radio-option">
                 <input type="radio" name="tem_experiencia" value="Não" required>
-                <i class="fas fa-times-circle"></i> Não
+                Não
               </label>
             </div>
-            <span class="help-text">Caso tenha experiência, informe as empresas, cargos e datas de admissão e desligamento.</span>
           </div>
           <div id="experiencesSection" class="experience-section hidden">
             <div class="experience-actions">
               <button type="button" id="addExperienceBtn" class="experience-add-btn">
-                <i class="fas fa-plus"></i> Adicionar experiência
+                <i class="fas fa-plus"></i> Adicionar Experiência
               </button>
-              <span class="help-text" id="experiencia-help">Você pode registrar até 10 experiências profissionais.</span>
             </div>
             <div id="experiencesList"></div>
           </div>
@@ -1794,23 +830,23 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>Cargo</label>
+                  <label>Função</label>
                   <div class="input-wrapper">
                     <i class="fas fa-user-tie input-icon"></i>
                     <input type="text" name="experiencia_cargo[]" placeholder="Cargo ocupado">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>Data de admissão</label>
+                  <label>Data de Admissão</label>
                   <div class="input-wrapper">
-                    <i class="fas fa-calendar-plus input-icon"></i>
+                    <i class="fas fa-calendar input-icon"></i>
                     <input type="date" name="experiencia_admissao[]">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>Data de desligamento</label>
+                  <label>Data de Desligamento</label>
                   <div class="input-wrapper">
-                    <i class="fas fa-calendar-minus input-icon"></i>
+                    <i class="fas fa-calendar input-icon"></i>
                     <input type="date" name="experiencia_demissao[]">
                   </div>
                 </div>
@@ -1823,12 +859,11 @@
               <div class="input-wrapper">
                 <i class="fas fa-car input-icon"></i>
                 <select id="transporte" name="transporte" required aria-describedby="transporte-help">
-                  <option value="" disabled selected>Selecione uma opção...</option>
+                  <option value="" disabled selected>Selecione...</option>
                   <option value="Sim">Sim</option>
                   <option value="Não">Não</option>
                 </select>
               </div>
-              <span class="help-text" id="transporte-help">Importante para vagas com deslocamento</span>
             </div>
             
             <div class="form-group">
@@ -1836,29 +871,27 @@
               <div class="input-wrapper">
                 <i class="fas fa-briefcase input-icon"></i>
                 <select id="vaga" name="vaga" required aria-describedby="vaga-help">
-                  <option value="" disabled selected>Carregando vagas disponíveis...</option>
+                  <option value="" disabled selected>Carregando vagas...</option>
                 </select>
               </div>
-              <span class="help-text" id="vaga-help">Vagas carregadas do nosso sistema</span>
             </div>
             
             <div class="form-group" style="grid-column: 1 / -1;">
               <label for="arquivo" class="required">Anexar Currículo</label>
               <div class="input-wrapper">
-                <i class="fas fa-file-upload input-icon"></i>
                 <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx" required aria-describedby="arquivo-help">
               </div>
-              <span class="help-text" id="arquivo-help">Formatos aceitos: PDF, DOC, DOCX | Tamanho máximo: 5MB</span>
+              <span class="help-text" id="arquivo-help">PDF, DOC ou DOCX. Máx: 5MB.</span>
             </div>
           </div>
         </fieldset>
         
         <!-- Botão de Envio -->
         <div class="submit-section">
-          <button type="submit" id="submitButton" class="submit-btn pulse-element" disabled aria-label="Enviar candidatura">
-            <i class="fas fa-paper-plane btn-icon"></i>
+          <button type="submit" id="submitButton" class="submit-btn" disabled aria-label="Enviar candidatura">
             <span class="btn-text">Enviar Candidatura</span>
             <span class="spinner hidden"></span>
+            <i class="fas fa-paper-plane btn-icon" style="display: none;"></i>
           </button>
         </div>
         
@@ -1871,11 +904,11 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-logo">
-        <span>Popular Atacarejo</span>
+        <span>Popular</span> Atacarejo
       </div>
-      <p>© 2026 Popular Atacarejo e Home Center. Todos os direitos reservados.</p>
-      <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
-        <i class="fas fa-shield-alt" style="margin-right: 8px;"></i>
+      <p>© 2026 Todos os direitos reservados.</p>
+      <p style="margin-top: 5px; font-size: 0.8rem; opacity: 0.7;">
+        Portal de Recrutamento
       </p>
     </footer>
   </div>
@@ -1887,18 +920,9 @@
     const FILE_MAX_MB = 5;
     const VAGAS_GITHUB_URL = "https://raw.githubusercontent.com/PopularAtacarejo/Candidatos/main/vagas.json";
     const DEFAULT_VAGAS = [
-      { nome: "Auxiliar de Limpeza" },
-      { nome: "Vendedor" },
-      { nome: "Caixa" },
-      { nome: "Estoquista" },
-      { nome: "Repositor" },
-      { nome: "Atendente" },
-      { nome: "Gerente" },
-      { nome: "Supervisor" },
-      { nome: "Operador de Caixa" },
-      { nome: "Analista de Marketing" },
-      { nome: "Desenvolvedor Full Stack" },
-      { nome: "Designer UX/UI" }
+      { nome: "Auxiliar de Limpeza" }, { nome: "Vendedor" }, { nome: "Caixa" },
+      { nome: "Estoquista" }, { nome: "Repositor" }, { nome: "Atendente" },
+      { nome: "Gerente" }, { nome: "Supervisor" }, { nome: "Operador de Caixa" }
     ];
     const EXPERIENCE_RADIO_NAME = "tem_experiencia";
     const MAX_EXPERIENCE_ENTRIES = 10;
@@ -1906,8 +930,6 @@
     // ====== ELEMENTOS DOM ======
     const form = document.getElementById("formCurriculo");
     const themeToggle = document.getElementById("themeToggle");
-    
-    // Campos do formulário
     const nome = document.getElementById("nome");
     const cpf = document.getElementById("cpf");
     const telefone = document.getElementById("telefone");
@@ -1925,18 +947,15 @@
     const addExperienceBtn = document.getElementById("addExperienceBtn");
     const experienceTemplate = document.getElementById("experienceTemplate");
     
-    // Botões e mensagens
     const submitBtn = document.getElementById("submitButton");
     const btnText = submitBtn.querySelector(".btn-text");
     const spinner = submitBtn.querySelector(".spinner");
     const successMsg = document.getElementById("mensagemSucesso");
     const errorMsg = document.getElementById("mensagemErro");
     
-    // Steps
     const step1Head = document.getElementById("step1Head");
     const step2Head = document.getElementById("step2Head");
     const step3Head = document.getElementById("step3Head");
-    const stepFill = document.getElementById("stepFill");
     const fs1 = document.getElementById("fs1");
     const fs2 = document.getElementById("fs2");
     const fs3 = document.getElementById("fs3");
@@ -1946,48 +965,16 @@
       const currentTheme = document.body.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
       document.body.setAttribute("data-theme", newTheme);
-      
       const icon = themeToggle.querySelector("i");
       icon.className = newTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
-      
-      // Adicionar efeito de transição
-      document.body.style.opacity = "0.9";
-      setTimeout(() => {
-        document.body.style.opacity = "1";
-      }, 300);
-      
-      // Salvar preferência
-      localStorage.setItem("theme", newTheme);
     });
-
-    // Carregar tema salvo
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      document.body.setAttribute("data-theme", savedTheme);
-      const icon = themeToggle.querySelector("i");
-      icon.className = savedTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
-    }
 
     // ====== MÁSCARAS ======
-    const cpfMask = IMask(cpf, { 
-      mask: "000.000.000-00",
-      lazy: false
-    });
-    
-    const cepMask = IMask(cep, { 
-      mask: "00000-000",
-      lazy: false
-    });
-    
-    const telefoneMask = IMask(telefone, { 
-      mask: [
-        {mask: "(00) 0000-0000"},
-        {mask: "(00) 00000-0000"}
-      ],
-      lazy: false
-    });
+    const cpfMask = IMask(cpf, { mask: "000.000.000-00", lazy: false });
+    const cepMask = IMask(cep, { mask: "00000-000", lazy: false });
+    const telefoneMask = IMask(telefone, { mask: [{mask: "(00) 0000-0000"}, {mask: "(00) 00000-0000"}], lazy: false });
 
-    // ====== VALIDAÇÃO DE CPF NA RECEITA FEDERAL ======
+    // ====== VALIDAÇÃO DE CPF ======
     const cpfValidationIndicator = document.getElementById('cpfValidationIndicator');
     let cpfValidationTimeout = null;
     let lastValidatedCpfDigits = '';
@@ -1995,378 +982,131 @@
 
     async function validateCPF(cpfValue) {
       const cpfDigits = cpfValue.replace(/\D/g, '');
-
-      // Verificar se tem 11 dígitos
       if (cpfDigits.length !== 11) {
         cpf.classList.add('input-invalid');
         return false;
       }
-
-      // Se o CPF já foi validado e não mudou, mantemos o resultado
-      if (cpfDigits === lastValidatedCpfDigits && lastCpfValidationResult !== null) {
-        return lastCpfValidationResult;
-      }
-
-      // Limpar o timeout anterior
-      if (cpfValidationTimeout) {
-        clearTimeout(cpfValidationTimeout);
-      }
-
-      // Resetar indicador
-      cpfValidationIndicator.className = 'cpf-validation-indicator';
+      if (cpfDigits === lastValidatedCpfDigits && lastCpfValidationResult !== null) return lastCpfValidationResult;
+      if (cpfValidationTimeout) clearTimeout(cpfValidationTimeout);
+      
+      cpfValidationIndicator.className = 'cpf-validation-indicator loading';
       cpf.classList.remove('input-valid', 'input-invalid');
 
-      // Mostrar indicador de carregamento
-      cpfValidationIndicator.classList.add('loading');
-
-      // Adicionar um atraso para evitar muitas requisições
       return new Promise((resolve) => {
         cpfValidationTimeout = setTimeout(async () => {
           try {
             const response = await fetch(`https://scpa-backend.saude.gov.br/public/scpa-usuario/validacao-cpf/${cpfDigits}`, {
-              method: 'GET',
-              headers: {
-                'Accept': 'application/json',
-              },
-              cache: 'no-store'
+              method: 'GET', headers: { 'Accept': 'application/json' }, cache: 'no-store'
             });
-
             if (response.ok) {
               const data = await response.json();
-
               if (data === true) {
-                // CPF válido
-                cpfValidationIndicator.classList.remove('loading');
-                cpfValidationIndicator.classList.add('valid');
-                cpfValidationIndicator.innerHTML = '✓';
+                cpfValidationIndicator.className = 'cpf-validation-indicator valid';
                 cpf.classList.add('input-valid');
-                cpf.classList.remove('input-invalid');
-                
-                // Mostrar mensagem de sucesso
-                const cpfHelp = document.getElementById('cpf-help');
-                cpfHelp.textContent = 'CPF válido na base da Receita Federal';
-                cpfHelp.className = 'help-text success';
-                
-                lastValidatedCpfDigits = cpfDigits;
-                lastCpfValidationResult = true;
+                document.getElementById('cpf-help').textContent = 'CPF Válido';
+                document.getElementById('cpf-help').className = 'help-text success';
+                lastValidatedCpfDigits = cpfDigits; lastCpfValidationResult = true;
                 resolve(true);
               } else {
-                // CPF inválido
-                cpfValidationIndicator.classList.remove('loading');
-                cpfValidationIndicator.classList.add('invalid');
-                cpfValidationIndicator.innerHTML = '✗';
-                cpf.classList.add('input-invalid');
-                cpf.classList.remove('input-valid');
-                
-                // Mostrar mensagem de erro específica
-                const cpfHelp = document.getElementById('cpf-help');
-                const errorMessage = data[0]?.message || "CPF informado não foi encontrado na base de dados da Receita Federal.";
-                cpfHelp.textContent = errorMessage;
-                cpfHelp.className = 'help-text error';
-                
-                // Mostrar também na mensagem de erro principal
-                showError(`❌ ${errorMessage}`);
-
-                lastValidatedCpfDigits = cpfDigits;
-                lastCpfValidationResult = false;
-                resolve(false);
+                throw new Error("CPF Inválido");
               }
             } else {
-              throw new Error('Erro na resposta da API');
+              throw new Error("Erro na API");
             }
           } catch (error) {
-            console.error('Erro ao validar CPF:', error);
-            cpfValidationIndicator.classList.remove('loading');
             cpfValidationIndicator.className = 'cpf-validation-indicator';
             cpf.classList.remove('input-valid', 'input-invalid');
-            lastValidatedCpfDigits = '';
-            lastCpfValidationResult = null;
-            
-            // Em caso de erro na rede, não bloqueamos o usuário, mas avisamos que a validação não foi concluída
-            const cpfHelp = document.getElementById('cpf-help');
-            cpfHelp.textContent = 'Não foi possível validar o CPF. Você pode continuar, mas a validade será verificada posteriormente.';
-            cpfHelp.className = 'help-text';
-            
-            showTemporaryMessage("⚠️ Não foi possível validar o CPF no momento. Você pode continuar, mas a validade será verificada posteriormente.", "error");
-            resolve(true); // Permitir continuar mesmo com erro de rede
+            lastValidatedCpfDigits = ''; lastCpfValidationResult = null;
+            document.getElementById('cpf-help').textContent = 'Validação indisponível, você pode continuar.';
+            document.getElementById('cpf-help').className = 'help-text';
+            resolve(true);
           }
-        }, 800); // Atraso de 800ms após o usuário parar de digitar
+        }, 800);
       });
     }
 
-    // Adicionar evento de blur no campo CPF
-    cpf.addEventListener('blur', async () => {
-      if (cpf.value.trim() !== '') {
-        await validateCPF(cpf.value);
-        updateSteps(); // Atualizar o estado dos steps após a validação
-      }
-    });
+    cpf.addEventListener('blur', async () => { if(cpf.value.trim() !== '') { await validateCPF(cpf.value); updateSteps(); } });
 
-    // Também validar ao digitar, mas com um debounce para não sobrecarregar a API
-    cpf.addEventListener('input', () => {
-      const currentDigits = cpf.value.replace(/\D/g, '');
-      const cpfChanged = currentDigits !== lastValidatedCpfDigits;
-
-      if (cpfChanged || currentDigits.length < 11) {
-        lastValidatedCpfDigits = '';
-        lastCpfValidationResult = null;
-
-        cpfValidationIndicator.className = 'cpf-validation-indicator';
-        cpf.classList.remove('input-valid', 'input-invalid');
-        
-        const cpfHelp = document.getElementById('cpf-help');
-        cpfHelp.textContent = 'Digite apenas números, a formatação é automática';
-        cpfHelp.className = 'help-text';
-      }
-      
-      if (cpf.value.length === 14 && cpfChanged) {
-        validateCPF(cpf.value);
-      }
-    });
-
-    // ====== VIACEP COM AUTO-PREENCHIMENTO ======
+    // ====== VIACEP ======
     let cepTimeout;
-    let cepLoading = false;
-
     cep.addEventListener("input", () => {
       clearTimeout(cepTimeout);
-      
-      // Limpar campos se CEP estiver incompleto
       const cepValue = cep.value.replace(/\D/g, "");
-      if (cepValue.length < 8) {
-        resetAddressFields();
-        return;
-      }
-
-      // Mostrar loading no CEP
-      cep.classList.add("cep-loading");
-      cepLoading = true;
-
+      if (cepValue.length < 8) { resetAddressFields(); return; }
+      
       cepTimeout = setTimeout(async () => {
-        if (cepValue.length !== 8) {
-          resetAddressFields();
-          cep.classList.remove("cep-loading");
-          cepLoading = false;
-          return;
-        }
-
+        if (cepValue.length !== 8) { resetAddressFields(); return; }
         try {
-          const response = await fetch(`https://viacep.com.br/ws/${cepValue}/json/`, {
-            cache: "no-store"
-          });
-
-          if (!response.ok) throw new Error("CEP não encontrado");
-
+          const response = await fetch(`https://viacep.com.br/ws/${cepValue}/json/`, { cache: "no-store" });
+          if (!response.ok) throw new Error("Erro");
           const data = await response.json();
-
           if (data.erro) {
-            showError("CEP não encontrado. Verifique e tente novamente.");
             resetAddressFields();
           } else {
-            // Preencher campos automaticamente
             cidade.value = data.localidade || "";
             bairro.value = data.bairro || "";
             rua.value = data.logradouro || "";
-            
-            // Adicionar classes de sucesso
-            cidade.classList.add("cep-success");
-            bairro.classList.add("cep-success");
-            rua.classList.add("cep-success");
-            
-            // Adicionar tooltip
-            const tooltipText = "Preenchido automaticamente pelo CEP";
-            cidade.title = tooltipText;
-            bairro.title = tooltipText;
-            rua.title = tooltipText;
-            
-            // Mostrar confirmação
-            showTemporaryMessage("✅ Endereço preenchido automaticamente!", "success");
-            
-            // Focar no próximo campo
-            setTimeout(() => transporte.focus(), 300);
+            cidade.classList.add("input-valid");
+            bairro.classList.add("input-valid");
+            rua.classList.add("input-valid");
+            updateSteps();
           }
-        } catch (error) {
-          showError("❌ Erro ao buscar CEP. Tente novamente.");
+        } catch (e) {
           resetAddressFields();
-        } finally {
-          cep.classList.remove("cep-loading");
-          cepLoading = false;
-          updateSteps();
         }
       }, 800);
     });
 
     function resetAddressFields() {
-      cidade.value = "";
-      bairro.value = "";
-      rua.value = "";
-      cidade.classList.remove("cep-success");
-      bairro.classList.remove("cep-success");
-      rua.classList.remove("cep-success");
+      cidade.value = ""; bairro.value = ""; rua.value = "";
+      cidade.classList.remove("input-valid"); bairro.classList.remove("input-valid"); rua.classList.remove("input-valid");
       updateSteps();
     }
 
-    // ====== CARREGAR VAGAS DIRETO DO GITHUB ======
+    // ====== CARREGAR VAGAS ======
     async function loadVagasFromGitHub() {
       const selectVaga = document.getElementById('vaga');
-      const label = document.querySelector('label[for="vaga"]');
-
+      selectVaga.innerHTML = '<option value="" disabled selected>Carregando...</option>';
       selectVaga.disabled = true;
-      selectVaga.innerHTML = '<option value="" disabled selected>Carregando vagas disponíveis...</option>';
-
+      
       let vagasData = [];
-      let fallbackUsed = false;
-
       try {
-        const response = await fetch(VAGAS_GITHUB_URL, {
-          cache: "no-store"
-        });
+        const response = await fetch(VAGAS_GITHUB_URL, { cache: "no-store" });
+        if (response.ok) vagasData = await response.json();
+      } catch (e) { console.error(e); }
 
-        if (response.ok) {
-          vagasData = await response.json();
-        } else {
-          console.warn("Erro ao carregar vagas públicas:", response.status);
-        }
-      } catch (error) {
-        console.error("Erro ao carregar vagas públicas:", error);
-      }
-
-      const preparedVagas = (vagasData || []).map(vaga => {
-        if (typeof vaga === 'string') {
-          return { nome: vaga };
-        }
-        return vaga && typeof vaga === 'object' ? vaga : null;
-      }).filter(Boolean);
-
-      const finalVagas = preparedVagas.length ? preparedVagas : [...DEFAULT_VAGAS];
-      fallbackUsed = finalVagas === preparedVagas ? false : true;
-
-      selectVaga.innerHTML = '<option value="" disabled selected>Selecione a vaga desejada...</option>';
+      const finalVagas = (vagasData || []).length > 0 ? vagasData : DEFAULT_VAGAS;
+      selectVaga.innerHTML = '<option value="" disabled selected>Selecione a vaga...</option>';
       selectVaga.disabled = false;
 
-      finalVagas
-        .slice()
-        .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
-        .forEach(vaga => {
-          const option = document.createElement('option');
-          option.value = vaga.nome;
-          option.textContent = vaga.nome;
-          selectVaga.appendChild(option);
-        });
-
-      if (label) {
-        label.querySelectorAll('.vaga-counter, .vaga-info').forEach(el => el.remove());
-
-        const vagaCount = document.createElement('small');
-        vagaCount.className = 'vaga-counter';
-        vagaCount.style.cssText = 'display: block; margin-top: 5px; font-size: 0.9rem; color: var(--text-secondary);';
-        vagaCount.textContent = `${finalVagas.length} vagas disponíveis`;
-        label.appendChild(vagaCount);
-
-        if (fallbackUsed) {
-          const warning = document.createElement('small');
-          warning.className = 'vaga-info';
-          warning.style.cssText = 'display: block; margin-top: 5px; font-size: 0.8rem; color: var(--warning);';
-          warning.textContent = 'Usando lista local de vagas';
-          label.appendChild(warning);
-        }
-      }
-
+      finalVagas.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = typeof v === 'string' ? v : v.nome;
+        opt.textContent = typeof v === 'string' ? v : v.nome;
+        selectVaga.appendChild(opt);
+      });
       updateSteps();
     }
 
     // ====== UTILITÁRIOS ======
-    function showMessage(element, message) {
-      element.textContent = message;
-      element.classList.remove("hidden");
-      element.style.display = "block";
-      element.style.animation = "slideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)";
-      
-      // Scroll para mensagem
-      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      
-      if (element === successMsg) {
-        errorMsg.classList.add("hidden");
-        errorMsg.style.display = "none";
-      } else {
-        successMsg.classList.add("hidden");
-        successMsg.style.display = "none";
-      }
-    }
-
-    function showTemporaryMessage(message, type = "success") {
-      const element = type === "success" ? successMsg : errorMsg;
-      showMessage(element, message);
-      
-      // Auto-remover após 5 segundos
-      setTimeout(() => {
-        element.classList.add("hidden");
-        element.style.display = "none";
-      }, 5000);
-    }
-
-    function hideMessages() {
-      [successMsg, errorMsg].forEach(msg => {
-        msg.classList.add("hidden");
-        msg.style.display = "none";
-      });
-    }
-
-    function showError(message) {
-      showMessage(errorMsg, message);
-    }
-
-    function showSuccess(message) {
-      showMessage(successMsg, message);
-    }
-
+    function showMessage(el, msg) { el.textContent = msg; el.classList.remove("hidden"); el.style.display = "block"; }
+    function hideMessages() { [successMsg, errorMsg].forEach(m => { m.classList.add("hidden"); m.style.display = "none"; }); }
+    function showError(msg) { showMessage(errorMsg, msg); }
+    function showSuccess(msg) { showMessage(successMsg, msg); }
     function setLoading(isLoading) {
       if (isLoading) {
-        btnText.classList.add("hidden");
-        spinner.classList.remove("hidden");
-        submitBtn.disabled = true;
-        submitBtn.classList.add("loading");
-        submitBtn.classList.remove("pulse-element");
+        btnText.classList.add("hidden"); spinner.classList.remove("hidden"); submitBtn.disabled = true;
       } else {
-        btnText.classList.remove("hidden");
-        spinner.classList.add("hidden");
-        submitBtn.classList.remove("loading");
-        if (!submitBtn.disabled) {
-          submitBtn.classList.add("pulse-element");
-        }
-        updateSteps();
+        btnText.classList.remove("hidden"); spinner.classList.add("hidden"); if(!submitBtn.disabled) submitBtn.disabled = false;
       }
     }
-
     function validateFile() {
-      const file = arquivo.files?.[0];
-      
-      if (!file) {
-        showError("❌ Selecione um arquivo para o currículo.");
-        return false;
-      }
-
-      const allowedTypes = [
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-      ];
-      
-      const ext = file.name.toLowerCase().split('.').pop();
-      
-      if (!allowedTypes.includes(file.type) && !['pdf', 'doc', 'docx'].includes(ext)) {
-        showError("❌ Formato de arquivo inválido. Use PDF, DOC ou DOCX.");
-        return false;
-      }
-
-      if (file.size > FILE_MAX_MB * 1024 * 1024) {
-        showError(`❌ Arquivo muito grande. Tamanho máximo: ${FILE_MAX_MB} MB.`);
-        return false;
-      }
-
+      const f = arquivo.files?.[0];
+      if (!f) return false;
+      const ext = f.name.toLowerCase().split('.').pop();
+      if (f.size > FILE_MAX_MB * 1024 * 1024 || !['pdf','doc','docx'].includes(ext)) return false;
       return true;
     }
-
     function createFormData() {
       const formData = new FormData();
       formData.append("nome", nome.value.trim());
@@ -2380,68 +1120,29 @@
       formData.append("transporte", transporte.value);
       formData.append("vaga", vaga.value);
       formData.append("arquivo", arquivo.files[0]);
+      
+      const selectedExp = document.querySelector(`input[name="${EXPERIENCE_RADIO_NAME}"]:checked`)?.value || "";
+      formData.append("tem_experiencia", selectedExp);
 
-      const selectedExperienceValue = getSelectedExperienceOption()?.value || "";
-      formData.append("tem_experiencia", selectedExperienceValue);
-
-      if (selectedExperienceValue === "Sim" && experiencesList) {
+      if (selectedExp === "Sim" && experiencesList) {
         const experiences = [];
         experiencesList.querySelectorAll(".experience-card").forEach((card) => {
-          const companyInput = card.querySelector('input[name="experiencia_empresa[]"]');
-          const roleInput = card.querySelector('input[name="experiencia_cargo[]"]');
-          const admissaoInput = card.querySelector('input[name="experiencia_admissao[]"]');
-          const demissaoInput = card.querySelector('input[name="experiencia_demissao[]"]');
-
-          // Verifica se todos os campos têm valores
-          if (companyInput && companyInput.value.trim() && 
-              roleInput && roleInput.value.trim() && 
-              admissaoInput && admissaoInput.value && 
-              demissaoInput && demissaoInput.value) {
-            experiences.push({
-              empresa: companyInput.value.trim(),
-              cargo: roleInput.value.trim(),
-              admissao: admissaoInput.value,
-              demissao: demissaoInput.value
-            });
+          const c = card.querySelector('input[name="experiencia_empresa[]"]');
+          const r = card.querySelector('input[name="experiencia_cargo[]"]');
+          const a = card.querySelector('input[name="experiencia_admissao[]"]');
+          const d = card.querySelector('input[name="experiencia_demissao[]"]');
+          if (c && r && a && d && c.value.trim() && r.value.trim()) {
+            experiences.push({ empresa: c.value.trim(), funcao: r.value.trim(), data_admissao: a.value, data_demissao: d.value });
           }
         });
-        
-        // Se houver experiências válidas, envia como JSON
-        if (experiences.length > 0) {
-          formData.append("experiencias_json", JSON.stringify(experiences));
-        }
-        
-        // Também envia como strings separadas por vírgula para compatibilidade
-        if (experiences.length > 0) {
-          const empresas = experiences.map(exp => exp.empresa).join(",");
-          const cargos = experiences.map(exp => exp.cargo).join(",");
-          const admissoes = experiences.map(exp => exp.admissao).join(",");
-          const demissoes = experiences.map(exp => exp.demissao).join(",");
-          
-          if (empresas) formData.append("experiencia_empresa", empresas);
-          if (cargos) formData.append("experiencia_cargo", cargos);
-          if (admissoes) formData.append("experiencia_admissao", admissoes);
-          if (demissoes) formData.append("experiencia_demissao", demissoes);
-        }
+        if (experiences.length > 0) formData.append("experiencias", JSON.stringify(experiences));
       }
-
       return formData;
     }
-
     async function fetchWithTimeout(url, options = {}, timeout = 30000) {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), timeout);
-
-      try {
-        const response = await fetch(url, {
-          ...options,
-          signal: controller.signal,
-          cache: "no-store"
-        });
-        return response;
-      } finally {
-        clearTimeout(timeoutId);
-      }
+      const id = setTimeout(() => controller.abort(), timeout);
+      try { return await fetch(url, { ...options, signal: controller.signal, cache: "no-store" }); } finally { clearTimeout(id); }
     }
 
     // ====== VALIDAÇÃO POR ETAPA ======
@@ -2449,413 +1150,133 @@
     const step2Fields = [cep, cidade, bairro, rua];
     const step3Fields = [transporte, vaga, arquivo];
 
-    function getSelectedExperienceOption() {
-      return document.querySelector(`input[name="${EXPERIENCE_RADIO_NAME}"]:checked`);
-    }
-
+    function getSelectedExperienceOption() { return document.querySelector(`input[name="${EXPERIENCE_RADIO_NAME}"]:checked`); }
     function areExperiencesValid() {
       const selected = getSelectedExperienceOption();
-      if (!selected) return false;
-      if (selected.value === "Não") return true;
+      if (!selected || selected.value === "Não") return true;
       if (!experiencesList) return false;
-
       const cards = experiencesList.querySelectorAll(".experience-card");
       if (!cards.length) return false;
-
-      return Array.from(cards).every((card) => {
-        return Array.from(card.querySelectorAll("input")).every((input) => input.value.trim().length > 0);
-      });
+      return Array.from(cards).every(c => Array.from(c.querySelectorAll("input")).every(i => i.value.trim().length > 0));
     }
-
     function updateExperienceHeader() {
       if (!experiencesList) return;
       const cards = experiencesList.querySelectorAll(".experience-card");
-      cards.forEach((card, index) => {
-        const number = card.querySelector(".experience-number");
-        if (number) {
-          number.textContent = `Experiência ${index + 1}`;
-        }
-        const removeBtn = card.querySelector(".remove-experience-btn");
-        if (removeBtn) {
-          removeBtn.style.visibility = cards.length === 1 ? "hidden" : "visible";
-        }
+      cards.forEach((card, idx) => {
+        const n = card.querySelector(".experience-number");
+        if (n) n.textContent = `Experiência ${idx + 1}`;
+        const b = card.querySelector(".remove-experience-btn");
+        if (b) b.style.visibility = cards.length === 1 ? "hidden" : "visible";
       });
-
-      const hasExperience = getSelectedExperienceOption()?.value === "Sim";
-      if (addExperienceBtn) {
-        addExperienceBtn.disabled = !hasExperience || cards.length >= MAX_EXPERIENCE_ENTRIES;
-      }
+      if (addExperienceBtn) addExperienceBtn.disabled = (getSelectedExperienceOption()?.value !== "Sim") || cards.length >= MAX_EXPERIENCE_ENTRIES;
     }
-
     function addExperienceCard() {
-      if (!experienceTemplate || !experiencesList) return;
-      if (experiencesList.children.length >= MAX_EXPERIENCE_ENTRIES) return;
-
+      if (!experienceTemplate || !experiencesList || experiencesList.children.length >= MAX_EXPERIENCE_ENTRIES) return;
       const clone = experienceTemplate.content.cloneNode(true);
       const card = clone.querySelector(".experience-card");
-      if (!card) return;
-
       const removeBtn = card.querySelector(".remove-experience-btn");
       if (removeBtn) {
         removeBtn.addEventListener("click", () => {
-          card.style.transform = "translateX(100%)";
-          card.style.opacity = "0";
-          setTimeout(() => {
-            card.remove();
-            updateExperienceHeader();
-            updateSteps();
-          }, 300);
+          card.remove(); updateExperienceHeader(); updateSteps();
         });
       }
-
-      card.style.transform = "translateX(-100%)";
-      card.style.opacity = "0";
       experiencesList.appendChild(card);
-      
-      setTimeout(() => {
-        card.style.transform = "translateX(0)";
-        card.style.opacity = "1";
-      }, 10);
-      
-      card.querySelectorAll("input").forEach((input) => {
-        input.value = "";
-        setupFieldValidation(input);
-      });
-
-      updateExperienceHeader();
-      updateSteps();
+      card.querySelectorAll("input").forEach(i => { i.value = ""; setupFieldValidation(i); });
+      updateExperienceHeader(); updateSteps();
     }
-
     function updateExperienceVisibility() {
-      if (!experiencesSection || !addExperienceBtn || !experiencesList) return;
-      const selectedValue = getSelectedExperienceOption()?.value;
-      const hasExperience = selectedValue === "Sim";
-
-      if (hasExperience) {
+      if (!experiencesSection || !addExperienceBtn) return;
+      const hasExp = getSelectedExperienceOption()?.value === "Sim";
+      if (hasExp) {
         experiencesSection.classList.remove("hidden");
-        experiencesSection.style.opacity = "0";
-        experiencesSection.style.transform = "translateY(20px)";
-        setTimeout(() => {
-          experiencesSection.style.opacity = "1";
-          experiencesSection.style.transform = "translateY(0)";
-        }, 10);
+        if (experiencesList.children.length === 0) addExperienceCard();
       } else {
-        experiencesSection.style.opacity = "0";
-        experiencesSection.style.transform = "translateY(-20px)";
-        setTimeout(() => {
-          experiencesSection.classList.add("hidden");
-          experiencesSection.style.opacity = "";
-          experiencesSection.style.transform = "";
-        }, 300);
-      }
-      
-      addExperienceBtn.disabled = !hasExperience || experiencesList.children.length >= MAX_EXPERIENCE_ENTRIES;
-
-      if (!hasExperience) {
+        experiencesSection.classList.add("hidden");
         experiencesList.innerHTML = "";
-        updateExperienceHeader();
-        return;
       }
-
-      if (experiencesList.children.length === 0) {
-        addExperienceCard();
-      }
-
+      addExperienceBtn.disabled = !hasExp || experiencesList.children.length >= MAX_EXPERIENCE_ENTRIES;
       updateExperienceHeader();
     }
-
     function resetExperiencesSection() {
-      temExperienciaRadios.forEach((radio) => {
-        radio.checked = false;
-      });
-
-      if (experiencesList) {
-        experiencesList.innerHTML = "";
-      }
-
+      temExperienciaRadios.forEach(r => r.checked = false);
+      if (experiencesList) experiencesList.innerHTML = "";
       updateExperienceVisibility();
     }
-
-    function isFieldValid(field) {
-      // Caso especial para CPF: deve ter a classe input-valid OU não estar validado ainda (para permitir progresso inicial)
-      if (field.id === 'cpf') {
-        // Se o campo está vazio, não é válido
-        if (field.value.trim().length === 0) return false;
-        
-        // Se tem a classe input-invalid, não é válido
-        if (field.classList.contains('input-invalid')) return false;
-        
-        // Se está no meio da validação (loading), não é válido ainda
-        if (cpfValidationIndicator.classList.contains('loading')) return false;
-        
-        // Para permitir o fluxo, consideramos válido se tiver 14 caracteres (CPF completo formatado)
-        // mesmo sem validação da API, pois a validação pode falhar por rede
-        return field.value.length === 14;
+    function isFieldValid(f) {
+      if (f.id === 'cpf') {
+        if (f.value.trim().length === 0) return false;
+        if (f.classList.contains('input-invalid')) return false;
+        return f.value.length === 14;
       }
-      
-      if (field.type === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(field.value.trim());
-      }
-      
-      if (field.tagName === 'SELECT') {
-        return !!field.value;
-      }
-      
-      if (field.type === 'file') {
-        return !!field.files?.length;
-      }
-      
-      if (field.hasAttribute('readonly')) {
-        return field.value.trim().length > 0;
-      }
-      
-      return field.value.trim().length > 0;
+      if (f.type === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
+      if (f.tagName === 'SELECT') return !!f.value;
+      if (f.type === 'file') return !!f.files?.length;
+      return f.value.trim().length > 0;
     }
-
-    function setFieldsetState(fieldset, enabled) {
+    function setFieldsetState(fs, enabled) {
       if (enabled) {
-        fieldset.removeAttribute('disabled');
-        fieldset.setAttribute('aria-disabled', 'false');
-        fieldset.style.opacity = '1';
-        fieldset.style.filter = 'none';
-        fieldset.style.pointerEvents = 'auto';
+        fs.removeAttribute('disabled'); fs.setAttribute('aria-disabled', 'false'); fs.style.opacity = '1'; fs.style.pointerEvents = 'auto';
       } else {
-        fieldset.setAttribute('disabled', '');
-        fieldset.setAttribute('aria-disabled', 'true');
-        fieldset.style.opacity = '0.7';
-        fieldset.style.filter = 'grayscale(0.5)';
-        fieldset.style.pointerEvents = 'none';
+        fs.setAttribute('disabled', ''); fs.setAttribute('aria-disabled', 'true'); fs.style.opacity = '0.5'; fs.style.pointerEvents = 'none';
       }
     }
-
-    function updateStepVisual(stepElement, state) {
-      stepElement.classList.remove('active', 'done', 'disabled');
-      stepElement.classList.add(state);
-    }
-
     function updateSteps() {
-      const step1Valid = step1Fields.every(isFieldValid);
-      const step2Valid = step1Valid && step2Fields.every(isFieldValid);
-      const experienceSelected = !!getSelectedExperienceOption();
-      const experiencesValid = experienceSelected ? areExperiencesValid() : false;
-      const step3Valid = step2Valid && step3Fields.every(isFieldValid) && experienceSelected && experiencesValid;
-
-      // Ativar/desativar fieldsets
-      setFieldsetState(fs2, step1Valid);
-      setFieldsetState(fs3, step2Valid);
-
-      // Atualizar visual dos steps
-      updateStepVisual(step1Head, step1Valid ? 'done' : 'active');
-      updateStepVisual(step2Head, step1Valid ? (step2Valid ? 'done' : 'active') : 'disabled');
-      updateStepVisual(step3Head, step2Valid ? (step3Valid ? 'done' : 'active') : 'disabled');
-
-      // Atualizar barra de progresso
-      const progress = step1Valid ? (step2Valid ? (step3Valid ? 100 : 66) : 33) : 0;
-      stepFill.style.width = `${progress}%`;
-
-      // Ativar/desativar botão de envio
-      submitBtn.disabled = !step3Valid;
-      if (!submitBtn.disabled && !submitBtn.classList.contains('loading')) {
-        submitBtn.classList.add('pulse-element');
-      } else {
-        submitBtn.classList.remove('pulse-element');
-      }
-    }
-
-    // Validação visual em tempo real
-    function setupFieldValidation(field) {
-      const eventType = field.type === 'file' ? 'change' : 'input';
+      const s1 = step1Fields.every(isFieldValid);
+      const s2 = s1 && step2Fields.every(isFieldValid);
+      const s3 = s2 && step3Fields.every(isFieldValid) && !!getSelectedExperienceOption() && areExperiencesValid();
       
-      field.addEventListener(eventType, function() {
-        if (this.value.trim() === '') {
-          this.classList.remove('input-valid', 'input-invalid');
-        } else if (isFieldValid(this)) {
-          this.classList.add('input-valid');
-          this.classList.remove('input-invalid');
-        } else {
-          this.classList.add('input-invalid');
-          this.classList.remove('input-valid');
-        }
+      setFieldsetState(fs2, s1);
+      setFieldsetState(fs3, s2);
+      
+      step1Head.className = `step ${s1 ? 'done' : 'active'}`;
+      step2Head.className = `step ${s2 ? 'done' : (s1 ? 'active' : '')}`;
+      step3Head.className = `step ${s3 ? 'done' : (s2 ? 'active' : '')}`;
+      
+      submitBtn.disabled = !s3;
+    }
+    function setupFieldValidation(f) {
+      const ev = f.type === 'file' ? 'change' : 'input';
+      f.addEventListener(ev, function() {
+        if (this.value.trim() === '') { this.classList.remove('input-valid', 'input-invalid'); }
+        else if (isFieldValid(this)) { this.classList.add('input-valid'); this.classList.remove('input-invalid'); }
+        else { this.classList.add('input-invalid'); this.classList.remove('input-valid'); }
         updateSteps();
       });
-      
-      // Validação ao perder o foco
-      if (field.type !== 'file') {
-        field.addEventListener('blur', function() {
-          if (this.value.trim() !== '' && !isFieldValid(this)) {
-            this.classList.add('input-invalid');
-            this.classList.remove('input-valid');
-          }
-        });
-      }
     }
 
-    // Aplicar validação a todos os campos
     [...step1Fields, ...step2Fields, transporte, arquivo].forEach(setupFieldValidation);
-    vaga.addEventListener('change', () => {
-      setupFieldValidation(vaga);
-      updateSteps();
-    });
+    vaga.addEventListener('change', () => { setupFieldValidation(vaga); updateSteps(); });
+    temExperienciaRadios.forEach(r => r.addEventListener('change', () => { updateExperienceVisibility(); updateSteps(); }));
+    if (addExperienceBtn) addExperienceBtn.addEventListener('click', () => addExperienceCard());
 
-    temExperienciaRadios.forEach((radio) => {
-      radio.addEventListener('change', () => {
-        updateExperienceVisibility();
-        updateSteps();
-      });
-    });
-
-    if (addExperienceBtn) {
-      addExperienceBtn.addEventListener('click', () => {
-        addExperienceCard();
-      });
-    }
-
-    // ====== INICIALIZAÇÃO ======
     document.addEventListener('DOMContentLoaded', () => {
-      // Carregar vagas
       loadVagasFromGitHub();
-      
-      // Inicializar validação
       updateExperienceVisibility();
       updateSteps();
-      
-      // Adicionar efeito de entrada
-      document.querySelectorAll('fieldset, .header, .stepper').forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-          el.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }, index * 100);
-      });
-      
-      // Focar no primeiro campo
-      setTimeout(() => {
-        nome.focus();
-        nome.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 800);
+      nome.focus();
     });
 
-    // ====== ENVIO DO FORMULÁRIO ======
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      hideMessages();
-
-      // Validar arquivo
-      if (!validateFile()) {
-        updateSteps();
-        return;
-      }
-
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); hideMessages();
+      if (!validateFile()) return;
       setLoading(true);
-
-      // Enviar dados
-      let response, data = {};
       try {
-        response = await fetchWithTimeout(
-          `${API_BASE}/api/enviar`,
-          {
-            method: "POST",
-            body: createFormData()
-          },
-          60000
-        );
-
-        try {
-          data = await response.json();
-        } catch (parseError) {
-          console.error("Erro ao parsear resposta:", parseError);
+        const response = await fetchWithTimeout(`${API_BASE}/api/enviar`, { method: "POST", body: createFormData() }, 60000);
+        const data = await response.json();
+        if (response.ok) {
+          showSuccess(data?.message || "Candidatura enviada com sucesso!");
+          form.reset(); resetAddressFields(); resetExperiencesSection();
+          cpfMask.update(""); cepMask.update(""); telefoneMask.update("");
+          updateSteps(); setTimeout(loadVagasFromGitHub, 2000);
+        } else {
+          showError(data?.detail || "Erro ao enviar.");
         }
-      } catch (networkError) {
+      } catch (err) {
+        showError("Erro de conexão.");
+      } finally {
         setLoading(false);
-        showError("❌ Erro de conexão. Verifique sua internet e tente novamente.");
-        return;
-      }
-
-      setLoading(false);
-
-      if (response.status === 409) {
-        showError(data?.detail || "⚠️ Já existe uma candidatura para esta vaga com seu CPF. Aguarde 90 dias para reenviar.");
-        return;
-      }
-
-      if (!response.ok) {
-        const errorText = data?.detail || data?.message || "❌ Erro ao enviar candidatura. Tente novamente.";
-        showError(errorText);
-        return;
-      }
-
-      // Sucesso!
-      showSuccess(data?.message || "✅ Candidatura enviada com sucesso! Entraremos em contato em breve.");
-      
-      // Efeito de confirmação
-      submitBtn.style.background = "var(--gradient-accent)";
-      setTimeout(() => {
-        submitBtn.style.background = "";
-      }, 2000);
-      
-      // Resetar formulário
-      form.reset();
-      resetAddressFields();
-      resetExperiencesSection();
-      
-      // Resetar máscaras
-      cpfMask.update("");
-      cepMask.update("");
-      telefoneMask.update("");
-      
-      // Resetar validação de CPF
-      cpfValidationIndicator.className = 'cpf-validation-indicator';
-      const cpfHelp = document.getElementById('cpf-help');
-      cpfHelp.textContent = 'Digite apenas números, a formatação é automática';
-      cpfHelp.className = 'help-text';
-      
-      // Resetar classes de validação
-      document.querySelectorAll('.input-valid, .input-invalid').forEach(el => {
-        el.classList.remove('input-valid', 'input-invalid');
-      });
-      
-      // Atualizar steps
-      updateSteps();
-      
-      // Recarregar vagas
-      setTimeout(loadVagasFromGitHub, 2000);
-      
-      // Focar no primeiro campo novamente
-      setTimeout(() => nome.focus(), 1000);
-      
-      // Scroll para topo
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ====== HOTKEYS ======
-    document.addEventListener('keydown', (e) => {
-      // Ctrl + Enter para enviar
-      if (e.ctrlKey && e.key === 'Enter' && !submitBtn.disabled) {
-        submitBtn.click();
-      }
-      
-      // Esc para limpar
-      if (e.key === 'Escape') {
-        hideMessages();
       }
     });
-
-    // ====== DETECTAR DISPOSITIVO TOUCH ======
-    let isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    if (isTouchDevice) {
-      document.body.classList.add('touch-device');
-      // Ajustes para melhor experiência touch
-      const inputFields = document.querySelectorAll('input, select, textarea');
-      inputFields.forEach(input => {
-        input.addEventListener('touchstart', function() {
-          this.style.fontSize = '16px'; // Prevenir zoom no iOS
-        });
-      });
-    }
   </script>
 </body>
 </html>
