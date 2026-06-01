@@ -1,263 +1,329 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
   <title>Popular Atacarejo - Trabalhe Conosco</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#006433',
+            primaryDark: '#004d28',
+            secondary: '#1A1A1A',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    fieldset[aria-disabled="true"] { opacity: 0.5; pointer-events: none; filter: grayscale(1); }
+    .step.active .step-circle { border-color: #006433; background-color: #006433; color: white; box-shadow: 0 0 0 4px rgba(0,100,51,0.1); }
+    .step.active .step-label { color: #006433; }
+    .step.done .step-circle { border-color: #006433; background-color: transparent; color: #006433; }
+    .step.done .step-label { color: #006433; }
+    .input-valid { border-color: #15803d !important; background-color: #F0FDF4 !important; color: #15803d !important;}
+    .dark .input-valid { background-color: rgba(21, 128, 61, 0.1) !important; color: #4ade80 !important;}
+    .input-invalid { border-color: #b91c1c !important; background-color: #FEF2F2 !important; color: #b91c1c !important;}
+    .dark .input-invalid { background-color: rgba(185, 28, 28, 0.1) !important; color: #f87171 !important;}
+    .cpf-validation-indicator.loading { border: 2px solid #D1D5DB; border-top-color: #006433; width: 20px; height: 20px; border-radius: 50%; animation: spin 0.8s linear infinite; opacity: 1; }
+    .cpf-validation-indicator.valid { background-color: #15803d; color: white; opacity: 1; }
+    .cpf-validation-indicator.invalid { background-color: #b91c1c; color: white; opacity: 1; }
+  </style>
 </head>
-<body data-theme="light">
-  <div class="app-container">
-    <!-- Botão de Tema -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-      <i class="fas fa-moon"></i>
-    </button>
-    
-    <!-- Header -->
-    <header class="header">
-      <div class="header-logo">
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <nav class="sticky top-0 z-40 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm w-full px-6 py-4 flex justify-between items-center transition-all">
+    <div class="flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+      <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+      </span>
+      <span class="text-sm font-medium text-emerald-700 dark:text-emerald-400">
+        <b id="onlineCount">1</b> online agora
+      </span>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <button id="btnConsultaCandidatura" class="text-sm font-semibold text-primary dark:text-emerald-400 hover:text-primaryDark transition-colors flex items-center gap-2">
+        <i class="fas fa-search"></i> Minhas Candidaturas
+      </button>
+      <button id="themeToggle" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors shadow-sm">
+        <i class="fas fa-moon dark:hidden text-gray-600"></i>
+        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="w-full max-w-4xl mx-auto p-6 flex-1 flex flex-col pt-12">
+    <header class="text-center mb-12 relative">
+      <div class="absolute left-1/2 -top-4 -translate-x-1/2 w-32 h-32 bg-primary/20 rounded-full blur-2xl dark:bg-primary/30 pointer-events-none"></div>
+      <div class="relative w-24 h-24 bg-gradient-to-br from-primary to-primaryDark text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-4xl shadow-xl ring-4 ring-primary/20 dark:ring-primary/40 transform hover:scale-105 hover:rotate-3 transition-all duration-300">
         <i class="fas fa-briefcase"></i>
+        <div class="absolute inset-0 rounded-2xl border border-white/20"></div>
       </div>
-      <h1>Popular Atacarejo</h1>
-      <p class="header-subtitle">Junte-se à nossa equipe. Preencha o formulário abaixo para se candidatar a uma vaga.</p>
+      <h1 class="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
+        Popular Atacarejo
+      </h1>
+      <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
+        Junte-se à nossa equipe. Preencha o formulário abaixo e dê o primeiro passo para sua nova carreira.
+      </p>
     </header>
-    
-    <!-- Form Container -->
-    <div class="form-container">
+
+    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700">
       <form id="formCurriculo" novalidate>
-        <!-- Stepper -->
-        <div class="stepper" role="tablist" aria-label="Progresso do formulário">
-          <div class="step" id="step1Head" role="tab" aria-selected="true">
-            <div class="step-circle">1</div>
-            <span class="step-label">Dados Pessoais</span>
+        
+        <div class="flex flex-col md:flex-row justify-between mb-10 relative" role="tablist" aria-label="Progresso do formulário">
+          <div class="hidden md:block absolute top-5 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 z-0"></div>
+          <div class="step flex-1 text-center relative z-10 mb-4 md:mb-0 active" id="step1Head" role="tab" aria-selected="true">
+            <div class="step-circle w-10 h-10 mx-auto rounded-full border-2 flex items-center justify-center font-bold bg-white dark:bg-gray-800 text-gray-500 border-gray-300 dark:border-gray-600 transition-colors duration-300">1</div>
+            <span class="step-label text-sm font-semibold uppercase text-gray-500 mt-2 block transition-colors duration-300">Dados Pessoais</span>
           </div>
-          <div class="step" id="step2Head" role="tab" aria-selected="false">
-            <div class="step-circle">2</div>
-            <span class="step-label">Endereço</span>
+          <div class="step flex-1 text-center relative z-10 mb-4 md:mb-0" id="step2Head" role="tab" aria-selected="false">
+            <div class="step-circle w-10 h-10 mx-auto rounded-full border-2 flex items-center justify-center font-bold bg-white dark:bg-gray-800 text-gray-500 border-gray-300 dark:border-gray-600 transition-colors duration-300">2</div>
+            <span class="step-label text-sm font-semibold uppercase text-gray-500 mt-2 block transition-colors duration-300">Endereço</span>
           </div>
-          <div class="step" id="step3Head" role="tab" aria-selected="false">
-            <div class="step-circle">3</div>
-            <span class="step-label">Candidatura</span>
+          <div class="step flex-1 text-center relative z-10 mb-4 md:mb-0" id="step3Head" role="tab" aria-selected="false">
+            <div class="step-circle w-10 h-10 mx-auto rounded-full border-2 flex items-center justify-center font-bold bg-white dark:bg-gray-800 text-gray-500 border-gray-300 dark:border-gray-600 transition-colors duration-300">3</div>
+            <span class="step-label text-sm font-semibold uppercase text-gray-500 mt-2 block transition-colors duration-300">Candidatura</span>
           </div>
         </div>
-        
-        <!-- ETAPA 1: Dados Pessoais -->
-        <fieldset id="fs1" aria-labelledby="step1Head">
-          <legend>
-            <div class="legend-icon"><i class="fas fa-user"></i></div>
-            <span>Informações Pessoais</span>
+
+        <fieldset id="fs1" aria-labelledby="step1Head" class="mb-10 transition-all duration-300">
+          <legend class="flex items-center gap-3 text-2xl font-bold text-gray-800 dark:text-white mb-6 w-full border-b-2 border-primary pb-3">
+            <div class="w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center text-lg"><i class="fas fa-user"></i></div>
+            Informações Pessoais
           </legend>
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="nome" class="required">Nome Completo</label>
-              <div class="input-wrapper">
-                <i class="fas fa-user input-icon"></i>
-                <input type="text" id="nome" name="nome" required placeholder="Seu nome completo" aria-describedby="nome-help">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col">
+              <label for="nome" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Nome Completo <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="nome" name="nome" required placeholder="Seu nome completo" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
               </div>
-              <span class="help-text" id="nome-help">Digite seu nome completo como no documento</span>
             </div>
-            
-            <div class="form-group">
-              <label for="cpf" class="required">CPF</label>
-              <div class="input-wrapper">
-                <i class="fas fa-id-card input-icon"></i>
-                <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" aria-describedby="cpf-help">
-                <span class="cpf-validation-indicator" id="cpfValidationIndicator"></span>
+            <div class="flex flex-col">
+              <label for="cpf" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">CPF <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-id-card absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" class="w-full px-4 py-3 pl-11 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
+                <span class="cpf-validation-indicator absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-xs w-5 h-5 rounded-full opacity-0" id="cpfValidationIndicator"></span>
               </div>
-              <span class="help-text" id="cpf-help">Digite apenas números</span>
             </div>
-            
-            <div class="form-group">
-              <label for="telefone" class="required">Telefone</label>
-              <div class="input-wrapper">
-                <i class="fas fa-phone input-icon"></i>
-                <input type="text" id="telefone" name="telefone" required placeholder="(00) 00000-0000" aria-describedby="telefone-help">
+            <div class="flex flex-col">
+              <label for="telefone" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Telefone <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="telefone" name="telefone" required placeholder="(00) 00000-0000" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
               </div>
-              <span class="help-text" id="telefone-help">Celular com WhatsApp</span>
             </div>
-            
-            <div class="form-group">
-              <label for="email" class="required">E-mail</label>
-              <div class="input-wrapper">
-                <i class="fas fa-envelope input-icon"></i>
-                <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com" aria-describedby="email-help">
+            <div class="flex flex-col">
+              <label for="email" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">E-mail <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
               </div>
-              <span class="help-text" id="email-help">Enviaremos confirmação para este e-mail</span>
             </div>
           </div>
         </fieldset>
-        
-        <!-- ETAPA 2: Endereço -->
-        <fieldset id="fs2" aria-labelledby="step2Head" aria-disabled="true" disabled>
-          <legend>
-            <div class="legend-icon"><i class="fas fa-home"></i></div>
-            <span>Endereço</span>
+
+        <fieldset id="fs2" aria-labelledby="step2Head" aria-disabled="true" disabled class="mb-10 transition-all duration-300">
+          <legend class="flex items-center gap-3 text-2xl font-bold text-gray-800 dark:text-white mb-6 w-full border-b-2 border-primary pb-3">
+            <div class="w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center text-lg"><i class="fas fa-home"></i></div>
+            Endereço
           </legend>
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="cep" class="required">CEP</label>
-              <div class="input-wrapper">
-                <i class="fas fa-map-marker-alt input-icon"></i>
-                <input type="text" id="cep" name="cep" required placeholder="00000-000" aria-describedby="cep-help">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col">
+              <label for="cep" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">CEP <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-map-marker-alt absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="cep" name="cep" required placeholder="00000-000" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
               </div>
-              <span class="help-text" id="cep-help">Digite o CEP para buscar automaticamente</span>
             </div>
-            
-            <div class="form-group">
-              <label for="cidade" class="required">Cidade</label>
-              <div class="input-wrapper">
-                <i class="fas fa-city input-icon"></i>
-                <input type="text" id="cidade" name="cidade" required placeholder="Sua cidade" aria-describedby="cidade-help">
+            <div class="flex flex-col">
+              <label for="cidade" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Cidade <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-city absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="cidade" name="cidade" required class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
               </div>
-              <span class="help-text" id="cidade-help">Preencha manualmente ou use o CEP</span>
             </div>
-            
-            <div class="form-group">
-              <label for="bairro" class="required">Bairro</label>
-              <div class="input-wrapper">
-                <i class="fas fa-map input-icon"></i>
-                <input type="text" id="bairro" name="bairro" required placeholder="Seu bairro" aria-describedby="bairro-help">
+            <div class="flex flex-col">
+              <label for="bairro" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Bairro <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-map absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="bairro" name="bairro" required class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
               </div>
-              <span class="help-text" id="bairro-help">Preencha manualmente ou use o CEP</span>
             </div>
-            
-            <div class="form-group">
-              <label for="rua" class="required">Rua</label>
-              <div class="input-wrapper">
-                <i class="fas fa-road input-icon"></i>
-                <input type="text" id="rua" name="rua" required placeholder="Nome da sua rua" aria-describedby="rua-help">
+            <div class="flex flex-col">
+              <label for="rua" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Rua <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-road absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="rua" name="rua" required class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
               </div>
-              <span class="help-text" id="rua-help">Preencha manualmente ou use o CEP</span>
             </div>
           </div>
         </fieldset>
-        
-        <!-- ETAPA 3: Candidatura -->
-        <fieldset id="fs3" aria-labelledby="step3Head" aria-disabled="true" disabled>
-          <legend>
-            <div class="legend-icon"><i class="fas fa-briefcase"></i></div>
-            <span>Candidatura</span>
+
+        <fieldset id="fs3" aria-labelledby="step3Head" aria-disabled="true" disabled class="mb-10 transition-all duration-300">
+          <legend class="flex items-center gap-3 text-2xl font-bold text-gray-800 dark:text-white mb-6 w-full border-b-2 border-primary pb-3">
+            <div class="w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center text-lg"><i class="fas fa-briefcase"></i></div>
+            Candidatura
           </legend>
-          <div class="experience-question">
-            <label class="required" style="display:block; margin-bottom: 10px;">Tem experiência profissional?</label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="tem_experiencia" value="Sim" required> Sim
+          
+          <div class="mb-8 p-6 bg-gray-50 dark:bg-gray-800 border-l-4 border-primary rounded-r-xl shadow-inner">
+            <label class="block font-semibold text-gray-800 dark:text-gray-200 mb-4">Tem experiência profissional? <span class="text-red-600">*</span></label>
+            <div class="flex gap-8">
+              <label class="flex items-center gap-3 cursor-pointer text-gray-700 dark:text-gray-300 font-medium">
+                <input type="radio" name="tem_experiencia" value="Sim" required class="w-5 h-5 text-primary"> Sim
               </label>
-              <label class="radio-option">
-                <input type="radio" name="tem_experiencia" value="Não" required> Não
+              <label class="flex items-center gap-3 cursor-pointer text-gray-700 dark:text-gray-300 font-medium">
+                <input type="radio" name="tem_experiencia" value="Não" required class="w-5 h-5 text-primary"> Não
               </label>
             </div>
           </div>
-          <div id="experiencesSection" class="experience-section hidden">
-            <div class="experience-actions">
-              <button type="button" id="addExperienceBtn" class="experience-add-btn">
+
+          <div id="experiencesSection" class="mb-8 p-6 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800/50 hidden">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+              <button type="button" id="addExperienceBtn" class="bg-gray-800 hover:bg-primary text-white px-5 py-2.5 rounded-lg font-semibold transition-colors flex items-center gap-2 text-sm disabled:opacity-50">
                 <i class="fas fa-plus"></i> Adicionar Experiência
               </button>
             </div>
-            <div id="experiencesList"></div>
+            <div id="experiencesList" class="space-y-6"></div>
           </div>
+
           <template id="experienceTemplate">
-            <div class="experience-card">
-              <div class="experience-card-header">
-                <span class="experience-number">Experiência</span>
-                <button type="button" class="remove-experience-btn" aria-label="Remover experiência">
+            <div class="experience-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 p-6 rounded-xl shadow-sm relative overflow-hidden">
+              <div class="flex justify-between items-center mb-5 border-b border-gray-100 dark:border-gray-600 pb-3">
+                <span class="experience-number font-bold text-gray-800 dark:text-gray-200 uppercase text-xs tracking-wider">Experiência</span>
+                <button type="button" class="remove-experience-btn bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 px-3 py-1.5 rounded-md text-sm font-semibold transition-colors flex items-center gap-2">
                   <i class="fas fa-trash"></i> Remover
                 </button>
               </div>
-              <div class="form-grid experience-grid">
-                <div class="form-group">
-                  <label>Empresa</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-building input-icon"></i>
-                    <input type="text" name="experiencia_empresa[]" placeholder="Nome da empresa">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="flex flex-col">
+                  <label class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Empresa</label>
+                  <div class="relative">
+                    <i class="fas fa-building absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" name="experiencia_empresa[]" placeholder="Nome da empresa" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label>Função</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-user-tie input-icon"></i>
-                    <input type="text" name="experiencia_cargo[]" placeholder="Cargo ocupado">
+                <div class="flex flex-col">
+                  <label class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Função</label>
+                  <div class="relative">
+                    <i class="fas fa-user-tie absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" name="experiencia_cargo[]" placeholder="Cargo ocupado" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label>Data de Admissão</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-calendar input-icon"></i>
-                    <input type="date" name="experiencia_admissao[]">
+                <div class="flex flex-col">
+                  <label class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Data de Admissão</label>
+                  <div class="relative">
+                    <i class="fas fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="date" name="experiencia_admissao[]" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label>Data de Desligamento</label>
-                  <div class="input-wrapper">
-                    <i class="fas fa-calendar input-icon"></i>
-                    <input type="date" name="experiencia_demissao[]">
+                <div class="flex flex-col">
+                  <label class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Data de Desligamento</label>
+                  <div class="relative">
+                    <i class="fas fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="date" name="experiencia_demissao[]" class="w-full px-4 py-3 pl-11 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all">
                   </div>
                 </div>
               </div>
             </div>
           </template>
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="transporte" class="required">Possui Transporte Próprio?</label>
-              <div class="input-wrapper">
-                <i class="fas fa-car input-icon"></i>
-                <select id="transporte" name="transporte" required aria-describedby="transporte-help">
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col">
+              <label for="transporte" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Transporte Próprio? <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-car absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                <select id="transporte" name="transporte" required class="appearance-none w-full px-4 py-3 pl-11 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none cursor-pointer">
                   <option value="" disabled selected>Selecione...</option>
                   <option value="Sim">Sim</option>
                   <option value="Não">Não</option>
                 </select>
+                <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
               </div>
             </div>
             
-            <div class="form-group">
-              <label for="vaga" class="required">Vaga Desejada</label>
-              <div class="input-wrapper">
-                <i class="fas fa-briefcase input-icon"></i>
-                <select id="vaga" name="vaga" required aria-describedby="vaga-help">
+            <div class="flex flex-col">
+              <label for="vaga" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Vaga Desejada <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <i class="fas fa-briefcase absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                <select id="vaga" name="vaga" required class="appearance-none w-full px-4 py-3 pl-11 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none cursor-pointer">
                   <option value="" disabled selected>Carregando vagas...</option>
                 </select>
+                <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-xs"></i>
               </div>
             </div>
             
-            <div class="form-group" style="grid-column: 1 / -1;">
-              <label for="arquivo" class="required">Anexar Currículo</label>
-              <div class="input-wrapper">
-                <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx" required aria-describedby="arquivo-help">
+            <div class="flex flex-col md:col-span-2 mt-2">
+              <label for="arquivo" class="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">Anexar Currículo <span class="text-red-600">*</span></label>
+              <div class="relative">
+                <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none file:mr-4 file:py-2.5 file:px-5 file:rounded-md file:border-0 file:text-sm file:font-bold file:bg-gray-900 file:text-white hover:file:bg-primary cursor-pointer">
               </div>
-              <span class="help-text" id="arquivo-help">PDF, DOC ou DOCX. Máx: 5MB.</span>
+              <span class="help-text text-xs text-gray-500 mt-2">PDF, DOC ou DOCX. Máx: 5MB.</span>
             </div>
           </div>
         </fieldset>
-        
-        <!-- Botão de envio -->
-        <div class="submit-section">
-          <button type="submit" id="submitButton" class="submit-btn" disabled aria-label="Enviar candidatura">
-            <span class="btn-text">Enviar Candidatura</span>
-            <span class="spinner hidden"></span>
-            <i class="fas fa-paper-plane btn-icon" style="display: none;"></i>
+
+        <div class="mt-12 pt-8 border-t-2 border-gray-100 dark:border-gray-700 flex justify-end">
+          <button type="submit" id="submitButton" disabled class="w-full md:w-auto bg-primary hover:bg-primaryDark text-white font-black py-4 px-12 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:transform-none">
+            <span class="btn-text flex items-center gap-2"><i class="fas fa-paper-plane"></i> Enviar Candidatura</span>
+            <span class="spinner hidden w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
           </button>
         </div>
-        
-        <!-- Mensagens -->
-        <div class="message success hidden" id="mensagemSucesso" role="alert"></div>
-        <div class="message error hidden" id="mensagemErro" role="alert"></div>
+
+        <div class="message success hidden mt-8 p-5 rounded-xl font-medium border-l-4 bg-green-50 text-green-800 border-green-600 dark:bg-green-900/20 dark:text-green-400 dark:border-green-500" id="mensagemSucesso"></div>
+        <div class="message error hidden mt-8 p-5 rounded-xl font-medium border-l-4 bg-red-50 text-red-800 border-red-600 dark:bg-red-900/20 dark:text-red-400 dark:border-red-500" id="mensagemErro"></div>
       </form>
     </div>
-    
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-logo">
-        <span>Popular</span> Atacarejo
+  </main>
+
+  <div id="modalConsulta" class="fixed inset-0 z-50 hidden bg-gray-900/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform scale-95 transition-transform duration-300" id="modalContent">
+      <div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white flex items-center gap-2"><i class="fas fa-list-check text-primary"></i> Consultar Status</h3>
+        <button id="btnCloseModal" class="text-gray-400 hover:text-red-500 transition-colors"><i class="fas fa-times text-xl"></i></button>
       </div>
-      <p>© 2026 Todos os direitos reservados.</p>
-      <p style="margin-top: 5px; font-size: 0.8rem; opacity: 0.7;">Portal de Recrutamento</p>
-    </footer>
+      <div class="p-6">
+        <form id="formConsulta" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">CPF</label>
+            <input type="text" id="consultaCpf" required placeholder="000.000.000-00" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Telefone (Senha)</label>
+            <input type="text" id="consultaTelefone" required placeholder="(00) 00000-0000" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none">
+          </div>
+          <button type="submit" class="w-full bg-primary hover:bg-primaryDark text-white font-bold py-3 px-4 rounded-lg transition-all flex justify-center items-center gap-2 shadow-md">
+            <span id="txtBtnConsulta">Buscar</span>
+            <i class="fas fa-spinner fa-spin hidden" id="loadBtnConsulta"></i>
+          </button>
+        </form>
+        <div id="resultadoConsulta" class="mt-6 hidden">
+          <ul id="listaCandidaturas" class="space-y-3 max-h-60 overflow-y-auto pr-2"></ul>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <footer class="text-center py-8 text-gray-500 dark:text-gray-400 text-sm border-t border-gray-200 dark:border-gray-800 mt-auto">
+    <div class="font-display font-black text-xl text-gray-800 dark:text-white mb-2 uppercase"><span class="text-primary">Popular</span> Atacarejo</div>
+    <p>© 2026 Todos os direitos reservados. Portal de Recrutamento.</p>
+  </footer>
 
   <script src="https://unpkg.com/imask"></script>
   <script src="script.js"></script>
