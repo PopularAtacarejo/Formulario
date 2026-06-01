@@ -2,10 +2,9 @@
 // ====== CONFIGURAÇÕES ======
 const API_BASE = "https://candidatos.onrender.com";
 const FILE_MAX_MB = 5;
-
-// No GitHub Pages, usar caminhos relativos evita bloqueios e erros de URL
-const VAGAS_URL = "./vagas.json";
-const CANDIDATOS_URL = "./candidatos.json";
+const VAGAS_GITHUB_URL = "https://raw.githubusercontent.com/PopularAtacarejo/Candidatos/main/vagas.json";
+// URL de onde as candidaturas serão buscadas para o Modal
+const CANDIDATOS_GITHUB_URL = "https://raw.githubusercontent.com/PopularAtacarejo/Candidatos/main/candidatos.json";
 
 const DEFAULT_VAGAS = [
   { nome: "Auxiliar de Limpeza" }, { nome: "Vendedor" }, { nome: "Caixa" },
@@ -89,7 +88,7 @@ const inputTelConsulta = document.getElementById('consultaTelefone');
 IMask(inputCpfConsulta, { mask: "000.000.000-00" });
 IMask(inputTelConsulta, { mask: [{mask: "(00) 0000-0000"}, {mask: "(00) 00000-0000"}] });
 
-// ====== LÓGICA DO MODAL (Buscando e ignorando Cache do GitHub) ======
+// ====== LÓGICA DO MODAL (Buscando do GitHub + 90 Dias) ======
 const btnOpenModal = document.getElementById('btnConsultaCandidatura');
 const btnCloseModal = document.getElementById('btnCloseModal');
 const modalConsulta = document.getElementById('modalConsulta');
@@ -129,16 +128,16 @@ formConsulta.addEventListener('submit', async (e) => {
   loadBtn.classList.remove('hidden');
 
   try {
-    // Parâmetro de quebra de cache para o GitHub Pages sempre trazer a versão atual
-    const urlBusca = `${CANDIDATOS_URL}?t=${new Date().getTime()}`;
-    const response = await fetch(urlBusca, { cache: "no-store" });
-    
+    // Busca os dados REAIS do arquivo JSON no GitHub
+    const response = await fetch(CANDIDATOS_GITHUB_URL, { cache: "no-store" });
     if (!response.ok) throw new Error("Erro ao acessar a base de dados.");
     const todosCandidatos = await response.json();
 
+    // Limpa pontos e traços para fazer a comparação de forma segura
     const cpfBusca = inputCpfConsulta.value.replace(/\D/g, '');
     const telBusca = inputTelConsulta.value.replace(/\D/g, '');
 
+    // Filtra candidaturas vinculadas ao usuário
     const candidaturasUsuario = todosCandidatos.filter(c => {
       const cCpf = (c.cpf || "").replace(/\D/g, '');
       const cTel = (c.telefone || "").replace(/\D/g, '');
@@ -148,15 +147,19 @@ formConsulta.addEventListener('submit', async (e) => {
     listaCandidaturas.innerHTML = '';
     
     if (candidaturasUsuario.length > 0) {
+      
+      // Ordenar da candidatura mais recente para a mais antiga
       candidaturasUsuario.sort((a, b) => new Date(b.enviado_em) - new Date(a.enviado_em));
 
       candidaturasUsuario.forEach(item => {
         const li = document.createElement('li');
         li.className = "p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow flex flex-col";
         
+        // Pega as chaves reais do seu JSON
         const status = item.status || "Novo";
         const vagaNome = item.vaga || "Vaga não especificada";
         
+        // Tratamento da Data e Regra de 90 Dias
         let dataInscricaoFormatada = "Data não informada";
         let diasRestantes = 0;
         let habilitadoNovaInscricao = true;
@@ -164,10 +167,15 @@ formConsulta.addEventListener('submit', async (e) => {
         if (item.enviado_em) {
           const dataEnvio = new Date(item.enviado_em);
           if (!isNaN(dataEnvio)) {
+            // Formata para DD/MM/AAAA
             dataInscricaoFormatada = dataEnvio.toLocaleDateString('pt-BR');
+            
+            // Zerar as horas para contar os dias exatos
             const hoje = new Date();
             hoje.setHours(0,0,0,0);
             dataEnvio.setHours(0,0,0,0);
+            
+            // Diferença em milissegundos convertida para dias
             const diferencaTempo = hoje.getTime() - dataEnvio.getTime();
             const diasPassados = Math.floor(diferencaTempo / (1000 * 60 * 60 * 24));
             
@@ -178,6 +186,7 @@ formConsulta.addEventListener('submit', async (e) => {
           }
         }
         
+        // Estilo dinâmico das Badges
         let badgeColor = "bg-gray-100 text-gray-800 border-gray-200"; 
         const statusLower = status.toLowerCase();
 
@@ -189,6 +198,7 @@ formConsulta.addEventListener('submit', async (e) => {
           badgeColor = "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800/50";
         }
 
+        // Aviso de 90 dias
         let avisoDias = '';
         if (!habilitadoNovaInscricao) {
           avisoDias = `
@@ -227,7 +237,7 @@ formConsulta.addEventListener('submit', async (e) => {
   }
 });
 
-// ====== VALIDAÇÃO DE CPF ======
+// ====== VALIDAÇÃO DE CPF (API SCPA) ======
 let cpfValidationTimeout = null;
 let lastValidatedCpfDigits = '';
 let lastCpfValidationResult = null;
@@ -256,11 +266,10 @@ async function validateCPF(cpfValue) {
           } else { throw new Error("CPF Inválido"); }
         } else { throw new Error("Erro na API"); }
       } catch (error) {
-        // Se der erro de CORS na validação (comum no Github Pages), deixa a pessoa seguir em frente
         cpfValidationIndicator.className = 'cpf-validation-indicator absolute right-3 top-1/2 -translate-y-1/2 opacity-0';
         cpf.classList.remove('input-valid', 'input-invalid');
         lastValidatedCpfDigits = ''; lastCpfValidationResult = null;
-        resolve(true);
+        resolve(true); // Deixa passar se a API falhar
       }
     }, 800);
   });
@@ -300,8 +309,7 @@ async function loadVagasFromGitHub() {
   vaga.disabled = true;
   let vagasData = [];
   try {
-    const urlBusca = `${VAGAS_URL}?t=${new Date().getTime()}`;
-    const response = await fetch(urlBusca, { cache: "no-store" });
+    const response = await fetch(VAGAS_GITHUB_URL, { cache: "no-store" });
     if (response.ok) vagasData = await response.json();
   } catch (e) { console.error(e); }
 
@@ -410,7 +418,7 @@ function wakeServer() {
   currentWakePromise = new Promise((resolve, reject) => {
     const attemptWake = () => {
       attempts++;
-      fetch(API_BASE + '/', { method: 'GET', cache: 'no-store' })
+      fetch(API_BASE + '/', { method: 'GET', cache: 'no-store', mode: 'cors' })
         .then(res => { if (res.ok) { serverAwake = true; clearInterval(wakeInterval); resolve(); } else throw new Error('Status não ok'); })
         .catch(() => { if (attempts >= WAKE_MAX_ATTEMPTS) { clearInterval(wakeInterval); serverAwake = false; reject(new Error('Servidor offline')); } });
     };
@@ -430,7 +438,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   if (!serverAwake) {
-    try { await wakeServer(); } catch (err) { errorMsg.textContent = "Servidor offline. Verifique o backend no Render."; errorMsg.classList.remove("hidden"); return; }
+    try { await wakeServer(); } catch (err) { errorMsg.textContent = "Servidor offline."; errorMsg.classList.remove("hidden"); return; }
   }
 
   btnText.classList.add("hidden"); spinner.classList.remove("hidden"); submitBtn.disabled = true;
@@ -467,6 +475,7 @@ form.addEventListener("submit", async (e) => {
       form.reset(); 
       setAddressFieldsEditable(true);
       
+      // Limpeza correta das máscaras do IMask
       cpfMask.value = ""; 
       cepMask.value = ""; 
       telefoneMask.value = "";
@@ -476,7 +485,7 @@ form.addEventListener("submit", async (e) => {
       successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } else { throw new Error(data?.detail || "Erro no envio."); }
   } catch (err) {
-    errorMsg.textContent = err.message || "Erro de conexão. A API backend recusou a conexão (Possível erro de CORS)."; errorMsg.classList.remove("hidden");
+    errorMsg.textContent = err.message || "Erro de conexão."; errorMsg.classList.remove("hidden");
   } finally {
     btnText.classList.remove("hidden"); spinner.classList.add("hidden"); updateSteps();
   }
