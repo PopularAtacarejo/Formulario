@@ -41,6 +41,80 @@
     .cpf-validation-indicator.loading { border: 2px solid #D1D5DB; border-top-color: #006433; width: 20px; height: 20px; border-radius: 50%; animation: spin 0.8s linear infinite; opacity: 1; }
     .cpf-validation-indicator.valid { background-color: #15803d; color: white; opacity: 1; }
     .cpf-validation-indicator.invalid { background-color: #b91c1c; color: white; opacity: 1; }
+
+    /* Melhorias de Acessibilidade e UX */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    @keyframes shake-error {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    @keyframes success-bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .shake-error {
+      animation: shake-error 0.5s;
+    }
+
+    .success-bounce {
+      animation: success-bounce 0.3s;
+    }
+
+    .field-error {
+      display: block;
+      color: #b91c1c;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .dark .field-error {
+      color: #f87171;
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+    }
+
+    .dark .skeleton {
+      background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+      background-size: 200% 100%;
+    }
+
+    @keyframes skeleton-loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    fieldset {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    fieldset[aria-disabled="true"] {
+      opacity: 0.5;
+      transform: translateX(10px);
+      pointer-events: none;
+    }
+
+    fieldset:not([aria-disabled]) {
+      opacity: 1;
+      transform: translateX(0);
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
@@ -66,6 +140,15 @@
       </button>
     </div>
   </nav>
+
+  <!-- Loading Skeleton -->
+  <div id="loadingSkeleton" class="w-full max-w-4xl mx-auto p-6 animate-pulse hidden">
+    <div class="h-32 bg-gray-200 dark:bg-gray-700 rounded-2xl mb-8 skeleton"></div>
+    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8">
+      <div class="h-64 bg-gray-200 dark:bg-gray-700 rounded-xl mb-6 skeleton"></div>
+      <div class="h-96 bg-gray-200 dark:bg-gray-700 rounded-xl skeleton"></div>
+    </div>
+  </div>
 
   <main class="w-full max-w-4xl mx-auto p-6 flex-1 flex flex-col pt-12">
     <header class="text-center mb-12 relative">
@@ -276,8 +359,55 @@
               </div>
               <span class="help-text text-xs text-gray-500 mt-2">PDF, DOC ou DOCX. Máx: 5MB.</span>
             </div>
+
+            <!-- Preview de Arquivo -->
+            <div id="filePreview" class="mt-4 hidden md:col-span-2">
+              <div class="flex items-center gap-4 p-4 bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-xl">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-file-pdf text-4xl text-green-600 dark:text-green-400" id="fileIcon"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="font-semibold text-gray-900 dark:text-white truncate" id="fileName"></p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400" id="fileSize"></p>
+                </div>
+                <button 
+                  type="button" 
+                  id="removeFile"
+                  aria-label="Remover arquivo"
+                  class="flex-shrink-0 text-red-600 hover:text-red-700 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/30 p-2 rounded-lg transition-colors">
+                  <i class="fas fa-times text-xl"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </fieldset>
+
+        <!-- Consentimento LGPD -->
+        <div class="mb-6 p-5 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl">
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input 
+              type="checkbox" 
+              id="consentimentoLGPD" 
+              name="consentimentoLGPD"
+              required
+              aria-required="true"
+              aria-describedby="lgpd-desc"
+              class="w-5 h-5 text-primary mt-0.5 flex-shrink-0 focus:ring-2 focus:ring-primary">
+            <span class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed" id="lgpd-desc">
+              <strong class="text-gray-900 dark:text-white">Declaro que li e concordo</strong> com a
+              <a href="/politica-privacidade.html" target="_blank" class="text-primary font-semibold hover:underline focus:underline focus:outline-none">
+                Política de Privacidade
+              </a>
+              e autorizo o uso dos meus dados pessoais para fins de recrutamento e seleção, conforme a 
+              <strong>Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)</strong>.
+              <span class="text-red-600 font-bold" aria-label="obrigatório">*</span>
+            </span>
+          </label>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 ml-8">
+            <i class="fas fa-shield-alt text-blue-600 mr-1"></i>
+            Seus dados são protegidos e utilizados apenas para este processo seletivo.
+          </p>
+        </div>
 
         <div class="mt-12 pt-8 border-t-2 border-gray-100 dark:border-gray-700 flex justify-end">
           <button type="submit" id="submitButton" disabled class="w-full md:w-auto bg-primary hover:bg-primaryDark text-white font-black py-4 px-12 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed disabled:transform-none">
@@ -325,7 +455,38 @@
     <p>© 2026 Todos os direitos reservados. Portal de Recrutamento.</p>
   </footer>
 
+  <!-- Modal de Confirmação -->
+  <div id="confirmModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="sticky top-0 bg-white dark:bg-gray-800 p-6 border-b border-gray-200 dark:border-gray-700 z-10">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+          <i class="fas fa-check-circle text-green-500"></i>
+          Confirme seus dados
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Revise as informações antes de enviar sua candidatura</p>
+      </div>
+      
+      <div id="confirmContent" class="p-6 space-y-6">
+        <!-- Será preenchido dinamicamente via JavaScript -->
+      </div>
+      
+      <div class="sticky bottom-0 bg-white dark:bg-gray-800 p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3 justify-end">
+        <button type="button" id="btnCancelConfirm" class="px-6 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-2">
+          <i class="fas fa-arrow-left"></i>
+          Voltar e Editar
+        </button>
+        <button type="button" id="btnConfirmSubmit" class="px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-primaryDark text-white font-bold hover:shadow-lg transition-all flex items-center gap-2">
+          <i class="fas fa-paper-plane"></i>
+          Confirmar e Enviar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Anunciador para leitores de tela -->
+  <div id="a11y-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
   <script src="https://unpkg.com/imask"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=local-20260928"></script>
 </body>
 </html>
