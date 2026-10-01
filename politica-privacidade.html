@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+  <title>Política de Privacidade - Popular Atacarejo</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#006433',
+            primaryDark: '#004d28',
+            secondary: '#1A1A1A',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --page-bg: #f3f6f3;
+      --paper: #ffffff;
+      --ink: #17251e;
+      --muted: #627168;
+      --line: #dce5de;
+      --brand: #006433;
+      --brand-deep: #004d28;
+      --brand-soft: #e8f2ec;
+      --gold: #d7a43b;
+    }
+
+    html { scroll-behavior: smooth; }
+    body.page-shell { background: var(--page-bg); color: var(--ink); font-family: Inter, sans-serif; }
+    .policy-nav { min-height: 76px; padding: 12px clamp(18px, 5vw, 72px); background: var(--paper); border-bottom: 1px solid var(--line); }
+    .brand-lockup { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; }
+    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; color: #fff; background: var(--brand); }
+    .brand-name { display: block; font-size: 14px; font-weight: 800; line-height: 1.15; }
+    .brand-caption { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .back-link { display: inline-flex; align-items: center; gap: 9px; color: var(--brand); font-size: 13px; font-weight: 700; text-decoration: none; }
+    .back-link:hover { color: var(--brand-deep); }
+    .document-tag { padding: 7px 10px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .theme-button { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: var(--page-bg); }
+    .theme-button:hover { border-color: var(--brand); color: var(--brand); }
+    .policy-main { width: min(1120px, 100%); margin: 0 auto; padding: 64px 28px 76px; }
+    .policy-hero { max-width: 790px; margin-bottom: 38px; animation: enter 500ms ease both; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; color: var(--brand); font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+    .eyebrow::before { width: 24px; height: 2px; content: ""; background: var(--gold); }
+    .policy-hero h1 { margin: 0; color: var(--ink); font-family: "Source Serif 4", Georgia, serif; font-size: clamp(38px, 5vw, 58px); font-weight: 600; line-height: 1.04; }
+    .policy-hero h1 span { color: var(--brand); }
+    .hero-description { max-width: 660px; margin: 18px 0 0; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; color: var(--muted); font-size: 12px; font-weight: 600; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta i { color: var(--brand); }
+    .policy-layout { display: grid; grid-template-columns: 236px minmax(0, 1fr); align-items: start; gap: 30px; }
+    .policy-toc { position: sticky; top: 22px; padding: 18px 0; }
+    .toc-kicker { margin: 0 0 7px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+    .toc-title { margin: 0 0 15px; color: var(--ink); font-family: "Source Serif 4", Georgia, serif; font-size: 23px; font-weight: 600; }
+    .toc-list { margin: 0; padding: 0; list-style: none; border-left: 1px solid var(--line); }
+    .toc-list a { display: block; margin-left: -1px; padding: 9px 12px; border-left: 2px solid transparent; color: var(--muted); font-size: 12px; font-weight: 600; line-height: 1.45; text-decoration: none; transition: color 160ms ease, border-color 160ms ease, background 160ms ease; }
+    .toc-list a:hover, .toc-list a:focus-visible { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); outline: none; }
+    .policy-content { min-width: 0; padding: clamp(22px, 4vw, 48px); border: 1px solid var(--line); border-radius: 12px; background: var(--paper); box-shadow: 0 12px 36px rgba(25, 55, 37, .06); animation: enter 650ms 80ms ease both; }
+    .policy-content p { color: #425148; font-size: 14px; line-height: 1.85; }
+    .policy-content strong { color: var(--ink); }
+    .policy-controller { margin: 0 0 24px; padding: 18px 20px; border-left: 3px solid var(--brand); border-radius: 0 7px 7px 0; background: var(--brand-soft); }
+    .policy-controller p { margin: 0; }
+    .policy-intro { margin: 0 0 36px; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+    .policy-section { margin: 0 0 30px; padding: 0 0 28px; border-bottom: 1px solid var(--line); scroll-margin-top: 28px; }
+    .policy-section:last-of-type { margin-bottom: 0; padding-bottom: 24px; border-bottom: 0; }
+    .policy-section h2 { display: flex; align-items: center; gap: 13px; margin: 0 0 18px; padding: 0 0 14px; border-bottom: 1px solid var(--line); color: var(--ink); font-family: "Source Serif 4", Georgia, serif; font-size: 23px; font-weight: 600; line-height: 1.3; }
+    .section-number { width: 32px; height: 32px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 7px; color: var(--brand); background: var(--brand-soft); font-family: Inter, sans-serif; font-size: 12px; font-weight: 800; }
+    .policy-section:target { animation: highlight 1.4s ease; }
+    .policy-note { padding: 14px 16px; border-radius: 6px; }
+    .policy-note p { margin: 0; }
+    .policy-note--caution { border: 1px solid #f0dfb9; background: #fff8e9; }
+    .policy-note--info { border: 1px solid #d8e5e9; background: #f1f7f8; }
+    .contact-note { padding: 20px; border: 1px solid #cfe2d5; border-radius: 8px; background: var(--brand-soft); }
+    .contact-link { display: inline-flex; align-items: center; gap: 9px; margin-top: 4px; padding: 10px 13px; border-radius: 5px; color: #fff; background: var(--brand); font-size: 12px; font-weight: 700; text-decoration: none; }
+    .contact-link:hover { background: var(--brand-deep); }
+    .policy-date { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .policy-footer { padding: 22px 18px; border-top: 1px solid var(--line); color: var(--muted); background: var(--paper); font-size: 12px; }
+    .policy-footer strong { color: var(--ink); }
+    @keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes highlight { 0% { background: rgba(215,164,59,.16); } 100% { background: transparent; } }
+
+    .dark {
+      color-scheme: dark;
+      --page-bg: #111a15;
+      --paper: #19231d;
+      --ink: #edf4ef;
+      --muted: #a6b5aa;
+      --line: #33443a;
+      --brand: #75c596;
+      --brand-deep: #4fac76;
+      --brand-soft: #20382a;
+      --gold: #e0b85e;
+    }
+    .dark .policy-content p { color: #c3d0c7; }
+    .dark .policy-content strong { color: var(--ink); }
+    .dark .policy-note--caution { border-color: #5d4b2c; background: #30291c; }
+    .dark .policy-note--info { border-color: #354c52; background: #202f32; }
+    .dark .contact-note { border-color: #3f654d; }
+
+    @media (max-width: 850px) {
+      .policy-main { padding-top: 46px; }
+      .policy-layout { grid-template-columns: 1fr; gap: 18px; }
+      .policy-toc { position: static; padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+      .toc-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-left: 0; }
+      .toc-list a { height: 100%; margin-left: 0; border-left: 0; border-radius: 4px; }
+    }
+    @media (max-width: 540px) {
+      .policy-nav { min-height: 66px; padding: 10px 16px; }
+      .nav-actions { gap: 10px; }
+      .back-link { width: 40px; height: 40px; justify-content: center; overflow: hidden; font-size: 0; }
+      .back-link i { font-size: 14px; }
+      .document-tag { display: none; }
+      .policy-main { padding: 38px 16px 48px; }
+      .policy-hero { margin-bottom: 26px; }
+      .policy-hero h1 { font-size: 40px; }
+      .hero-description { font-size: 14px; }
+      .policy-toc { padding: 16px 12px; }
+      .toc-list { grid-template-columns: 1fr; }
+      .toc-list a { padding: 8px 10px; }
+      .policy-content { padding: 21px 18px; border-radius: 9px; }
+      .policy-section h2 { align-items: flex-start; font-size: 20px; }
+      .policy-date { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body class="page-shell min-h-screen flex flex-col transition-colors duration-300">
+
+  <nav class="policy-nav w-full flex justify-between items-center">
+    <a href="index.html" class="brand-lockup">
+      <span class="brand-mark"><i class="fas fa-leaf"></i></span>
+      <span><span class="brand-name">Popular Atacarejo</span><span class="brand-caption">Trabalhe Conosco</span></span>
+    </a>
+    <div class="nav-actions">
+      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar ao formulário</a>
+      <span class="document-tag">Documento legal</span>
+      <button id="themeToggle" class="theme-button transition-colors" aria-label="Alternar tema" title="Alternar tema">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="policy-main flex-1">
+    <header class="policy-hero">
+      <p class="eyebrow">RECRUTAMENTO <span aria-hidden="true">/</span> PRIVACIDADE</p>
+      <h1>Política de <span>Privacidade</span></h1>
+      <p class="hero-description">Saiba como os dados enviados ao portal Trabalhe Conosco são utilizados, protegidos e mantidos durante o processo seletivo.</p>
+      <div class="hero-meta">
+        <span><i class="fas fa-shield-alt"></i> Proteção de dados pessoais</span>
+        <span><i class="fas fa-calendar-alt"></i> Atualizada em 29 de setembro de 2026</span>
+      </div>
+    </header>
+
+    <div class="policy-layout">
+      <aside class="policy-toc" aria-label="Navegação da política">
+        <p class="toc-kicker">CONTEÚDO</p>
+        <h2 class="toc-title">Sumário</h2>
+        <nav aria-label="Seções da política">
+          <ol class="toc-list">
+            <li><a href="#sec1">01 &nbsp; Dados pessoais recebidos</a></li>
+            <li><a href="#sec2">02 &nbsp; Finalidades do tratamento</a></li>
+            <li><a href="#sec3">03 &nbsp; Fundamentos legais</a></li>
+            <li><a href="#sec4">04 &nbsp; Compartilhamento e acesso</a></li>
+            <li><a href="#sec5">05 &nbsp; Prazo de conservação</a></li>
+            <li><a href="#sec6">06 &nbsp; Segurança</a></li>
+            <li><a href="#sec7">07 &nbsp; Direitos do candidato</a></li>
+            <li><a href="#sec8">08 &nbsp; Atualizações</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <article class="policy-content">
+
+      <!-- Identificação do Controlador -->
+      <div class="policy-controller">
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          A <strong class="text-gray-900 dark:text-white">COMERCIAL POPULAR LTDA</strong>, inscrita no CNPJ sob nº <strong>07.771.407/0001-61</strong>, com sede em ROD AL 220, Bairro Senador Arnon de Melo — Arapiraca/AL, é responsável pelo tratamento dos dados pessoais enviados por meio da página "Trabalhe Conosco" e dos formulários de candidatura disponíveis neste site. Nesta Política, a empresa é denominada <strong>Controladora</strong>.
+        </p>
+      </div>
+
+      <p class="policy-intro">
+        Esta Política explica quais dados são recebidos, para que são utilizados, com quem podem ser compartilhados, por quanto tempo são conservados e como o candidato pode exercer seus direitos, nos termos da <strong>Lei nº 13.709/2018</strong>, a Lei Geral de Proteção de Dados Pessoais (<strong>LGPD</strong>).
+      </p>
+
+      <!-- Seção 1 -->
+      <section id="sec1" class="policy-section mb-10 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">1</span>
+          Dados pessoais recebidos
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          Ao preencher o formulário ou enviar um currículo, o candidato poderá fornecer nome, informações de contato, cidade, formação acadêmica, experiência profissional, qualificações e outros dados relacionados à candidatura. Também poderão ser recebidos os documentos, links e informações que o próprio candidato incluir no currículo ou nos campos do formulário.
+        </p>
+        <div class="policy-note policy-note--caution">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
+            <i class="fas fa-exclamation-triangle text-amber-500 mr-2"></i>
+            A empresa solicita que sejam enviados apenas dados pertinentes à avaliação profissional. O candidato deve evitar incluir informações sensíveis que não tenham sido expressamente solicitadas, como dados de saúde, religião ou filiação sindical. Caso uma vaga exija informações adicionais por motivo legítimo, a empresa informará a finalidade e o tratamento aplicável no momento da coleta.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção 2 -->
+      <section id="sec2" class="policy-section mb-10 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">2</span>
+          Finalidades do tratamento
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">Os dados serão utilizados para:</p>
+        <ol class="list-none space-y-3 mb-6" type="a">
+          <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+            <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">a</span>
+            <span>Receber e organizar candidaturas;</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+            <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">b</span>
+            <span>Analisar a compatibilidade do perfil profissional com a vaga pretendida;</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+            <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">c</span>
+            <span>Entrar em contato com o candidato e conduzir entrevistas, avaliações e demais etapas do processo seletivo;</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+            <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">d</span>
+            <span>Verificar informações apresentadas, quando necessário e de maneira proporcional à vaga;</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+            <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">e</span>
+            <span>Adotar providências relacionadas à eventual contratação; e</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+            <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">f</span>
+            <span>Cumprir obrigações legais ou resguardar direitos da empresa, quando cabível.</span>
+          </li>
+        </ol>
+        <div class="policy-note policy-note--info">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
+            <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+            Os dados não serão vendidos. Seu uso para divulgação de produtos ou serviços não faz parte desta candidatura.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção 3 -->
+      <section id="sec3" class="policy-section mb-10 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">3</span>
+          Fundamentos legais
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          O tratamento dos dados necessários à candidatura será realizado conforme a finalidade específica e a hipótese legal aplicável, incluindo, quando cabível, a adoção de procedimentos preliminares relacionados a contrato solicitado pelo candidato, o atendimento de obrigações legais ou regulatórias e o exercício regular de direitos.
+        </p>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          Quando a empresa se apoiar em legítimo interesse para uma atividade específica, avaliará sua necessidade e o impacto sobre os direitos do candidato. O tratamento de dados pessoais sensíveis, se indispensável, observará as hipóteses próprias previstas na LGPD.
+        </p>
+        <div class="policy-note policy-note--caution">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
+            <i class="fas fa-exclamation-triangle text-amber-500 mr-2"></i>
+            O simples envio do currículo não constitui autorização irrestrita para tratar qualquer dado ou para utilizá-lo em qualquer finalidade.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção 4 -->
+      <section id="sec4" class="policy-section mb-10 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">4</span>
+          Compartilhamento e acesso
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          O acesso aos dados será limitado aos profissionais envolvidos no recrutamento, seleção, gestão da vaga e eventual contratação, conforme suas atribuições. Poderá haver compartilhamento com prestadores de serviços que auxiliem na operação do site, armazenamento, comunicação e recrutamento, sujeitos a obrigações de confidencialidade e proteção de dados.
+        </p>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          Quando a candidatura se destinar a uma vaga de empresa cliente, os dados pertinentes poderão ser compartilhados com a empresa responsável pela vaga para avaliação do candidato e continuidade do processo seletivo. A identidade da empresa cliente será informada na divulgação da vaga ou, quando isso não for possível naquele momento, antes do compartilhamento dos dados identificáveis.
+        </p>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Também poderá ocorrer compartilhamento para cumprir obrigação legal, atender determinação de autoridade competente ou exercer direitos em procedimentos administrativos, judiciais ou arbitrais.
+        </p>
+      </section>
+
+      <!-- Seção 5 -->
+      <section id="sec5" class="policy-section mb-10 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">5</span>
+          Prazo de conservação
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          Os dados serão conservados durante o processo seletivo e, após seu encerramento, por <strong class="text-gray-900 dark:text-white">60 (sessenta) dias</strong>, para permitir a conclusão das providências relacionadas à candidatura e o exercício regular de direitos, quando necessário.
+        </p>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Encerrado o prazo aplicável, serão eliminados ou anonimizados, ressalvadas as hipóteses legais que autorizem sua conservação.
+        </p>
+      </section>
+
+      <!-- Seção 6 -->
+      <section id="sec6" class="policy-section mb-10 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">6</span>
+          Segurança
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          A empresa adota medidas técnicas e administrativas adequadas para proteger os dados contra acesso não autorizado, perda, alteração, divulgação indevida e outras formas de tratamento inadequado ou ilícito. O acesso interno é restrito às pessoas que necessitam dos dados para as finalidades descritas nesta Política.
+        </p>
+      </section>
+
+      <!-- Seção 7 -->
+      <section id="sec7" class="policy-section mb-10 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">7</span>
+          Direitos do candidato
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          O candidato pode solicitar, nos termos da LGPD, confirmação da existência de tratamento, acesso aos dados, correção de informações incompletas ou desatualizadas, informações sobre compartilhamento e, quando aplicável, anonimização, bloqueio, eliminação, portabilidade e revogação do consentimento. Também pode solicitar informações sobre as consequências de eventual recusa em fornecer dados e opor-se a tratamento realizado em desconformidade com a LGPD.
+        </p>
+        <div class="contact-note">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm mb-3">
+            <i class="fas fa-envelope text-primary mr-2"></i>
+            Para exercer esses direitos ou esclarecer dúvidas sobre esta Política, entre em contato pelo e-mail:
+          </p>
+          <a href="mailto:rh1@popularhomecenter.com.br" class="contact-link">
+            <i class="fas fa-at"></i> rh1@popularhomecenter.com.br
+          </a>
+          <p class="text-gray-500 dark:text-gray-400 text-xs mt-3">
+            A empresa poderá solicitar informações necessárias à confirmação da identidade do requerente antes de atender ao pedido.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção 8 -->
+      <section id="sec8" class="policy-section mb-4 scroll-mt-24">
+        <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white mb-4 pb-3 border-b-2 border-primary">
+          <span class="section-number">8</span>
+          Atualizações
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Esta Política poderá ser atualizada para refletir mudanças no formulário, nos processos de recrutamento ou nas exigências legais. A versão vigente ficará disponível nesta página, com indicação da data de atualização.
+        </p>
+      </section>
+
+      <!-- Data de atualização -->
+      <div class="policy-date">
+        <span>COMERCIAL POPULAR LTDA</span>
+        <p>
+          <i class="fas fa-calendar-alt mr-1"></i>
+          Última atualização: <strong>29 de setembro de 2026</strong>
+        </p>
+      </div>
+      </article>
+    </div>
+
+    <!-- Botão voltar ao formulário -->
+    <div class="text-center mt-8">
+      <a href="index.html" class="contact-link">
+        <i class="fas fa-arrow-left"></i> Voltar ao Formulário
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="policy-footer text-center mt-auto">
+    <strong>Popular Atacarejo</strong> &nbsp; · &nbsp; &copy; 2026 Todos os direitos reservados. Portal de Recrutamento.
+  </footer>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    // Carregar preferência salva
+    if (localStorage.getItem('theme') === 'dark' || 
+        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

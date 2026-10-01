@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
   <title>Popular Atacarejo - Trabalhe Conosco</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Roboto+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,8 +20,8 @@
             secondary: '#1A1A1A',
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Roboto', 'sans-serif'],
+            sans: ['DM Sans', 'sans-serif'],
+            display: ['Roboto Condensed', 'sans-serif'],
           }
         }
       }
@@ -29,6 +29,145 @@
   </script>
 
   <style>
+    :root {
+      --canvas: #f1f5f2;
+      --surface: #ffffff;
+      --surface-muted: #f7f9f7;
+      --ink: #18231d;
+      --muted: #68766d;
+      --line: #d9e2dc;
+      --brand: #006433;
+      --brand-dark: #004d28;
+      --brand-soft: #e8f3ec;
+      --accent: #e5b649;
+    }
+    body.application-shell {
+      color: var(--ink);
+      background-color: var(--canvas);
+      background-image: linear-gradient(rgba(0, 100, 51, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 100, 51, .025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .topbar {
+      min-height: 72px;
+      padding: 10px clamp(18px, 4vw, 54px);
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 18px rgba(23, 52, 35, .035);
+    }
+    .brand-lockup { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+    .brand-symbol {
+      width: 40px; height: 40px; display: grid; place-items: center;
+      border-radius: 9px; color: #fff; background: var(--brand);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
+    }
+    .brand-title { display: block; color: var(--ink); font-size: 13px; font-weight: 800; line-height: 1.1; }
+    .brand-subtitle { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .nav-actions { display: flex; align-items: center; gap: clamp(10px, 2vw, 24px); }
+    #btnConsultaCandidatura { min-height: 40px; padding: 0 4px; font-size: 13px; font-weight: 700; }
+    #themeToggle { width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; box-shadow: none; }
+    .online-indicator { padding: 8px 11px; border-radius: 6px; font-size: 11px; }
+    .page-main { max-width: 1120px; padding: 46px 28px 64px; }
+    .careers-hero {
+      display: flex; align-items: center; justify-content: space-between; gap: 28px;
+      width: 100%; max-width: 1120px; margin: 0 auto 30px; animation: rise-in 450ms ease both;
+    }
+    .hero-copy { max-width: 660px; }
+    .hero-kicker { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; color: var(--brand); font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .hero-kicker::before { width: 22px; height: 2px; content: ''; background: var(--accent); }
+    .hero-title { margin: 0 0 9px; color: var(--ink); font-family: 'Roboto Condensed', sans-serif; font-size: clamp(38px, 5vw, 52px); font-weight: 800; line-height: 1; }
+    .hero-description { max-width: 600px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .hero-emblem {
+      width: 164px; min-width: 164px; height: 126px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 9px; position: relative; overflow: hidden;
+      border-radius: 10px; color: #fff; background: var(--brand);
+    }
+    .hero-emblem::after { position: absolute; inset: 8px; border: 1px solid rgba(255,255,255,.18); border-radius: 6px; content: ''; pointer-events: none; }
+    .hero-emblem i { color: #fff; font-size: 29px; }
+    .hero-emblem span { color: rgba(255,255,255,.84); font-size: 9px; font-weight: 800; letter-spacing: .16em; }
+    .form-panel {
+      padding: clamp(22px, 4vw, 42px); border: 1px solid rgba(217,226,220,.9); border-radius: 14px;
+      background: var(--surface); box-shadow: 0 18px 52px rgba(23,52,35,.08);
+      animation: rise-in 600ms 70ms ease both;
+    }
+    .progress-track { margin-bottom: 38px !important; }
+    .progress-track::before { top: 21px !important; height: 2px !important; background: var(--line) !important; }
+    .step-circle { width: 42px !important; height: 42px !important; border-width: 1px !important; border-color: #cbd7cf !important; color: #708076 !important; font-size: 13px; }
+    .step.active .step-circle { border-color: var(--brand) !important; background: var(--brand) !important; color: #fff !important; box-shadow: 0 0 0 5px var(--brand-soft) !important; }
+    .step.done .step-circle { border-color: var(--brand) !important; background: var(--brand-soft) !important; color: var(--brand) !important; }
+    .step-label { margin-top: 10px !important; color: #77847b !important; font-size: 10px !important; font-weight: 800 !important; letter-spacing: .07em; }
+    .step.active .step-label, .step.done .step-label { color: var(--brand) !important; }
+    .form-panel legend { border-bottom-width: 1px !important; border-color: var(--brand) !important; font-family: 'Roboto Condensed', sans-serif; font-size: 23px !important; }
+    .form-panel legend > div { width: 36px !important; height: 36px !important; border-radius: 8px !important; background: var(--brand) !important; }
+    .form-panel label { font-size: 12px; }
+    .form-panel input:not([type='radio']):not([type='checkbox']):not([type='file']), .form-panel select {
+      min-height: 48px; border-color: var(--line) !important; border-radius: 7px !important;
+      background-color: var(--surface-muted) !important; font-size: 13px;
+    }
+    .form-panel input:not([type='radio']):not([type='checkbox']):not([type='file']):focus, .form-panel select:focus {
+      border-color: var(--brand) !important; background-color: var(--surface) !important;
+      box-shadow: 0 0 0 3px rgba(0,100,51,.1); outline: 0;
+    }
+    .form-panel input[type='radio'], .form-panel input[type='checkbox'] { accent-color: var(--brand); }
+    .form-panel input[type='file'] { min-height: 54px; border-color: var(--line) !important; border-radius: 7px !important; background: var(--surface-muted) !important; font-size: 12px; }
+    .form-panel input[type='file']::file-selector-button { border-radius: 5px !important; background: var(--brand) !important; }
+    #fs3 > div:first-of-type { border: 1px solid var(--line); border-left: 3px solid var(--brand); border-radius: 7px; background: var(--surface-muted); box-shadow: none; }
+    #experiencesSection { border-radius: 8px !important; }
+    .experience-card { border-radius: 8px !important; box-shadow: 0 5px 18px rgba(23,52,35,.05) !important; }
+    #consentimentoLGPD { border-radius: 4px; }
+    .consent-panel { border: 1px solid #d5e2e9 !important; border-radius: 8px !important; background: #f2f7f8 !important; }
+    #submitButton { min-height: 50px; border-radius: 7px !important; box-shadow: 0 8px 18px rgba(0,100,51,.16); font-size: 13px; letter-spacing: .04em; }
+    #submitButton:not(:disabled):hover { box-shadow: 0 11px 24px rgba(0,100,51,.22); }
+    .site-footer { padding: 24px 16px; border-color: var(--line) !important; background: rgba(255,255,255,.75); font-size: 11px; }
+    .site-footer .footer-brand { color: var(--ink) !important; font-size: 16px !important; }
+    .dark {
+      color-scheme: dark;
+      --canvas: #111914; --surface: #1a241e; --surface-muted: #202c25; --ink: #edf4ef;
+      --muted: #a3b2a8; --line: #34443a; --brand: #71c38f; --brand-dark: #4ba66f; --brand-soft: #20392a; --accent: #e5bd62;
+    }
+    .dark .topbar, .dark .site-footer { background: rgba(26,36,30,.96); }
+    .dark #fs3 > div:first-of-type { background: var(--surface-muted); }
+    .dark .consent-panel { border-color: #354b53 !important; background: #202e32 !important; }
+    .dark .progress-track::before { background: var(--line) !important; }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 700px) {
+      .topbar { min-height: 64px; padding: 8px 14px; }
+      .online-indicator { display: none !important; }
+      .brand-symbol { width: 36px; height: 36px; }
+      .brand-subtitle { font-size: 9px; }
+      .nav-actions { gap: 9px; }
+      #btnConsultaCandidatura { width: 40px; padding: 0; overflow: hidden; font-size: 0; justify-content: center; }
+      #btnConsultaCandidatura i { font-size: 15px; }
+      .online-indicator { padding: 7px 8px; font-size: 10px; }
+      .page-main { padding: 30px 14px 42px; }
+      .careers-hero { margin-bottom: 21px; }
+      .hero-emblem { width: 70px; min-width: 70px; height: 70px; border-radius: 8px; }
+      .hero-emblem i { font-size: 24px; }
+      .hero-emblem span { display: none; }
+      .hero-title { font-size: 36px; }
+      .hero-description { font-size: 13px; line-height: 1.55; }
+      .form-panel { padding: 18px 16px; border-radius: 10px; }
+      .progress-track { flex-direction: row !important; align-items: flex-start; }
+      .progress-track .step { margin-bottom: 0 !important; }
+      .progress-track { margin-bottom: 28px !important; }
+      .step-circle { width: 36px !important; height: 36px !important; }
+      .progress-track::before { top: 18px !important; }
+      .step-label { font-size: 8px !important; letter-spacing: .02em; }
+      .form-panel legend { font-size: 20px !important; }
+      .form-panel .grid { gap: 16px; }
+      #submitButton { width: 100%; }
+      .site-footer { padding: 20px 12px; }
+    }
+    @media (max-width: 380px) {
+      .online-indicator { max-width: 112px; }
+      .hero-emblem { display: none; }
+      .hero-title { font-size: 33px; }
+      .form-panel { padding-inline: 13px; }
+      .step-label { font-size: 7px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
     fieldset[aria-disabled="true"] { opacity: 0.5; pointer-events: none; filter: grayscale(1); }
     .step.active .step-circle { border-color: #006433; background-color: #006433; color: white; box-shadow: 0 0 0 4px rgba(0,100,51,0.1); }
     .step.active .step-label { color: #006433; }
@@ -117,10 +256,15 @@
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+<body class="application-shell bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
 
-  <nav class="sticky top-0 z-40 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm w-full px-6 py-4 flex justify-between items-center transition-all">
-    <div class="flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 px-3 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+  <nav class="topbar sticky top-0 z-40 w-full flex justify-between items-center transition-all">
+    <a href="index.html" class="brand-lockup" aria-label="Popular Atacarejo Trabalhe Conosco">
+      <span class="brand-symbol"><i class="fas fa-briefcase"></i></span>
+      <span><span class="brand-title">Popular Atacarejo</span><span class="brand-subtitle">Trabalhe Conosco</span></span>
+    </a>
+    <div class="nav-actions">
+    <div class="online-indicator flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800">
       <span class="relative flex h-3 w-3">
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -139,6 +283,7 @@
         <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
       </button>
     </div>
+    </div>
   </nav>
 
   <!-- Loading Skeleton -->
@@ -150,25 +295,25 @@
     </div>
   </div>
 
-  <main class="w-full max-w-4xl mx-auto p-6 flex-1 flex flex-col pt-12">
-    <header class="text-center mb-12 relative">
-      <div class="absolute left-1/2 -top-4 -translate-x-1/2 w-32 h-32 bg-primary/20 rounded-full blur-2xl dark:bg-primary/30 pointer-events-none"></div>
-      <div class="relative w-24 h-24 bg-gradient-to-br from-primary to-primaryDark text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-4xl shadow-xl ring-4 ring-primary/20 dark:ring-primary/40 transform hover:scale-105 hover:rotate-3 transition-all duration-300">
-        <i class="fas fa-briefcase"></i>
-        <div class="absolute inset-0 rounded-2xl border border-white/20"></div>
-      </div>
-      <h1 class="font-display font-black text-4xl md:text-5xl uppercase tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
-        Popular Atacarejo
-      </h1>
-      <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed font-medium">
+  <main class="page-main w-full mx-auto flex-1 flex flex-col">
+    <header class="careers-hero">
+      <div class="hero-copy">
+      <p class="hero-kicker">Portal de carreiras</p>
+      <h1 class="hero-title">Popular Atacarejo</h1>
+      <p class="hero-description">
         Junte-se à nossa equipe. Preencha o formulário abaixo e dê o primeiro passo para sua nova carreira.
       </p>
+      </div>
+      <div class="hero-emblem" aria-hidden="true">
+        <i class="fas fa-briefcase"></i>
+        <span>POPULAR ATACAREJO</span>
+      </div>
     </header>
 
-    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700">
-      <form id="formCurriculo" novalidate>
+    <div class="form-panel">
+      <form id="formCurriculo" class="application-form" novalidate>
         
-        <div class="flex flex-col md:flex-row justify-between mb-10 relative" role="tablist" aria-label="Progresso do formulário">
+        <div class="progress-track flex flex-col md:flex-row justify-between mb-10 relative" role="tablist" aria-label="Progresso do formulário">
           <div class="hidden md:block absolute top-5 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 z-0"></div>
           <div class="step flex-1 text-center relative z-10 mb-4 md:mb-0 active" id="step1Head" role="tab" aria-selected="true">
             <div class="step-circle w-10 h-10 mx-auto rounded-full border-2 flex items-center justify-center font-bold bg-white dark:bg-gray-800 text-gray-500 border-gray-300 dark:border-gray-600 transition-colors duration-300">1</div>
@@ -383,7 +528,7 @@
         </fieldset>
 
         <!-- Consentimento LGPD -->
-        <div class="mb-6 p-5 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl">
+        <div class="consent-panel mb-6 p-5 bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl">
           <label class="flex items-start gap-3 cursor-pointer group">
             <input 
               type="checkbox" 
@@ -395,7 +540,7 @@
               class="w-5 h-5 text-primary mt-0.5 flex-shrink-0 focus:ring-2 focus:ring-primary">
             <span class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed" id="lgpd-desc">
               <strong class="text-gray-900 dark:text-white">Declaro que li e concordo</strong> com a
-              <a href="/politica-privacidade.html" target="_blank" class="text-primary font-semibold hover:underline focus:underline focus:outline-none">
+              <a href="politica-privacidade.html" target="_blank" class="text-primary font-semibold hover:underline focus:underline focus:outline-none">
                 Política de Privacidade
               </a>
               e autorizo o uso dos meus dados pessoais para fins de recrutamento e seleção, conforme a 
@@ -450,8 +595,8 @@
     </div>
   </div>
 
-  <footer class="text-center py-8 text-gray-500 dark:text-gray-400 text-sm border-t border-gray-200 dark:border-gray-800 mt-auto">
-    <div class="font-display font-black text-xl text-gray-800 dark:text-white mb-2 uppercase"><span class="text-primary">Popular</span> Atacarejo</div>
+  <footer class="site-footer text-center text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800 mt-auto">
+    <div class="footer-brand font-display font-black text-xl mb-2 uppercase"><span class="text-primary">Popular</span> Atacarejo</div>
     <p>© 2026 Todos os direitos reservados. Portal de Recrutamento.</p>
   </footer>
 
